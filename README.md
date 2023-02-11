@@ -2,7 +2,7 @@
 
 ## Xiaomi 11T Pro:
 
-   - ~~[Install Windows PE]()~~ *Coming soon*
+   - [Install Windows PE](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md)
 
 ## Poco F1
 
