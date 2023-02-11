@@ -53,13 +53,13 @@ then in ADB Shell find out what sda Partition Cust is:
 ```
 ls -l /dev/block/by-name
 ```
-then you should get an output like this:
+you should get an output like this:
 ```
 total 0
 lrwxrwxrwx 1 root root 16 1970-07-11 00:01 cust -> /dev/block/sda<Cust ID>
 ```
 Format cust to FAT32: <br />
-**DON'T MAKE ANY TYPO IT COULD BRICK YOUR DEVICE IF WRONG WRONG PARTITION IS FORMATTED!**
+**DON'T MAKE ANY TYPO IT COULD BRICK YOUR DEVICE IF WRONG PARTITION IS FORMATTED!**
 ```
 mkfs.fat -F32 -s1 /dev/block/sda<Cust ID>
 ```
