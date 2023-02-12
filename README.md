@@ -1,29 +1,38 @@
 # MU-Qcom Device Guides
 
-## Xiaomi 11T Pro:
+## Device Guides:
+
+### Xiaomi 11T Pro
 
    - [Install Windows PE](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md)
 
-## Poco F1
+### Poco F1
 
    - No Guides yet
 
-## Xperia XZ1 Compact
+### Xperia XZ1 Compact
 
    - No Guides yet
 
-## Mi Note 10
+### Mi Note 10
 
    - No Guides yet
 
-## Redmi Note 8/8T
+### Redmi Note 8/8T
 
    - No Guides yet
 
-## Mi A3
+### Mi A3
 
    - No Guides yet
 
-## Redmi 9T
+### Redmi 9T
 
    - No Guides yet
+
+## Porting Guides:
+
+   - ~~[Adding SOCs]()~~ Coming soon
+   - ~~[Adding Devices]()~~ Coming soon
+   - ~~[Patching Binaries]()~~ Coming soon
+   - ~~[Create ACPI Tables]()~~ Coming soon
