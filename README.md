@@ -32,7 +32,7 @@
 
 ## Porting Guides:
 
-   - ~~[Adding SOCs]()~~ Coming soon
+   - [Adding SOCs](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md) **NOT FINISHED**
    - ~~[Adding Devices]()~~ Coming soon
    - ~~[Patching Binaries]()~~ Coming soon
    - ~~[Create ACPI Tables]()~~ Coming soon
