@@ -46,5 +46,36 @@ Then we replace all Protocols and Guids <br />
 As you can see the source of the Protocols and Guids are noted <br />
 Go to that Source Website and search your SOC:
 
-*NOTE: Continue Guide*
-![](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/DEC1.png)
+![Preview](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/DEC1.png)
+
+Then go to `QcomModulePkg/QcomModulePkg.dec` <br />
+And copy all Protocols:
+
+![Preview](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/DEC2.png)
+
+Also do that with the Guids:
+
+![Preview](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/DEC3.png)
+
+After that go to `QcomModulePkg/Include/Protocol` and Download all Protocols:
+
+![Preview](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/DEC4.png)
+
+Then Move all these Files into `./Platforms/<SOC>Pkg/Include/Protocol` Override if asked. <br />
+After that we now need to change SOC SMBios definition from this:
+```
+gSM8350TokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 888 @ 2.84 GHz"|VOID*|0x0000a301
+gSM8350TokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8350"|VOID*|0x0000a302
+```
+to this:
+```
+g<SOC>TokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) <SOC Name> @ <SOC Speed> GHz"|VOID*|0x0000a301
+g<SOC>TokenSpaceGuid.PcdSmbiosProcessorRetailModel|"<SOC>"|VOID*|0x0000a302
+```
+
+#### Step 2.2
+
+Now we move on to the `<SOC>.dsc` File we need to change some things also here. <br />
+Lets begin with renaming, Rename every old SOC name to your SOC Name.
+
+*NOTE: Contine Guide*
