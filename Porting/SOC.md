@@ -76,6 +76,28 @@ g<SOC>TokenSpaceGuid.PcdSmbiosProcessorRetailModel|"<SOC>"|VOID*|0x0000a302
 #### Step 2.2
 
 Now we move on to the `<SOC>.dsc` File we need to change some things also here. <br />
-Lets begin with renaming, Rename every old SOC name to your SOC Name.
+Lets begin with renaming, Rename every old SOC name to your SOC Name. <br />
+Then set `USE_PHYSICAL_TIMER` to `TRUE` or `FALSE` according to the SOC <br />
+Now we need to set `gArmTokenSpaceGuid.PcdArmArchTimerSecIntrNum` and `gArmTokenSpaceGuid.PcdArmArchTimerIntrNum` to the right Value:
+
+If the SOC is older than SM8350 use `17` and `18`, If your SOC is newer than SM8350 use `29` and `30`
+
+Next we set `gArmTokenSpaceGuid.PcdGicDistributorBase` and `gArmTokenSpaceGuid.PcdGicRedistributorsBase` to the right Value:
+
+If you port a SOC you probaly port a Device too, In the Devices dtb search for `interrupt-controller`, under `reg` the first Value is `gArmTokenSpaceGuid.PcdGicDistributorBase` and the thirt Value is `gArmTokenSpaceGuid.PcdGicRedistributorsBase`
+
+`gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemRevision` is the SOCs codename Exapmle: SM8350 -> 0x00008350
+`gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress` is the same Value as `gArmTokenSpaceGuid.PcdGicRedistributorsBase`
+
+Now we need to set `gArmPlatformTokenSpaceGuid.PcdCoreCount` and `gArmPlatformTokenSpaceGuid.PcdClusterCount` to the right Value, You can findout these Values by looking at the specs of the SOC
+
+#### Step 2.3
+
+Next we modify the `<SOC>.fdf` File
+Rename the old SOC name to the new SOC name, thats literly it.
+
+### Step 2.4
+
+Now we need to modify SmBios to match it with the SOC you port.
 
 *NOTE: Contine Guide*
