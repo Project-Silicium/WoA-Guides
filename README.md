@@ -6,7 +6,7 @@
 
    - [Install Windows PE](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md)
 
-### Poco F1
+### Z Fold 3 5G
 
    - No Guides yet
 
