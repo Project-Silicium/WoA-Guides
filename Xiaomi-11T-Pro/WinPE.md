@@ -81,8 +81,7 @@ Boot the UEFI Image with fastboot:
 ```
 fastboot boot <Path to UEFI Image>
 ```
-then in Simple Init press `Continue Boot`. <br />
-Now Windows PE boots!
+Now Windows PE should boot.
 
 ## Update Windows PE
 
