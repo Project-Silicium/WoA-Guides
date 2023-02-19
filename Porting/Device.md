@@ -1,5 +1,7 @@
 # Adding Devices
 
+If you have any issues ask on our [Discord](https://discord.gg/Dx2QgMx7Sv).
+
 ## WARNING
 
 If you port an Google or Sony Device there is an risk that your UFS gets wiped once you boot Windows (Will be unable to recover)
