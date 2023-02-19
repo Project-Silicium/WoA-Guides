@@ -25,6 +25,6 @@
 ## Porting Guides:
 
    - [Adding SOCs](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md) **NOT FINISHED**
-   - ~~[Adding Devices]()~~ Coming soon
+   - [Adding Devices](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md)
    - ~~[Patching Binaries]()~~ Coming soon
    - ~~[Create ACPI Tables]()~~ Coming soon
