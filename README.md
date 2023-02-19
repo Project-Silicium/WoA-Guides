@@ -10,14 +10,6 @@
 
    - No Guides yet
 
-### Xperia XZ1 Compact
-
-   - No Guides yet
-
-### Mi Note 10
-
-   - No Guides yet
-
 ### Redmi Note 8/8T
 
    - No Guides yet
