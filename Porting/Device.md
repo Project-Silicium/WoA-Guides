@@ -5,7 +5,7 @@ If you have any issues ask on our [Discord](https://discord.gg/Dx2QgMx7Sv).
 ## Description
 
 This Guide will show you how to create an minimal UEFI Port for your Device. <br />
-If you want to make the Port better with booting Windows/Linux as Example follow the ~~[Extra Sutff]()~~ Guide.
+If you want to make the Port better with booting Windows/Linux as Example follow the [Extra Sutff](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Extra.md) Guide.
 
 ## WARNING
 
