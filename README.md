@@ -1,5 +1,11 @@
 # MU-Qcom Guides
 
+## Porting Guides:
+
+   - [Adding SOCs](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md) **NOT FINISHED**
+   - [Adding Devices](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md)
+       - [Extra Stuff](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Extra.md)
+
 ## Device Guides:
 
 ### Xiaomi 11T Pro
@@ -21,11 +27,3 @@
 ### Redmi 9T
 
    - No Guides yet
-
-## Porting Guides:
-
-   - [Adding SOCs](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md) **NOT FINISHED**
-   - [Adding Devices](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md)
-       - ~~[Extra Stuff]()~~ Coming soon
-   - ~~[Patching Binaries]()~~ Coming soon
-   - ~~[Create ACPI Tables]()~~ Coming soon
