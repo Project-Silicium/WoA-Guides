@@ -17,16 +17,20 @@ If you want to make the Port better with booting Windows/Linux as Example follow
   
 - Adding Devices
     - [Requirements](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#device-recuirements)
-    - [Creating config](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-the-config-file)
-    - [Creating Files](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-files)
-         - [Step 1](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#step-1)
-         - [Step 2](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#step-2)
-              - [Step 2.1](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#step-21)
-              - [Step 2.2](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#step-22)
-              - [Step 2.3](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#step-23)
-              - [Step 2.4](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#step-24)
-         - [Step 3](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#step-3)
+    - [Copying Files](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#copying-files-step-1)
+    - [Creating Config](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-the-config-file-step-2)
+    - [Creating Files](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-files-step-3)
+         - [Creating dsc.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-dscinc-file-step-31)
+         - [Creating fdf.inc Files](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-fdfinc-files-step-32)
+              - [Creating APRIORI.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-aprioriinc-step-321)
+              - [Creating DXE.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-dxeinc-step-322)
+              - [Creating RAW.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-rawinc-step-323)
+              - [Creating MemoryMap](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-platformmemorymapc-file-step-324)
     - [Building](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#building)
+    - [Troubleshooting](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#troubleshooting)
+         - [DxeCore](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#dxecore)
+         - [Crash](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#device-rebootsgets-stuck-on-something)
+         - [Synchronous Exception](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#synchronous-exception)
 
 </td></tr> </table>
 
