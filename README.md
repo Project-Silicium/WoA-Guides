@@ -1,4 +1,4 @@
-# MU-Qcom Device Guides
+# MU-Qcom Guides
 
 ## Device Guides:
 
@@ -26,5 +26,6 @@
 
    - [Adding SOCs](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md) **NOT FINISHED**
    - [Adding Devices](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md)
+       - ~~[Extra Stuff]()~~ Coming soon
    - ~~[Patching Binaries]()~~ Coming soon
    - ~~[Create ACPI Tables]()~~ Coming soon
