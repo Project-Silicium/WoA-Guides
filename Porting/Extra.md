@@ -9,9 +9,9 @@ This Guide will show you how to improve your UEFI Port. <br />
 <tr><td>
   
 - Extra Stuff
-    - [Mass Storage](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#enabling-mass-storage-mode)
-    - [ACPI Tables](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-acpi-tables)
-    - [Patching](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#patching-binaries)
+    - [Mass Storage](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Extra.md#enabling-mass-storage-mode)
+    - [ACPI Tables](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Extra.md#creating-acpi-tables)
+    - [Patching](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Extra.md#patching-binaries)
 
 </td></tr> </table>
 
