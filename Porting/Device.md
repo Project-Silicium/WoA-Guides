@@ -149,7 +149,7 @@ Now we need the order of the Binaries in `APRIORI.inc`, Use UEFITool to get the 
 ![Preview](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/APRIORI1.png)
 ![Preview](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/APRIORI2.png)
 
-Next we place all the Binaries in `DXE.inc` like this:
+Next we place all the Binaries in `APRIORI.inc` like this:
 ```
 FILE DRIVER = <GUID> {
   SECTION DXE_DEPEX = Binaries/<Device Codename>/<File>.depex
