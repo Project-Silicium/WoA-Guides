@@ -116,6 +116,9 @@ Here is an template:
   gQcomTokenSpaceGuid.PcdMipiFrameBufferHeight|<Display Height>
   gQcomTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|<Display Bpp>
 
+  # Simple Init
+  gSimpleInitTokenSpaceGuid.PcdGuiDefaultDPI|320
+
   # Device Info
   gSM8350TokenSpaceGuid.PcdSmbiosSystemVendor|"<Device Manufacturer>"
   gSM8350TokenSpaceGuid.PcdSmbiosSystemModel|"<Device Model>"
