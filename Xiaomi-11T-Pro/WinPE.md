@@ -25,7 +25,7 @@ Make sure to check the Status of the Device [here](https://github.com/Robotix22/
    - Custom Recovery (Recommended: [TWRP](https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/vili/twrp-3.7.0_12-v7.2_A12-vili-skkk.img/download))
    - Unlocked Bootloader
    - [UEFI Image](https://github.com/Robotix22/MU-Qcom)
-   - Windows PE (Recommended: [Driverles WinPE](https://drive.google.com/drive/folders/1-k4LwTuVw48e3Es_CIKPNf68CA9HXYRb))
+   - Windows PE (Recommended: [Driverless WinPE](https://drive.google.com/drive/folders/1-k4LwTuVw48e3Es_CIKPNf68CA9HXYRb))
 
 ## Install
 
