@@ -25,7 +25,8 @@ If you want to make the Port better with booting Windows/Linux as Example follow
               - [Creating APRIORI.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-aprioriinc-step-321)
               - [Creating DXE.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-dxeinc-step-322)
               - [Creating RAW.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-rawinc-step-323)
-              - [Creating MemoryMap](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-platformmemorymapc-file-step-324)
+              - [Creating FDT.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-fdtinc-step-324)
+         - [Creating MemoryMap](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-platformmemorymapc-file-step-33)
     - [Building](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#building)
     - [Troubleshooting](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#troubleshooting)
          - [DxeCore](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#dxecore)
@@ -219,7 +220,25 @@ FILE FREEFORM = <GUID> {
 }
 ```
 
-## Creating PlatformMemoryMap.c File (Step 3.2.4)
+## Creating FDT.inc (Step 3.2.4)
+
+After Creating RAW.inc we now add FDT.inc. <br />
+Your FDT.inc should contain this:
+```
+# Mainline DTB
+#FILE FREEFORM = 25462CDA-221F-47DF-AC1D-259CFAA4E326 {
+#  SECTION RAW = <SOC Codename>Pkg/FdtBlob/<SOC Codename>-<Device Model>.dtb
+#}
+
+# Downstream DTB
+FILE FREEFORM = 25462CDA-221F-47DF-AC1D-259CFAA4E326 {
+  SECTION RAW = ImageResources/DTBs/<Device Codename>.dtb
+}
+```
+If you have an mainline DTB for your Device add it to `./Platforms/<SOC Codename>/FdtBlob/`. <br />
+then uncomment the Mainline DTB part and comment Downstream DTB part out. <br />
+
+## Creating PlatformMemoryMap.c File (Step 3.3)
 
 Lets move on making Memory Map. <br />
 We will use uefiplat.cfg to create the Memory Map. <br />
