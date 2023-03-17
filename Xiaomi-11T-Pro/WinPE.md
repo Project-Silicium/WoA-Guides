@@ -2,87 +2,76 @@
 
 Make sure to check the Status of the Device [here](https://github.com/Robotix22/MU-Qcom/blob/main/Status.md#xiaomi-11t-pro).
 
+## Description
+
+This Guide will show you how to Install Windows PE on your Xiaomi 11T Pro.
+
 <table>
-<tr><th>Sections</th></th>
+<tr><th>Table of Contents</th></th>
 <tr><td>
   
 - Installing Windows PE
-    - [What's needed](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md#what-you-need)
-    - [Installing](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md#install)
-        - [Step 1](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md#step-1)
-        - [Step 2](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md#step-2)
-        - [Step 3](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md#step-3)
-        - [Step 4](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md#step-4)
-        - [Step 5](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md#step-5)
-        - [Step 6](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md#step-6)
-    - [Update Windows PE](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md#update-windows-pe)
+    - [What's needed](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md#things-you-need)
+    - [Installing](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md#installation)
+        - [Preparing](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md#preparing-step-1)
+        - [Formating](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md#formating-partitions-step-2)
+            - [Find Cust](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md#finding-cust-partition-step-21)
+            - [Format Cust](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md#formating-cust-partition-step-22)
+        - [Copy Files](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md#copying-windows-pe-files-step-3)
+    - [Update Windows PE](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md#updating-windows-pe)
 
 </td></tr> </table>
 
-## What you need:
+## Things you need:
    - PC / Laptop
-   - [ADB / Fastboot](https://developer.android.com/studio/releases/platform-tools#downloads)
+   - [ADB and Fastboot](https://developer.android.com/studio/releases/platform-tools#downloads)
    - Custom Recovery (Recommended: [TWRP](https://sourceforge.net/projects/recovery-for-xiaomi-devices/files/vili/twrp-3.7.0_12-v7.2_A12-vili-skkk.img/download))
    - Unlocked Bootloader
    - [UEFI Image](https://github.com/Robotix22/MU-Qcom)
    - Windows PE (Recommended: [Driverless WinPE](https://drive.google.com/drive/folders/1-k4LwTuVw48e3Es_CIKPNf68CA9HXYRb))
 
-## Install
+## Installation
 
-### Step 1:
+## Preparing (Step 1)
 
-Create an workspace and download all [Needed Files](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md#what-you-need).
+First of we need to prepare some things before we install Windows PE on our Device. <br />
+Make sure you have TWRP installed on your Device and have ADB and Fastboot on your PC / Laptop. <br />
+Compile a UEFI Image and place it somewhere on your PC / Laptop where you can find it again. <br />
+Download Windows PE and extract the zip File somewhere, where you can reach it.
 
-### Step 2:
+## Formating Partitions (Step 2)
 
-Boot your Device into the Custom Recovery
+## Finding Cust Partition (Step 2.1)
 
-### Step 3:
+Boot into TWRP and plug your Phone into the PC / Laptop. <br />
+Open ADB Shell on the Command Promt and find the cust partition:
+```
+ls -l /dev/block/by-name/ | grep "cust"
+```
+You should get an output like this:
+```
+lrwxrwxrwx 1 root root 16 1970-08-14 08:33 cust -> /dev/block/sda<Cust ID>
+```
+if you get also get `opcust` just ignore that. <br />
 
-Open Terminal on your PC / Laptop and open ADB Shell with:
-```
-adb shell
-```
-### Step 4:
+## Formating Cust Partition (Step 2.2)
 
-Unmount the Cust Partition in the Custom Recovery:
-```
-umount /cust
-```
-then in ADB Shell find out what sda Partition Cust is:
-```
-ls -l /dev/block/by-name
-```
-you should get an output like this:
-```
-total 0
-lrwxrwxrwx 1 root root 16 1970-07-11 00:01 cust -> /dev/block/sda<Cust ID>
-```
-Format cust to FAT32: <br />
-**DON'T MAKE ANY TYPO IT COULD BRICK YOUR DEVICE IF WRONG PARTITION IS FORMATTED!**
+After you found the cust Partition we format it to FAT32:
+(**NOTE: If you enter the wrong ID you may brick your Device!**)
 ```
 mkfs.fat -F32 -s1 /dev/block/sda<Cust ID>
 ```
-Now mount Cust again:
-```
-mount /dev/block/sda<Cust ID> /cust
-```
 
-### Step 5:
+## Copying Windows PE Files (Step 3)
 
-Now we need to copy the Windows PE Files into /cust:
+And now we need to copy the Windows PE Files into cust. <br />
+First mount cust in TWRP, then use `adb push` to copy all Windows PE Files to cust:
 ```
-adb push <Path to WinPE Files> /cust
+adb push <Path to Windows PE Files> /cust/
 ```
+After that it should contain `sources`, `efi` and `boot`. <br />
+You have now successfully installed Windows PE.
 
-### Step 6:
+## Updating Windows PE
 
-Boot the UEFI Image with fastboot:
-```
-fastboot boot <Path to UEFI Image>
-```
-Now Windows PE should boot.
-
-## Update Windows PE
-
-If you want to Update Windows PE delete all old Windows PE Files and Place the new one in.
+To update Windows PE just delete the old Files and copy all the new Files into cust.
