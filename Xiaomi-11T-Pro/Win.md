@@ -75,7 +75,7 @@ Number  Start    End      Size     File system   Name       Flags
 .........
 35      12.6GB   241GB    228GB                  userdata
 ```
-Once you noted the Start and End Address delete userdata and create esp:
+Once you noted the Start and End Address delete userdata and create esp: <br />
 ***NOTE: If you get a Warning or Error do not continue! Please ask in Discord if it is okay to continue***
 ```
 (parted) rm <Userdata ID>
