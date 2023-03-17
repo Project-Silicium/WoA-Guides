@@ -10,7 +10,9 @@
 
 ### Xiaomi 11T Pro
 
-   - [Install Windows PE](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md)
+   - [Installing Windows PE](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md)
+   - ~~[Installing Windows](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/Win.md)~~ Coming soon
+        - ~~[Adding Drivers](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/Win-Drivers.md)~~ Coming soon
 
 ### Z Fold 3 5G
 
