@@ -78,6 +78,7 @@ Number  Start    End      Size     File system   Name       Flags
 Once you noted the Start and End Address delete userdata and create esp: <br />
 ***NOTE: If you get a Warning or Error do not continue! Please ask in Discord if it is okay to continue***
 ```
+# Deleting userdata will wipe all your data in Android!
 (parted) rm <Userdata ID>
 (parted) mkpart esp fat32 <Start Addr>GB <Start Addr + 512MB>GB
 ```
