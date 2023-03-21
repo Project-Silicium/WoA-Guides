@@ -131,7 +131,7 @@ bcdboot R:\Windows /s X: /f UEFI
 
 ## Applying Drivers (Step 4)
 
-~~Follow [This](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/Win-Drivers.md) Guide to add Drivers to your Windows Insterlation~~ Comming soon
+~~Follow [This](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/Win-Drivers.md) Guide to add Drivers to your Windows Installation~~ Coming soon
 
 ## Configure BCD (Step 5)
 
