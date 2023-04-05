@@ -4,10 +4,6 @@
 
 This Guide will show you how to make an UEFI Port for an Snapdragon SOC
 
-## WARNING
-
-**This is still underconstruction!**
-
 <table>
 <tr><th>Table of Contents</th></th>
 <tr><td>
@@ -21,6 +17,8 @@ This Guide will show you how to make an UEFI Port for an Snapdragon SOC
             - [.dsc File](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md#modify-dsc-file-step-222)
             - [.fdf File](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md#modify-fdf-file-step-223)
         - [Modify SMBios](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md#modify-smbios-step-23)
+            - [Modify Infos](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md#modify-smbios-infos-step-231)
+            - [Modify Device Values](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md#modify-device-definitions-step-232)
         - [Modify Librarys](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md#modify-librarys-step-24)
         - [Modify Boot Logo](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md#modify-boot-logo-step-25)
         - [Modify Build Script](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md#modify-boot-logo-step-25)
@@ -51,57 +49,11 @@ Struckture of Files for SOCs:
 │   ├── Configuration
 │   │   └── DeviceConfigurationMap.h
 │   ├── Protocol
-│   │   ├── DDRDetails.h
-│   │   ├── EFIASN1X509.h
-│   │   ├── EFIChargerEx.h
-│   │   ├── EFIChipInfo.h
-│   │   ├── EFIChipInfoTypes.h
-│   │   ├── EFIDDRGetConfig.h
-│   │   ├── EFIDisplayUtils.h
-│   │   ├── EFIEraseBlock.h
-│   │   ├── EFIKernelInterface.h
-│   │   ├── EFILimits.h
-│   │   ├── EFIMdtp.h
-│   │   ├── EFINandPartiGuid.h
-│   │   ├── EFIPlatformInfo.h
-│   │   ├── EFIPlatformInfoTypes.h
-│   │   ├── EFIPmicPon.h
-│   │   ├── EFIPmicVersion.h
-│   │   ├── EFIQseecom.h
-│   │   ├── EFIRamPartition.h
-│   │   ├── EFIResetReason.h
-│   │   ├── EFIRng.h
-│   │   ├── EFIScm.h
-│   │   ├── EFIScmModeSwitch.h
-│   │   ├── EFISecRSA.h
-│   │   ├── EFISmem.h
-│   │   ├── EFIUbiFlasher.h
-│   │   ├── EFIUsbDevice.h
-│   │   ├── EFIUsbEx.h
-│   │   ├── EFIUsbfnIo.h
-│   │   ├── EFIVerifiedBoot.h
-│   │   ├── scm_sip_interface.h
-│   │   ├── Source.txt
-│   │   └── UsbEx.h
+│   │   └── <Protocols>
 │   └── Resources
 │       └── BootLogo.bmp
 ├── Library
-│   ├── AcpiPlatformUpdateLib
-│   │   ├── AcpiPlatformUpdateLib.c
-│   │   └── AcpiPlatformUpdateLib.inf
-│   ├── MsPlatformDevicesLib
-│   │   ├── MsPlatformDevicesLib.c
-│   │   └── MsPlatformDevicesLib.inf
-│   ├── PlatformPrePiLib
-│   │   ├── PlatformPrePiLib.inf
-│   │   ├── PlatformUtils.c
-│   │   └── PlatformUtils.h
-│   ├── PowerServicesLib
-│   │   ├── PowerServicesLib.c
-│   │   └── PowerServicesLib.inf
-│   └── RFSProtectionLib
-│       ├── RFSProtectionLib.c
-│       └── RFSProtectionLib.inf
+│   └── <Librarys>
 ├── PlatformBuild.py
 ├── PlatformPei
 │   ├── PlatformPeiLib.c
@@ -170,7 +122,121 @@ Here you only need to change the SOC Name to your SOC Name.
 
 ## Modify SmBios (Step 2.3)
 
-**NOTE: Add Content**
+SmBios defines Device Infos from CPU and maybe also other Devices. <br />
+Windows and Linux uses these Infos to display correct Values, <br />
+Example: The CPU Name you see in Device Manager is defined in SMBios.
+
+## Modify SmBios Infos (Step 2.3.1)
+
+First thing we want to modify in SmBios are the Infos, Version, Vendor, etc. <br />
+In your SmBios you copied goto `mBIOSInfoType0Strings`. <br />
+You see there two Values, `Vendor String` and `BiosVersion String`. <br />
+`Vendor String` should be your Github Username. <br />
+`BiosVersion String` needs to be the UEFI Version example: `1.2` <br />
+After you changed these Values goto `mSysInfoType1Strings`, there Replace `Snapdragon <SOC> Device` with your SOC you port.
+
+## Modify Device definitions (Step 2.3.2)
+
+There are multiple Things you need to change: `SMBIOS_TABLE_TYPE4`, `SMBIOS_TABLE_TYPE7` and `SMBIOS_TABLE_TYPE17` <br />
+Lets begin with `SMBIOS_TABLE_TYPE4`:
+
+It defines some CPU Values like Speed and Clusters. <br />
+Here is a template Section:
+```
+SMBIOS_TABLE_TYPE4 mProcessorInfoType4 = {
+    {EFI_SMBIOS_TYPE_PROCESSOR_INFORMATION, sizeof(SMBIOS_TABLE_TYPE4), 0},
+    1,                // Socket String
+    CentralProcessor, // ProcessorType;				      ///< The
+                      // enumeration value from PROCESSOR_TYPE_DATA.
+    ProcessorFamilyIndicatorFamily2, // ProcessorFamily;        ///< The
+                                     // enumeration value from
+                                     // PROCESSOR_FAMILY2_DATA.
+    2,                               // ProcessorManufacture String;
+    {                                // ProcessorId;
+     {
+         // PROCESSOR_SIGNATURE
+         0, //  ProcessorSteppingId:4;
+         0, //  ProcessorModel:     4;
+         0, //  ProcessorFamily:    4;
+         0, //  ProcessorType:      2;
+         0, //  ProcessorReserved1: 2;
+         0, //  ProcessorXModel:    4;
+         0, //  ProcessorXFamily:   8;
+         0, //  ProcessorReserved2: 4;
+     },
+
+     {
+         // PROCESSOR_FEATURE_FLAGS
+         0, //  ProcessorFpu       :1;
+         0, //  ProcessorVme       :1;
+         0, //  ProcessorDe        :1;
+         0, //  ProcessorPse       :1;
+         0, //  ProcessorTsc       :1;
+         0, //  ProcessorMsr       :1;
+         0, //  ProcessorPae       :1;
+         0, //  ProcessorMce       :1;
+         0, //  ProcessorCx8       :1;
+         0, //  ProcessorApic      :1;
+         0, //  ProcessorReserved1 :1;
+         0, //  ProcessorSep       :1;
+         0, //  ProcessorMtrr      :1;
+         0, //  ProcessorPge       :1;
+         0, //  ProcessorMca       :1;
+         0, //  ProcessorCmov      :1;
+         0, //  ProcessorPat       :1;
+         0, //  ProcessorPse36     :1;
+         0, //  ProcessorPsn       :1;
+         0, //  ProcessorClfsh     :1;
+         0, //  ProcessorReserved2 :1;
+         0, //  ProcessorDs        :1;
+         0, //  ProcessorAcpi      :1;
+         0, //  ProcessorMmx       :1;
+         0, //  ProcessorFxsr      :1;
+         0, //  ProcessorSse       :1;
+         0, //  ProcessorSse2      :1;
+         0, //  ProcessorSs        :1;
+         0, //  ProcessorReserved3 :1;
+         0, //  ProcessorTm        :1;
+         0, //  ProcessorReserved4 :2;
+     }},
+    3, // ProcessorVersion String;
+    {
+        // Voltage;
+        0, // ProcessorVoltageCapability5V        :1;
+        0, // ProcessorVoltageCapability3_3V      :1;
+        0, // ProcessorVoltageCapability2_9V      :1;
+        0, // ProcessorVoltageCapabilityReserved  :1; ///< Bit 3, must be zero.
+        0, // ProcessorVoltageReserved            :3; ///< Bits 4-6, must be
+           // zero.
+        0  // ProcessorVoltageIndicateLegacy      :1;
+    },
+    0,                     // ExternalClock;
+    <Max speed of your SOC>, // MaxSpeed;
+    <Max speed of your SOC>, // CurrentSpeed;
+    0x41,                  // Status;
+    ProcessorUpgradeOther, // ProcessorUpgrade;      ///< The enumeration value
+                           // from PROCESSOR_UPGRADE.
+    0,                     // L1CacheHandle;
+    0,                     // L2CacheHandle;
+    0,                     // L3CacheHandle;
+    0,                     // SerialNumber;
+    0,                     // AssetTag;
+    4,                     // PartNumber;
+    <Amount of Cores your SOC has>, // CoreCount;
+    <Amount of Cores your SOC has>, // EnabledCoreCount;
+    <Amount of Cores your SOC has>, // ThreadCount;
+    0xAC,                        // ProcessorCharacteristics;
+    ProcessorFamilyARM,          // ARM Processor Family;
+};
+```
+After you modified these, we move on to `SMBIOS_TABLE_TYPE7`.
+
+**NOTE: For now you can skip this Step.** <br />
+**NOTE: Add TYPE7 Section here.**
+
+Once you changed all Values in `SMBIOS_TABLE_TYPE7` you can moce on to `SMBIOS_TABLE_TYPE17`. <br />
+You only need to change one Value there: `Speed`. <br />
+Replace the Value from `Speed` with the Value of your MAX Speed Value divided by 2.
 
 ## Modify Librarys (Step 2.4)
 
