@@ -48,7 +48,7 @@ To Port UEFI to your Phone, it needs the following things:
 Lets begin with Copying Files. <br />
 Copy the fdt File from `/sys/firmware` and Place it as `<Device Codename.dtb>` under `./ImageResources/DTBs/`. <br />
 Extract your xbl from `/dev/block/by-name` and Place it somewhere you can reach it. <br />
-After Copying the xbl File extract all UEFI Binaries from it with UEFITool or UEFIReader. <br />
+After Copying the xbl File extract all UEFI Binaries from it with [UEFIReader](https://github.com/WOA-Project/UEFIReader). <br />
 Now Move all the output Files from xbl in `./Platforms/Binaries/<Device Codename>/`.
 
 ## Creating the Config File (Step 2)
