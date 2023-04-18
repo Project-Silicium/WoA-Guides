@@ -8,21 +8,25 @@
 
 ## Device Guides:
 
+### Galaxy Tab S8 5G
+
+   - No Guides yet
+
+### Galaxy Z Fold 3 5G
+
+   - No Guides yet
+
 ### Xiaomi 11T Pro
 
    - [Installing Windows PE](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/WinPE.md)
    - [Installing Windows](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/Win.md)
         - ~~[Adding Drivers](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Xiaomi-11T-Pro/Win-Drivers.md)~~ Coming soon
 
-### Z Fold 3 5G
+### Mi A3
 
    - No Guides yet
 
 ### Redmi Note 8/8T
-
-   - No Guides yet
-
-### Mi A3
 
    - No Guides yet
 
