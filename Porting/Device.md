@@ -22,10 +22,11 @@ If you want to make the Port better with booting Windows/Linux as Example follow
     - [Creating Files](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-files-step-3)
          - [Creating dsc.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-dscinc-file-step-31)
          - [Creating fdf.inc Files](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-fdfinc-files-step-32)
-              - [Creating APRIORI.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-aprioriinc-step-321)
-              - [Creating DXE.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-dxeinc-step-322)
-              - [Creating RAW.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-rawinc-step-323)
-              - [Creating FDT.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-fdtinc-step-324)
+              - [Creating ACPI.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-acpiinc-step-321)
+              - [Creating APRIORI.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-aprioriinc-step-322)
+              - [Creating DXE.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-dxeinc-step-323)
+              - [Creating RAW.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-rawinc-step-324)
+              - [Creating FDT.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-fdtinc-step-325)
          - [Creating MemoryMap](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-platformmemorymapc-file-step-33)
     - [Building](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#building)
     - [Troubleshooting](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#troubleshooting)
@@ -145,9 +146,40 @@ Here is an template:
 
 Now we create some files for the `.fdf` File
 
-## Creating APRIORI.inc (Step 3.2.1)
+## Creating ACPI.inc (Step 3.2.1)
 
-Lets begin with `APRIORI.inc`, Create `APRIORI.inc` in `./Platforms/<SOC Codename>Pkg/Devices/<Device Codename>/Include/`. <br />
+Lets begin with `ACPI.inc`, Create `ACPI.inc` in `./Platforms/<SOC Codename>Pkg/Devices/<Device Codename>/Include/`. <br />
+After Creating the File you can add ACPI Tables **If your SOC has already ACPITables in the Folder!** otherwise leave it empty. <br />
+If there are ACPI Tables add this to your `ACPI.inc`:
+```
+FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606CD {
+# SECTION RAW = SM8350Pkg/AcpiTables/APIC.aml
+  SECTION RAW = SM8350Pkg/AcpiTables/APIC.UniCore.aml
+# SECTION RAW = SM8350Pkg/AcpiTables/BERT.aml
+# SECTION RAW = SM8350Pkg/AcpiTables/BGRT.aml
+# SECTION RAW = SM8350Pkg/AcpiTables/CSRT.aml
+# SECTION RAW = SM8350Pkg/AcpiTables/DBG2.aml
+  SECTION RAW = SM8350Pkg/AcpiTables/DSDT_minimal.aml
+  SECTION RAW = SM8350Pkg/AcpiTables/FACP.aml
+# SECTION RAW = SM8350Pkg/AcpiTables/FPDT.aml
+  SECTION RAW = SM8350Pkg/AcpiTables/GTDT.aml
+# SECTION RAW = SM8350Pkg/AcpiTables/IORT.aml
+# SECTION RAW = SM8350Pkg/AcpiTables/MCFG.aml
+# SECTION RAW = SM8350Pkg/AcpiTables/MSDM.aml
+# SECTION RAW = SM8350Pkg/AcpiTables/PPTT.aml
+# SECTION RAW = SM8350Pkg/AcpiTables/SPCR.aml
+# SECTION RAW = SM8350Pkg/AcpiTables/TPM2.aml
+# SECTION RAW = SM8350Pkg/AcpiTables/XSDT.aml
+  SECTION RAW = QcomPkg/AcpiTables/common/SSDT.aml
+  SECTION RAW = QcomPkg/AcpiTables/common/TPMDev.aml
+  SECTION RAW = QcomPkg/AcpiTables/common/SoftwareTpm2Table.aml
+  SECTION UI = "AcpiTables" 
+}
+```
+
+## Creating APRIORI.inc (Step 3.2.2)
+
+Now we continue with `APRIORI.inc`, Create `APRIORI.inc` in `./Platforms/<SOC Codename>Pkg/Devices/<Device Codename>/Include/`. <br />
 Now we need the order of the Binaries in `APRIORI.inc`, Use UEFITool to get the Order:
 
 ![Preview](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/APRIORI1.png)
@@ -175,7 +207,7 @@ INF QcomPkg/Drivers/SimpleFbDxe/SimpleFbDxe.inf
 `PciBusDxe` should be over `Fat` <br />
 `SimpleFbDxe` should replace `DisplayDxe` <br />
 
-## Creating DXE.inc File (Step 3.2.2)
+## Creating DXE.inc File (Step 3.2.3)
 
 After that we can now move on to `DXE.inc`, Create `DXE.inc` in `./Platforms/<SOC Codename>Pkg/Devices/<Device Codename>/Include/`. <br />
 Now again we need the Order, To get the order of `DXE.inc` Open xbl in UEFITool and you will already see the order. <br />
@@ -209,7 +241,7 @@ INF MdeModulePkg/Bus/Usb/UsbMouseAbsolutePointerDxe/UsbMouseAbsolutePointerDxe.i
 `SimpleFbDxe` should replace `DisplayDxe` <br />
 `UsbMouseAbsolutePointerDxe` should be under `UsbKbDxe` <br />
 
-## Creating RAW.inc (Step 3.2.3)
+## Creating RAW.inc (Step 3.2.4)
 
 Now lets move on to `RAW.inc`. <br />
 Add all RAW Files that UEFI Tool displays and add them like this:
@@ -220,7 +252,7 @@ FILE FREEFORM = <GUID> {
 }
 ```
 
-## Creating FDT.inc (Step 3.2.4)
+## Creating FDT.inc (Step 3.2.5)
 
 After Creating RAW.inc we now add FDT.inc. <br />
 Your FDT.inc should contain this:
