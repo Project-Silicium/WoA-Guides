@@ -93,17 +93,6 @@ And We need to download the Protocols from `QcomModulePkg/Include/Protocol` and 
 
 ![Preview](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/DEC4.png)
 
-Now we now need to change SOC SMBios definition from this:
-```
-gSM8350TokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 888 @ 2.84 GHz"|VOID*|0x0000a301
-gSM8350TokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8350"|VOID*|0x0000a302
-```
-to this:
-```
-g<SOC Codename>TokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) <SOC Name> @ <SOC Speed> GHz"|VOID*|0x0000a301
-g<SOC Codename>TokenSpaceGuid.PcdSmbiosProcessorRetailModel|"<SOC Codename>"|VOID*|0x0000a302
-```
-
 ## Modify .dsc File (Step 2.2.2)
 
 In this File we need to change a lot. <br />
@@ -115,6 +104,18 @@ If the SOC is older than SM8350 use `17` and `18` if not use `29` and `30`. <br 
 Set `PcdAcpiDefaultOemRevision` to your SOC Name Example: `SM8350 -> 0x00008350`
 
 Now we need to set `PcdCoreCount` and `PcdClusterCount` to the right Value, You can findout these Values by looking at the specs of the SOC.
+
+After that we need to change SmBios Values: <br />
+from this:
+```
+gSM8350TokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 888 @ 2.84 GHz"|VOID*|0x0000a301
+gSM8350TokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8350"|VOID*|0x0000a302
+```
+to this:
+```
+g<SOC Codename>TokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) <SOC Name> @ <SOC Speed> GHz"|VOID*|0x0000a301
+g<SOC Codename>TokenSpaceGuid.PcdSmbiosProcessorRetailModel|"<SOC Codename>"|VOID*|0x0000a302
+```
 
 ## Modify .fdf File (Step 2.2.3)
 
@@ -233,10 +234,6 @@ After you modified these, we move on to `SMBIOS_TABLE_TYPE7`.
 
 **NOTE: For now you can skip this Step.** <br />
 **NOTE: Add TYPE7 Section here.**
-
-Once you changed all Values in `SMBIOS_TABLE_TYPE7` you can moce on to `SMBIOS_TABLE_TYPE17`. <br />
-You only need to change one Value there: `Speed`. <br />
-Replace the Value from `Speed` with the Value of your MAX Speed Value divided by 2.
 
 ## Modify Librarys (Step 2.4)
 
