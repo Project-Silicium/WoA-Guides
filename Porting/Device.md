@@ -122,11 +122,11 @@ Here is an template:
   gSimpleInitTokenSpaceGuid.PcdGuiDefaultDPI|320
 
   # Device Info
-  gSM8350TokenSpaceGuid.PcdSmbiosSystemVendor|"<Device Manufacturer>"
-  gSM8350TokenSpaceGuid.PcdSmbiosSystemModel|"<Device Model>"
-  gSM8350TokenSpaceGuid.PcdSmbiosSystemRetailModel|"<Codename>"
-  gSM8350TokenSpaceGuid.PcdSmbiosSystemRetailSku|"<Device Model>_<Device Codename>"
-  gSM8350TokenSpaceGuid.PcdSmbiosBoardModel|"<Device Model>"
+  gQcomTokenSpaceGuid.PcdSmbiosSystemVendor|"<Device Manufacturer>"
+  gQcomTokenSpaceGuid.PcdSmbiosSystemModel|"<Device Model>"
+  gQcomTokenSpaceGuid.PcdSmbiosSystemRetailModel|"<Codename>"
+  gQcomTokenSpaceGuid.PcdSmbiosSystemRetailSku|"<Device Model>_<Device Codename>"
+  gQcomTokenSpaceGuid.PcdSmbiosBoardModel|"<Device Model>"
 
 [PcdsDynamicDefault.common]
   gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|<Display Width>
@@ -187,11 +187,7 @@ Now we need the order of the Binaries in `APRIORI.inc`, Use UEFITool to get the 
 
 Next we place all the Binaries in `APRIORI.inc` like this:
 ```
-FILE DRIVER = <GUID> {
-  SECTION DXE_DEPEX = Binaries/<Device Codename>/<File>.depex
-  SECTION PE32 = Binaries/<Device Codename>/<File>.efi
-  SECTION UI = "<Name>"
-}
+INF <Path to .inf File>
 ```
 If the Binary is an Application use `APPLICATION` instead of `DRIVER`. <br />
 After you ordered and added all the Files you also need to add some extra stuff to `APRIORI.inc`:
@@ -213,11 +209,7 @@ After that we can now move on to `DXE.inc`, Create `DXE.inc` in `./Platforms/<SO
 Now again we need the Order, To get the order of `DXE.inc` Open xbl in UEFITool and you will already see the order. <br />
 Again we place all the Binaries like this:
 ```
-FILE DRIVER = <GUID> {
-  SECTION DXE_DEPEX = Binaries/<Device Codename>/<File>.depex
-  SECTION PE32 = Binaries/<Device Codename>/<File>.efi
-  SECTION UI = "<Name>"
-}
+INF <Path to .inf>
 ```
 Again if the Binary is an Application use `APPLICATION` instead of `DRIVER`. <br />
 Also here again you need to add some extra Stuff:
@@ -310,9 +302,8 @@ would become in the Memory Map:
 {"Display Reserved",  0xEA600000, 0x02400000, AddMem, MEM_RES, SYS_MEM_CAP, Reserv, WRITE_THROUGH_XN},
 ```
 Do that with every Memory Region but if an `#` is infront of an Memory Region do not add it. <br />
-Also here you need to replace something, Replace `UEFI FD` and `DXE Heap` with this:
+Also here you need to replace something, Replace `UEFI FD` and `DXE Heap` with the Values for your SOC Example:
 ```
-(NOTE: The Dxe Heap Values are may wrong for your Device)
 {"DXE Heap",          0xA0000000, 0x2E000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK},
 {"UEFI FD",           0xD0000000, 0x00600000, AddMem, SYS_MEM, SYS_MEM_CAP, BsData, WRITE_BACK},
 ```
