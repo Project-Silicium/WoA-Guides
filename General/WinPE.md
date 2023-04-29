@@ -87,6 +87,7 @@ then push `parted` and `gdisk` into the workspace:
 adb push parted gdisk /workspace/
 adb shell chmod 744 /workspace/parted /workspace/gdisk
 ```
+before we use parted unmount `userdata` or else some weird stuff is gona happen! <br />
 After that enter ADB Shell and open sda with parted:
 ```
 adb shell
