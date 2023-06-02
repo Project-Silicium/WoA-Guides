@@ -251,15 +251,11 @@ Your FDT.inc should contain this:
 # Mainline DTB
 #FILE FREEFORM = 25462CDA-221F-47DF-AC1D-259CFAA4E326 {
 #  SECTION RAW = <SOC Codename>Pkg/FdtBlob/<SOC Codename>-<Device Model>.dtb
+#  SECTION UI = "DeviceTreeBlob"
 #}
-
-# Downstream DTB
-FILE FREEFORM = 25462CDA-221F-47DF-AC1D-259CFAA4E326 {
-  SECTION RAW = ImageResources/DTBs/<Device Codename>.dtb
-}
 ```
 If you have an mainline DTB for your Device add it to `./Platforms/<SOC Codename>/FdtBlob/`. <br />
-then uncomment the Mainline DTB part and comment Downstream DTB part out. <br />
+then uncomment the Mainline DTB part. <br />
 
 ## Creating PlatformMemoryMap.c File (Step 3.3)
 
