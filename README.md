@@ -43,4 +43,4 @@
 
 ### Linux
 
-   - No Guides yet
+   - ~~[Installing Linux](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/General/Linux.md)~~ Coming soon
