@@ -11,14 +11,14 @@ This Guide will show you how to install full Windows on your Device.
 <tr><td>
   
 - Installing Windows
-    - [What's needed](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Win.md#needed-things)
-    - [Prepare](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Win.md#preparing-step-1)
-        - [ISO](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Win.md#windows-image-step-11)
-        - [Drivers](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Win.md#windows-drivers-step-12)
-    - [Partition UFS](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Win.md#partition-ufs-step-2)
-    - [Install](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Win.md#installing-step-3)
-    - [Apply Drivers](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Win.md#applying-drivers-step-4)
-- [Reinstall Windows](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Win.md#reinstalling-windows)
+    - [What's needed](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/General/Win.md#needed-things)
+    - [Prepare](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/General/Win.md#preparing-step-1)
+        - [ISO](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/General/Win.md#windows-image-step-11)
+        - [Drivers](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/General/Win.md#windows-drivers-step-12)
+    - [Partition UFS](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/General/Win.md#partition-ufs-step-2)
+    - [Install](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/General/Win.md#installing-step-3)
+    - [Apply Drivers](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/General/Win.md#applying-drivers-step-4)
+- [Reinstall Windows](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/General/Win.md#reinstalling-windows)
 
 </td></tr> </table>
 
