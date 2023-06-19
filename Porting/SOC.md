@@ -33,6 +33,7 @@ Create a Config File in `./config` called: `<SOC>.conf` with this content:
 ```
 FD_BASE=<Value>
 FD_SIZE=<Value>
+FD_BLOCKS=<Value>
 ```
 If the SOC needs any "special" Configs add these there.
 
