@@ -11,7 +11,7 @@
 
 ### Galaxy Tab S8 5G
 
-   - ~~[Enabling Mass Storage](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Galaxy-Tab-S8-5G/Mass-Storage.md)~~ Coming soon
+   - [Enabling Mass Storage](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Galaxy-Tab-S8-5G/Mass-Storage.md)
    - ~~[Fixing UFS](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Galaxy-Tab-S8-5G/Fix-UFS.md)~~ Coming soon
 
 ### Galaxy Z Fold 3 5G
