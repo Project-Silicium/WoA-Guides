@@ -132,8 +132,6 @@ Here is an template:
   gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|<Display Height>
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|<Display Width>
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|<Display Height>
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|150
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|150
 ```
 
 `<Start Address>` is the Start Address of the MemoryMap (uefiplat.cfg) <br />
