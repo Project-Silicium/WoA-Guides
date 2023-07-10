@@ -15,23 +15,23 @@ This Guide will show you how to create an minimal UEFI Port for your Device. <br
 <tr><td>
   
 - Adding Devices
-    - [Requirements](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#device-recuirements)
-    - [Copying Files](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#copying-files-step-1)
-    - [Creating Config](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-the-config-file-step-2)
-    - [Creating Files](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-files-step-3)
-         - [Creating dsc.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-dscinc-file-step-31)
-         - [Creating fdf.inc Files](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-fdfinc-files-step-32)
-              - [Creating ACPI.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-acpiinc-step-321)
-              - [Creating APRIORI.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-aprioriinc-step-322)
-              - [Creating DXE.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-dxeinc-step-323)
-              - [Creating RAW.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-rawinc-step-324)
-              - [Creating FDT.inc](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-fdtinc-step-325)
-         - [Creating MemoryMap](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#creating-platformmemorymapc-file-step-33)
-    - [Building](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#building)
-    - [Troubleshooting](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#troubleshooting)
-         - [DxeCore](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#dxecore)
-         - [Crash](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#device-rebootsgets-stuck-on-something)
-         - [Synchronous Exception](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md#synchronous-exception)
+    - [Requirements](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#device-recuirements)
+    - [Copying Files](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#copying-files-step-1)
+    - [Creating Config](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-the-config-file-step-2)
+    - [Creating Files](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-files-step-3)
+         - [Creating dsc.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-dscinc-file-step-31)
+         - [Creating fdf.inc Files](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-fdfinc-files-step-32)
+              - [Creating ACPI.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-acpiinc-step-321)
+              - [Creating APRIORI.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-aprioriinc-step-322)
+              - [Creating DXE.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-dxeinc-step-323)
+              - [Creating RAW.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-rawinc-step-324)
+              - [Creating FDT.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-fdtinc-step-325)
+         - [Creating MemoryMap](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-platformmemorymapc-file-step-33)
+    - [Building](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#building)
+    - [Troubleshooting](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#troubleshooting)
+         - [DxeCore](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#dxecore)
+         - [Crash](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#device-rebootsgets-stuck-on-something)
+         - [Synchronous Exception](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#synchronous-exception)
 
 </td></tr> </table>
 
@@ -179,8 +179,8 @@ FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606CD {
 Now we continue with `APRIORI.inc`, Create `APRIORI.inc` in `./Platforms/<SOC Codename>Pkg/Devices/<Device Codename>/Include/`. <br />
 Now we need the order of the Binaries in `APRIORI.inc`, Use UEFITool to get the Order:
 
-![Preview](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/APRIORI1.png)
-![Preview](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/APRIORI2.png)
+![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/APRIORI1.png)
+![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/APRIORI2.png)
 
 Next we place all the Binaries in `APRIORI.inc` like this:
 ```
@@ -331,6 +331,6 @@ If The Phone reboots after booting UEFI the Issue is may an Driver again. <br />
 
 That also may happen if you Port UEFI. <br />
 
-![Preview](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Synchronous-Exception.jpg)
+![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Synchronous-Exception.jpg)
 
 One of these Drivers causes the Issue, In that Example it it PILDxe, you can cut it for now.

@@ -1,47 +1,5 @@
-# MU-Qcom Guides
+# UEFI Guides
 
-## Porting Guides:
+## [MU-Qcom](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/MU-Qcom.md)
 
-   - [Adding SOCs](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md)
-   - [Adding Devices](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Device.md)
-       - [Patching Binaries](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Binaries.md) **NOTE: Not Finisched!**
-       - ~~[Creating ACPI Tables](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/ACPI.md)~~ Coming soon
-
-## Device Guides:
-
-### Galaxy Tab S8 5G
-
-   - [Enabling Mass Storage](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Galaxy-Tab-S8-5G/Mass-Storage.md)
-   - [Fixing UFS](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Galaxy-Tab-S8-5G/Fix-UFS.md)
-
-### Galaxy Z Fold 3 5G
-
-   - No Guides yet
-
-### Xiaomi 11T Pro
-
-   - No Guides yet
-
-### Mi A3
-
-   - No Guides yet
-
-### Redmi Note 8/8T
-
-   - No Guides yet
-
-### Redmi 9T
-
-   - No Guides yet
-
-## General Guides:
-
-### Windows
-
-   - [Installing Windows PE](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/General/WinPE.md)
-   - [Installing Windows](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/General/Win.md)
-        - ~~[Adding Drivers](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/General/Win-Drivers.md)~~ Coming soon
-
-### Linux
-
-   - ~~[Installing Linux](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/General/Linux.md)~~ Coming soon
+## [EDK2-Tegra](https://github.com/Robotix22/UEFI-Guides/blob/main/EDK2-Tegra/EDK2-Tegra.md)

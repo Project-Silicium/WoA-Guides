@@ -9,19 +9,19 @@ This Guide will show you how to make an UEFI Port for an Snapdragon SOC
 <tr><td>
   
 - Adding SOCs
-    - [Creating config](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md#creating-the-config-file-step-1)
-    - [Copying Files & Modify](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md#copying-files--modify-them-step-2)
+    - [Creating config](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#creating-the-config-file-step-1)
+    - [Copying Files & Modify](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#copying-files--modify-them-step-2)
         - [SOC Folder](creating-soc-folder-step-21)
-        - [Core Files](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md#modify-dsc--fdf--dec-file-step-22)
-            - [.dec File](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md#modify-dec-file-step-221)
-            - [.dsc File](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md#modify-dsc-file-step-222)
-            - [.fdf File](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md#modify-fdf-file-step-223)
-        - [Modify SMBios](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md#modify-smbios-step-23)
-            - [Modify Infos](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md#modify-smbios-infos-step-231)
-            - [Modify Device Values](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md#modify-device-definitions-step-232)
-        - [Modify Librarys](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md#modify-librarys-step-24)
-        - [Modify Boot Logo](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md#modify-boot-logo-step-25)
-        - [Modify Build Script](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/SOC.md#modify-boot-logo-step-25)
+        - [Core Files](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-dsc--fdf--dec-file-step-22)
+            - [.dec File](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-dec-file-step-221)
+            - [.dsc File](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-dsc-file-step-222)
+            - [.fdf File](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-fdf-file-step-223)
+        - [Modify SMBios](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-smbios-step-23)
+            - [Modify Infos](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-smbios-infos-step-231)
+            - [Modify Device Values](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-device-definitions-step-232)
+        - [Modify Librarys](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-librarys-step-24)
+        - [Modify Boot Logo](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-boot-logo-step-25)
+        - [Modify Build Script](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-boot-logo-step-25)
 
 </td></tr> </table>
 
@@ -82,17 +82,17 @@ After that open the File and rename the old SOC Name to your SOC Name. <br />
 Now we add the SOC Protocols. <br />
 Go to: https://git.codelinaro.org/clo/la/abl/tianocore/edk2/ and find your SOC.
 
-![Preview](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/DEC1.png)
+![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/DEC1.png)
 
 Once you found your SOC go to `QcomModulePkg/QcomModulePkg.dec`. <br />
 After that copy all Protocols and Guids, replace the old ones in the `.dec` File. <br />
 
-![Preview](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/DEC2.png)
-![Preview](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/DEC3.png)
+![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/DEC2.png)
+![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/DEC3.png)
 
 And We need to download the Protocols from `QcomModulePkg/Include/Protocol` and move them into`./Platforms/<SOC Codename>Pkg/Include/Protocol` Override if asked. <br />
 
-![Preview](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/DEC4.png)
+![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/DEC4.png)
 
 ## Modify .dsc File (Step 2.2.2)
 

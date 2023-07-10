@@ -9,12 +9,12 @@ This Guide will show you how to create a Patch for EFI Drivers from xbl
 <tr><td>
   
 - Patching Binaries
-    - [Requirements](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Binaries.md#requirements)
-    - [Method 1](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Binaries.md#requirements)
-       - [Preparing](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Binaries.md#preparing-step-1)
-       - [Analyze](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Binaries.md#analyzing-step-2)
-       - [Patch](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Binaries.md#patching-step-3)
-    - [Method 2](https://github.com/Robotix22/MU-Qcom-Guides/blob/main/Porting/Binaries.md#method-2-creating-a-patch)
+    - [Requirements](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Binaries.md#requirements)
+    - [Method 1](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Binaries.md#requirements)
+       - [Preparing](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Binaries.md#preparing-step-1)
+       - [Analyze](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Binaries.md#analyzing-step-2)
+       - [Patch](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Binaries.md#patching-step-3)
+    - [Method 2](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Binaries.md#method-2-creating-a-patch)
 
 </td></tr> </table>
 
@@ -38,7 +38,7 @@ You probally get two Files, The File you imported and another File that has the 
 
 ## Analyzing (Step 2)
 
-After that you have now a Project with your Files but now we also need to get the Patches, You can find varios Patches [here](https://github.com/Robotix22/MU-Qcom-binaries). <br />
+After that you have now a Project with your Files but now we also need to get the Patches, You can find varios Patches [here](https://github.com/Robotix22/Device-Binaries). <br />
 Chosse the Patch you want to apply, Download the unpatched and patched Version of the EFI Binary and save it somewhere where you can rech it. <br />
 
 Create a hexdump of all EFI Binaries Files: `hexdump -C [File Name].efi > [File Name].efi.hex`, then diff the Two Files: `diff [File Name].efi.hex [File Name].patched.efi.hex`. <br />
