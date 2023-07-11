@@ -87,9 +87,13 @@ After Creating esp we will create the other Partitions:
 (parted) mkpart userdata ext4 <Stop / 2> <Stop>
 ```
 Now we set esp to active by running: `set <Number> esp on`. <br />
-Once that is done we exit parted and format the partitions:
+Once that is done we exit parted and reboot again to recovery:
 ```
 (parted) quit
+reboot recovery
+```
+After that format the partitions:
+```
 mkfs.fat -F32 -s1 /dev/block/sda<Number>
 mkfs.ntfs -f /dev/block/sda<Number + 1>
 mke2fs -t ext4 /dev/block/sda<Number + 2>
