@@ -20,8 +20,7 @@ This Guide will show you how to make an UEFI Port for an Snapdragon SOC
             - [Modify Infos](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-smbios-infos-step-231)
             - [Modify Device Values](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-device-definitions-step-232)
         - [Modify Librarys](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-librarys-step-24)
-        - [Modify Boot Logo](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-boot-logo-step-25)
-        - [Modify Build Script](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-boot-logo-step-25)
+        - [Modify Build Script](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-build-script-step-25)
 
 </td></tr> </table>
 
@@ -231,21 +230,100 @@ SMBIOS_TABLE_TYPE4 mProcessorInfoType4 = {
     ProcessorFamilyARM,          // ARM Processor Family;
 };
 ```
-After you modified these, we move on to `SMBIOS_TABLE_TYPE7`.
+After you modified these, we move on to `SMBIOS_TABLE_TYPE7`. <br />
+Here is a template of Type 7:
+```
+SMBIOS_TABLE_TYPE7 mCacheInfoType7_L2 = {
+    {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
+    1,     // SocketDesignation String
+    0x380, // Cache Configuration
+           // Cache Level        :3  (L1)
+           // Cache Socketed     :1  (Not Socketed)
+           // Reserved           :1
+           // Location           :2  (Internal)
+           // Enabled/Disabled   :1  (Enabled)
+           // Operational Mode   :2  (Unknown)
+           // Reserved           :6
+    <Size of L2>, // Maximum Size
+    <Size of L2>, // Install Size
+    {
+        // Supported SRAM Type
+        0, // Other             :1
+        1, // Unknown           :1
+        0, // NonBurst          :1
+        0, // Burst             :1
+        0, // PiplelineBurst    :1
+        0, // Synchronous       :1
+        0, // Asynchronous      :1
+        0  // Reserved          :9
+    },
+    {
+        // Current SRAM Type
+        0, // Other             :1
+        1, // Unknown           :1
+        0, // NonBurst          :1
+        0, // Burst             :1
+        0, // PiplelineBurst    :1
+        0, // Synchronous       :1
+        0, // Asynchronous      :1
+        0  // Reserved          :9
+    },
+    0,                      // Cache Speed unknown
+    CacheErrorParity,       // Error Correction
+    CacheTypeInstruction,   // System Cache Type
+    CacheAssociativityOther // Associativity
+};
 
-**NOTE: For now you can skip this Step.** <br />
-**NOTE: Add TYPE7 Section here.**
+SMBIOS_TABLE_TYPE7 mCacheInfoType7_L3 = {
+    {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
+    1,     // SocketDesignation String
+    0x380, // Cache Configuration
+           // Cache Level        :3  (L1)
+           // Cache Socketed     :1  (Not Socketed)
+           // Reserved           :1
+           // Location           :2  (Internal)
+           // Enabled/Disabled   :1  (Enabled)
+           // Operational Mode   :2  (Unknown)
+           // Reserved           :6
+    <Size of L3>, // Maximum Size
+    <Size of L3>, // Install Size
+    {
+        // Supported SRAM Type
+        0, // Other             :1
+        1, // Unknown           :1
+        0, // NonBurst          :1
+        0, // Burst             :1
+        0, // PiplelineBurst    :1
+        0, // Synchronous       :1
+        0, // Asynchronous      :1
+        0  // Reserved          :9
+    },
+    {
+        // Current SRAM Type
+        0, // Other             :1
+        1, // Unknown           :1
+        0, // NonBurst          :1
+        0, // Burst             :1
+        0, // PiplelineBurst    :1
+        0, // Synchronous       :1
+        0, // Asynchronous      :1
+        0  // Reserved          :9
+    },
+    0,                     // Cache Speed unknown
+    CacheErrorParity,      // Error Correction
+    CacheTypeInstruction,  // System Cache Type
+    CacheAssociativity2Way // Associativity
+};
+CHAR8 *mCacheInfoType7Strings[] = {"L2 Instruction", "L2 Data", "L3", NULL};
+```
+You can get all these Infos if you look up the specs of your SoC or find these in the dtb of your Device. <br />
+If Your SoC dosen't have L3 for example then just remove it, Or if it has L1 then just add L1.
 
 ## Modify Librarys (Step 2.4)
 
 Now we need to modify the Librarys, these are placed under `./Platforms/<SOC Codename>Pkg/Library/`. <br />
 In every Librarys `.inf` File rename the SOC Name to yours it should be enough for now.
 
-## Modify Boot Logo (Step 2.5)
-
-Every SOC has its own Boot Logo to show on what SOC the Device is running on. <br />
-In `./Platforms/<SOC Codename>Pkg/Include/Resources` modify `BootLogo.bmp` to your SOC Logo.
-
-## Modify Build Script (Step 2.6)
+## Modify Build Script (Step 2.5)
 
 In `PlatformBuild.py` rename the old SOC Name to your SOC Name.
