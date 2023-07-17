@@ -1,5 +1,7 @@
 # Fixing UFS
 
+**WARNING: This Guide only works if your Samsung Device has an Mass Storage Guide!**
+
 ## Description
 
 This Guide will show you how to make UFS usable under Windows and Linux.
@@ -9,26 +11,26 @@ This Guide will show you how to make UFS usable under Windows and Linux.
 <tr><td>
   
 - Enabling Mass Storage
-   - [What's needed](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-QcomGalaxy-Tab-S8-5G/Fix-UFS.md#things-you-need)
-   - [Preparing](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-QcomGalaxy-Tab-S8-5G/Fix-UFS.md#preparing-step-1)
-   - [Fix](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-QcomGalaxy-Tab-S8-5G/Fix-UFS.md#fix-ufs-step-2)
-     - [Set Online](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-QcomGalaxy-Tab-S8-5G/Fix-UFS.md#setting-ufs-online-step-21)
-     - [Restore GPT](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-QcomGalaxy-Tab-S8-5G/Fix-UFS.md#restoring-ufs-step-22)
+   - [What's needed](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Vendors/Samsung/Fix-UFS.md#things-you-need)
+   - [Preparing](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Vendors/Samsung/Fix-UFS.md#preparing-step-1)
+   - [Fix](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Vendors/Samsung/Fix-UFS.md#fix-ufs-step-2)
+     - [Set Online](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Vendors/Samsung/Fix-UFS.md#setting-ufs-online-step-21)
+     - [Restore GPT](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Vendors/Samsung/Fix-UFS.md#restoring-ufs-step-22)
 
 </td></tr> </table>
 
 ## Things you need:
    - PC / Laptop with Windows 10 or newer
-   - [TWRP](https://forum.xda-developers.com/t/recovery-unofficial-twrp-for-galaxy-tab-s8-series-snapdragon.4455491/)
+   - Custom Recovery like TWRP
    - Unlocked Bootloader
-   - Modded [msc.sh](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-QcomGalaxy-Tab-S8-5G/msc.sh) script
+   - msc.sh script for your Device
    - [GDisk](https://renegade-project.tech/tools/gdisk.7z)
 
 ## Preparing (Step 1)
 
 Before we Fix UFS we need to prepare some things. <br />
-If you haven't already follow the [Mass Storage](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-QcomGalaxy-Tab-S8-5G/Mass-Storage.md) Guide as its needed here. <br />
-Make sure you have gdisk on your Tab if not push it to your tab:
+If you haven't already follow the Mass Storage Guide of your Device as its needed here. <br />
+Make sure you have gdisk on your Device, If not push it to your Device:
 ```
 # External SD recommended
 adb push <Path to gdisk> /external_sd/
@@ -46,8 +48,8 @@ chmod 744 gdisk
 
 Samsung makes by default the UFS LUNs offline on those Devices wich makes UFS unusable under Linux and Windows. <br />
 First enter Mass Storage, then open diskmanager on your PC or Laptop. <br />
-After that search the Tab Disk, You should find it easy as it has way to many partitions. <br />
-Once you found the Disk of your Tab right click it and set it Online. <br />
+After that search the Device Disk, You should find it easy as it has way to many partitions. <br />
+Once you found the Disk of your Device, right click it and set it Online. <br />
 Now don't panic, Windows set the Disk succesfull to Online but also corrupted the GPT, what ever you do **don't reboot**. <br />
 
 ## Restoring GPT (Step 2.2)
