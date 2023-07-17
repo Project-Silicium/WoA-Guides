@@ -9,18 +9,18 @@ This Guide will show you how to make an UEFI Port for an Snapdragon SOC
 <tr><td>
   
 - Adding SOCs
-    - [Creating config](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#creating-the-config-file-step-1)
-    - [Copying Files & Modify](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#copying-files--modify-them-step-2)
+    - [Creating config](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#creating-the-config-file-step-1)
+    - [Copying Files & Modify](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#copying-files--modify-them-step-2)
         - [SOC Folder](creating-soc-folder-step-21)
-        - [Core Files](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-dsc--fdf--dec-file-step-22)
-            - [.dec File](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-dec-file-step-221)
-            - [.dsc File](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-dsc-file-step-222)
-            - [.fdf File](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-fdf-file-step-223)
-        - [Modify SMBios](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-smbios-step-23)
-            - [Modify Infos](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-smbios-infos-step-231)
-            - [Modify Device Values](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-device-definitions-step-232)
-        - [Modify Librarys](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-librarys-step-24)
-        - [Modify Build Script](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SOC.md#modify-build-script-step-25)
+        - [Core Files](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-dsc--fdf--dec-file-step-22)
+            - [.dec File](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-dec-file-step-221)
+            - [.dsc File](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-dsc-file-step-222)
+            - [.fdf File](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-fdf-file-step-223)
+        - [Modify SMBios](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-smbios-step-23)
+            - [Modify Infos](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-smbios-infos-step-231)
+            - [Modify Device Values](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-device-definitions-step-232)
+        - [Modify Librarys](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-librarys-step-24)
+        - [Modify Build Script](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-build-script-step-25)
 
 </td></tr> </table>
 
