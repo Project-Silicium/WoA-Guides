@@ -9,9 +9,9 @@ This Guide will show you how to enable Mass Storage in TWRP.
 <tr><td>
   
 - Enabling Mass Storage
-   - [What's needed](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Galaxy-Tab-S8-5G/Mass-Storage.md#things-you-need)
-   - [Preparing](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Galaxy-Tab-S8-5G/Mass-Storage.md#preparing-step-1)
-   - [Enable](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Galaxy-Tab-S8-5G/Mass-Storage.md#enable-mass-storage-step-2)
+   - [What's needed](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Devices/Galaxy-Tab-S8-5G/Mass-Storage.md#things-you-need)
+   - [Preparing](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Devices/Galaxy-Tab-S8-5G/Mass-Storage.md#preparing-step-1)
+   - [Enable](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Devices/Galaxy-Tab-S8-5G/Mass-Storage.md#enable-mass-storage-step-2)
 
 </td></tr> </table>
 
@@ -19,7 +19,7 @@ This Guide will show you how to enable Mass Storage in TWRP.
    - PC / Laptop
    - [TWRP](https://forum.xda-developers.com/t/recovery-unofficial-twrp-for-galaxy-tab-s8-series-snapdragon.4455491/)
    - Unlocked Bootloader
-   - Modded [msc.sh](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Galaxy-Tab-S8-5G/msc.sh) script
+   - Modded [msc.sh](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Devices/Galaxy-Tab-S8-5G/msc.sh) script
 
 ## Preparing (Step 1)
 
