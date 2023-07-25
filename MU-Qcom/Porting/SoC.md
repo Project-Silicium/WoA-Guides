@@ -1,142 +1,113 @@
-# Adding SOCs
+# Adding SoCs
 
 ## Description
 
-This Guide will show you how to make an UEFI Port for an Snapdragon SOC
+This Guide will show you how to make an UEFI Port for an Snapdragon SoC
 
 <table>
 <tr><th>Table of Contents</th></th>
 <tr><td>
   
-- Adding SOCs
+- Adding SoCs
     - [Creating config](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#creating-the-config-file-step-1)
     - [Copying Files & Modify](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#copying-files--modify-them-step-2)
-        - [SOC Folder](creating-soc-folder-step-21)
-        - [Core Files](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-dsc--fdf--dec-file-step-22)
+        - [SoC Folder](creating-soc-folder-step-21)
+        - [Core Files](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-dsc.inc--dec-file-step-22)
             - [.dec File](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-dec-file-step-221)
-            - [.dsc File](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-dsc-file-step-222)
-            - [.fdf File](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-fdf-file-step-223)
+            - [.dsc.inc File](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-dsc.inc-file-step-222)
         - [Modify SMBios](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-smbios-step-23)
-            - [Modify Infos](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-smbios-infos-step-231)
-            - [Modify Device Values](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-device-definitions-step-232)
         - [Modify Librarys](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-librarys-step-24)
-        - [Modify Build Script](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-build-script-step-25)
 
 </td></tr> </table>
 
 ## Creating the Config File (Step 1)
 
-You may noticed that every SOC has an config File in `./configs` <br />
+You may noticed that every SoC has an config File in `./configs` <br />
 It contains the `UEFI FD` Size Values <br />
-Create a Config File in `./config` called: `<SOC>.conf` with this content:
+Create a Config File in `./config` called: `<SoC Codename>.conf` with this content:
 ```
 FD_BASE=<Value>
 FD_SIZE=<Value>
-FD_BLOCKS=<Value>
 ```
 If the SOC needs any "special" Configs add these there.
 
 ## Copying Files & Modify them (Step 2)
 
-Struckture of Files for SOCs:
+Struckture of Files for SoCs:
 ```
-./Platforms/<SOC Codename>Pkg/
+./Platforms/Qualcomm/<SoC Codename>Pkg/
 ├── Drivers
 │   └── SmBiosTableDxe
 │       ├── SmBiosTableDxe.c
 │       └── SmBiosTableDxe.inf
 ├── Include
-│   ├── Configuration
-│   │   └── DeviceConfigurationMap.h
 │   ├── Protocol
 │   │   └── <Protocols>
-│   └── Resources
-│       └── BootLogo.bmp
 ├── Library
 │   └── <Librarys>
-├── PlatformBuild.py
-├── PlatformPei
-│   ├── PlatformPeiLib.c
-│   ├── PlatformPeiLib.inf
-│   └── PlatformPeiLibInternal.h
 ├── <SOC Codename>.dec
-├── <SOC Codename>.dsc
-└── <SOC Codename>.fdf
+└── <SOC Codename>.dsc
 ```
 
-## Creating SOC Folder (Step 2.1)
+## Creating SoC Folder (Step 2.1)
 
-In `./Platforms` are all SOC Folders located. <br />
-Copy any SOC Folder of your chosse and rename it to `<SOC Codename>Pkg`.
+In `./Platforms/Qualcomm/` are all SoC Folders located. <br />
+Copy any SoC Folder of your chosse and rename it to `<SoC Codename>Pkg`.
 
-## Modify .dsc & .fdf & .dec File (Step 2.2)
+## Modify .dsc.inc & .dec File (Step 2.2)
 
-Now we modify the `.dsc` & `.fdf` & `.dec` File. <br />
+Now we modify the `.dsc.inc` & `.dec` File. <br />
 
 ## Modify .dec File (Step 2.2.1)
 
 Lets Modify the `.dec` File. <br />
-Rename the File to your SOC Codename. <br />
-After that open the File and rename the old SOC Name to your SOC Name. <br />
-Now we add the SOC Protocols. <br />
-Go to: https://git.codelinaro.org/clo/la/abl/tianocore/edk2/ and find your SOC.
+Rename the File to your SoC Codename. <br />
+After that open the File and rename the old SoC Name to your SoC Name. <br />
+Now we add the SoC Protocols. <br />
+Go to: https://git.codelinaro.org/clo/la/abl/tianocore/edk2/ and find your SoC.
 
 ![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/DEC1.png)
 
-Once you found your SOC go to `QcomModulePkg/QcomModulePkg.dec`. <br />
+Once you found your SoC go to `QcomModulePkg/QcomModulePkg.dec`. <br />
 After that copy all Protocols and Guids, replace the old ones in the `.dec` File. <br />
 
 ![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/DEC2.png)
 ![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/DEC3.png)
 
-And We need to download the Protocols from `QcomModulePkg/Include/Protocol` and move them into`./Platforms/<SOC Codename>Pkg/Include/Protocol` Override if asked. <br />
+And We need to download the Protocols from `QcomModulePkg/Include/Protocol` and move them into`./Platforms/Qualcomm/<SoC Codename>Pkg/Include/Protocol/` Override if asked. <br />
 
 ![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/DEC4.png)
 
-## Modify .dsc File (Step 2.2.2)
+## Modify .dsc.inc File (Step 2.2.2)
 
 In this File we need to change a lot. <br />
-Lets begin with renaming the old SOC Name to your SOC Name. <br />
+Lets begin with renaming the old SoC Name to your SoC Name. <br />
 After that we change `PcdArmArchTimerSecIntrNum` and `PcdArmArchTimerIntrNum` to thr right Value. <br />
-If the SOC is older than SM8350 use `17` and `18` if not use `29` and `30`. <br />
+If the SoC is older than SM8350 use `17` and `18` if not use `29` and `30`. <br />
 
-`PcdGicDistributorBase` and `PcdGicRedistributorsBase` mostly don't need to be changed only on some SOCs. <br />
-Set `PcdAcpiDefaultOemRevision` to your SOC Name Example: `SM8350 -> 0x00008350`
+`PcdGicDistributorBase` and `PcdGicRedistributorsBase` are the two Values of the interrupt-controller node in the dts. <br />
+Take a look at https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom in your SoC dts to find these Values. <br />
+Set `PcdAcpiDefaultOemRevision` to your SoC Name Example: `SM8350 -> 0x00008350`
 
-Now we need to set `PcdCoreCount` and `PcdClusterCount` to the right Value, You can findout these Values by looking at the specs of the SOC.
+Now we need to set `PcdCoreCount` and `PcdClusterCount` to the right Value, You can findout these Values by looking at the specs of the SoC.
 
 After that we need to change SmBios Values: <br />
 from this:
 ```
-gSM8350TokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 888 @ 2.84 GHz"|VOID*|0x0000a301
-gSM8350TokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8350"|VOID*|0x0000a302
+gQcomTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 888 @ 2.84 GHz"
+gQcomTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8350"
 ```
 to this:
 ```
-g<SOC Codename>TokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) <SOC Name> @ <SOC Speed> GHz"|VOID*|0x0000a301
-g<SOC Codename>TokenSpaceGuid.PcdSmbiosProcessorRetailModel|"<SOC Codename>"|VOID*|0x0000a302
+gQcomTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) <SoC Name> @ <SoC Speed> GHz"
+gQcomTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"<SoC Codename>"
 ```
-
-## Modify .fdf File (Step 2.2.3)
-
-Here you only need to change the SOC Name to your SOC Name.
 
 ## Modify SmBios (Step 2.3)
 
 SmBios defines Device Infos from CPU and maybe also other Devices. <br />
 Windows and Linux uses these Infos to display correct Values, <br />
 Example: The CPU Name you see in Device Manager is defined in SMBios.
-
-## Modify SmBios Infos (Step 2.3.1)
-
-First thing we want to modify in SmBios are the Infos, Version, Vendor, etc. <br />
-In your SmBios you copied goto `mBIOSInfoType0Strings`. <br />
-You see there two Values, `Vendor String` and `BiosVersion String`. <br />
-`Vendor String` should be your Github Username. <br />
-`BiosVersion String` needs to be the UEFI Version example: `1.2` <br />
-After you changed these Values goto `mSysInfoType1Strings`, there Replace `Snapdragon <SOC> Device` with your SOC you port.
-
-## Modify Device definitions (Step 2.3.2)
 
 There are multiple Things you need to change: `SMBIOS_TABLE_TYPE4`, `SMBIOS_TABLE_TYPE7` and `SMBIOS_TABLE_TYPE17` <br />
 Lets begin with `SMBIOS_TABLE_TYPE4`:
@@ -212,8 +183,8 @@ SMBIOS_TABLE_TYPE4 mProcessorInfoType4 = {
         0  // ProcessorVoltageIndicateLegacy      :1;
     },
     0,                     // ExternalClock;
-    <Max speed of your SOC>, // MaxSpeed;
-    <Max speed of your SOC>, // CurrentSpeed;
+    <Max speed of your SoC>, // MaxSpeed;
+    <Max speed of your SoC>, // CurrentSpeed;
     0x41,                  // Status;
     ProcessorUpgradeOther, // ProcessorUpgrade;      ///< The enumeration value
                            // from PROCESSOR_UPGRADE.
@@ -223,9 +194,9 @@ SMBIOS_TABLE_TYPE4 mProcessorInfoType4 = {
     0,                     // SerialNumber;
     0,                     // AssetTag;
     4,                     // PartNumber;
-    <Amount of Cores your SOC has>, // CoreCount;
-    <Amount of Cores your SOC has>, // EnabledCoreCount;
-    <Amount of Cores your SOC has>, // ThreadCount;
+    <Amount of Cores your SoC has>, // CoreCount;
+    <Amount of Cores your SoC has>, // EnabledCoreCount;
+    <Amount of Cores your SoC has>, // ThreadCount;
     0xAC,                        // ProcessorCharacteristics;
     ProcessorFamilyARM,          // ARM Processor Family;
 };
@@ -321,9 +292,5 @@ If Your SoC dosen't have L3 for example then just remove it, Or if it has L1 the
 
 ## Modify Librarys (Step 2.4)
 
-Now we need to modify the Librarys, these are placed under `./Platforms/<SOC Codename>Pkg/Library/`. <br />
-In every Librarys `.inf` File rename the SOC Name to yours it should be enough for now.
-
-## Modify Build Script (Step 2.5)
-
-In `PlatformBuild.py` rename the old SOC Name to your SOC Name.
+Now we need to modify the Librarys, these are placed under `./Platforms/Qualcomm/<SoC Codename>Pkg/Library/`. <br />
+In every Librarys `.inf` File rename the SoC Name to yours it should be enough for now.
