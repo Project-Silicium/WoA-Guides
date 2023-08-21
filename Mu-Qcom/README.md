@@ -1,4 +1,4 @@
-# MU-Qcom Guides
+# Mu-Qcom Guides
 
 ## General Guides:
 
