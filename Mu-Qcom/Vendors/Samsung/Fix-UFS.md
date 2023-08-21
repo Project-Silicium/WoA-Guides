@@ -11,11 +11,11 @@ This Guide will show you how to make UFS usable under Windows and Linux.
 <tr><td>
   
 - Enabling Mass Storage
-   - [What's needed](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Vendors/Samsung/Fix-UFS.md#things-you-need)
-   - [Preparing](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Vendors/Samsung/Fix-UFS.md#preparing-step-1)
-   - [Fix](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Vendors/Samsung/Fix-UFS.md#fix-ufs-step-2)
-     - [Set Online](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Vendors/Samsung/Fix-UFS.md#setting-ufs-online-step-21)
-     - [Restore GPT](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Vendors/Samsung/Fix-UFS.md#restoring-ufs-step-22)
+   - [What's needed](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Vendors/Samsung/Fix-UFS.md#things-you-need)
+   - [Preparing](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Vendors/Samsung/Fix-UFS.md#preparing-step-1)
+   - [Fix](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Vendors/Samsung/Fix-UFS.md#fix-ufs-step-2)
+     - [Set Online](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Vendors/Samsung/Fix-UFS.md#setting-ufs-online-step-21)
+     - [Restore GPT](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Vendors/Samsung/Fix-UFS.md#restoring-ufs-step-22)
 
 </td></tr> </table>
 

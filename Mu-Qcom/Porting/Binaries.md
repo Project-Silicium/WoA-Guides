@@ -9,12 +9,12 @@ This Guide will show you how to create a Patch for EFI Drivers from xbl
 <tr><td>
   
 - Patching Binaries
-    - [Requirements](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Binaries.md#requirements)
-    - [Method 1](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Binaries.md#requirements)
-       - [Preparing](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Binaries.md#preparing-step-1)
-       - [Analyze](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Binaries.md#analyzing-step-2)
-       - [Patch](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Binaries.md#patching-step-3)
-    - [Method 2](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Binaries.md#method-2-creating-a-patch)
+    - [Requirements](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Binaries.md#requirements)
+    - [Method 1](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Binaries.md#requirements)
+       - [Preparing](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Binaries.md#preparing-step-1)
+       - [Analyze](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Binaries.md#analyzing-step-2)
+       - [Patch](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Binaries.md#patching-step-3)
+    - [Method 2](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Binaries.md#method-2-creating-a-patch)
 
 </td></tr> </table>
 
@@ -33,7 +33,7 @@ First we need to prepare some things, Create a workspace where you patch your EF
 Download and extract Ghidra somewhere where you can reach it again. <br />
 Open Ghidra then go to `File -> New Project`, once you clicked it a dialog box opens. <br />
 Chosse Non-Shared Project then Set the Project Dir and Name and press Finish. <br />
-Now you have a new Project but the EFI Binary is still missing import the Binary `File -> Batch` Import and select your EFI Binary. <br />
+Now you have a new Project but the EFI Binary is still missing import the Binary `File -> Batch Import` and select your EFI Binary. <br />
 You probally get two Files, The File you imported and another File that has the same name with a 0, delete the 0 File.
 
 ## Analyzing (Step 2)
@@ -74,7 +74,7 @@ Wait until it finisches loading then change theses Values to the Values that are
 
 Once you did that you can save the File: `File -> Save [File Name] as`, A dialog Box will apear, Change the Name to: `[File Name].patched.efi` and press Save. <br />
 
-After that you only need to Export the File and implement it in the UEFI, To Export it you go to: `File -> Export Program`, again a dialog box will open, Format should be PE and if `Selection Only` is checked uncheck it and press OK. <br />
+After that you only need to Export the File and implement it in the UEFI, To Export it you go to: `File -> Export Program`, again a dialog box will open, Format should be Original File and if `Selection Only` is checked uncheck it and press OK. <br />
 
 Now it will tell you it exported it and now you have a Patched File!
 

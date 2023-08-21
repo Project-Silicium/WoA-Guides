@@ -1,6 +1,6 @@
 # Installing Windows PE
 
-Make sure to check the Status of your Device [here](https://github.com/Robotix22/MU-Qcom/blob/main/Status.md).
+Make sure to check the Status of your Device [here](https://github.com/Robotix22/Mu-Qcom/blob/main/Status.md).
 
 ## Description
 
@@ -11,16 +11,16 @@ This Guide will show you how to Install Windows PE on your Device.
 <tr><td>
   
 - Installing Windows PE
-    - [What's needed](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/OS/WinPE.md#things-you-need)
-    - [Installing](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/OS/WinPE.md#installation)
-        - [Method 1](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/OS/WinPE.md#method-1-cust)
-            - [Preparing](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/OS/WinPE.md#preparing-step-1)
-            - [Formating](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/OS/WinPE.md#formating-cust-partition-step-2)
-            - [Copy Files](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/OS/WinPE.md#copying-windows-pe-files-step-3)
-        - [Method 2](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/OS/WinPE.md#method-2-partitions)
-            - [Preparing](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/OS/WinPE.md#preparing-step-1-1)
-            - [Partition](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/OS/WinPE.md#partitions-step-2)
-            - [Copy Files](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/OS/WinPE.md#copying-winpe-files-step-3)
+    - [What's needed](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/WinPE.md#things-you-need)
+    - [Installing](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/WinPE.md#installation)
+        - [Method 1](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/WinPE.md#method-1-cust)
+            - [Preparing](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/WinPE.md#preparing-step-1)
+            - [Formating](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/WinPE.md#formating-cust-partition-step-2)
+            - [Copy Files](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/WinPE.md#copying-windows-pe-files-step-3)
+        - [Method 2](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/WinPE.md#method-2-partitions)
+            - [Preparing](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/WinPE.md#preparing-step-1-1)
+            - [Partition](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/WinPE.md#partitions-step-2)
+            - [Copy Files](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/WinPE.md#copying-winpe-files-step-3)
 
 </td></tr> </table>
 
@@ -29,7 +29,7 @@ This Guide will show you how to Install Windows PE on your Device.
    - [ADB and Fastboot](https://developer.android.com/studio/releases/platform-tools#downloads)
    - Custom Recovery
    - Unlocked Bootloader
-   - [UEFI Image](https://github.com/Robotix22/MU-Qcom)
+   - [UEFI Image](https://github.com/Robotix22/Mu-Qcom)
    - Windows PE (Recommended: [Driverless WinPE](https://drive.google.com/drive/folders/1-k4LwTuVw48e3Es_CIKPNf68CA9HXYRb))
 
 ## Installation
@@ -47,7 +47,7 @@ Download Windows PE and extract the zip File somewhere, where you can reach it.
 
 We will now format the cust Partition to FAT32:
 ```
-(NOTE: Not all Devices have a cust Partition)
+# NOTE: Not all Devices have a cust Partition
 mkfs.fat -F32 -s1 /dev/block/by-name/cust
 ```
 
@@ -94,30 +94,37 @@ adb shell
 cd /workspace
 ./parted /dev/block/by-name/sda
 ```
+
 ⚠️ ***This Section can break your Device if you are not carefull!*** ⚠️ <br />
+
 After you opend sda with parted list all partitions and note all infos about userdata (Start, End and Number):
 ```
 (parted) print
 ```
 Something like this should show up:
 ```
-(NOTE: Don't use these Values it just an Example!)
+# NOTE: Don't use these Values it just an Example!
 Number  Start   End     Size    File system  Name             Flags
 38      141GB   241GB   100GB                userdata
 ```
 Once you noted `Start`, `End` and `Number` from Userdata we can move on to creating Partitions. <br />
-First delete userdada (This will erase all your Data in Android) and then create the pe partition with userdata:
+First delete userdada (This will erase all your Data in Android) and create it again but smaller:
 ```
 (parted) rm <Number>
-(parted) mkpart pe fat32 <Start> <Start + 3GB>
-(parted) mkpart userdata ext4 <Start + 3GB> <Stop>
+(parted) mkpart userdata ext4 <Start> <End - 4GB>
 ```
+After that create the Win PE Partition:
+```
+(parted) mkpart pe fat32 <End - 4GB> <End>
+```
+
 ⚠️ ***End of Dangerous Section!*** ⚠️ <br />
+
 After you created the new Partitions quit parted and format `userdata` and `pe`:
 ```
 (parted) quit
-mkfs.fat -F32 -s1 /dev/block/sda<Number>
-mke2fs -t ext4 /dev/block/sda<Number + 1>
+mke2fs -t ext4 /dev/block/sda<Number>
+mkfs.fat -F32 -s1 /dev/block/sda<Number + 1>
 ```
 
 ## Copying WinPE Files (Step 3)

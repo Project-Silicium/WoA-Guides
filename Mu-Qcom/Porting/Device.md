@@ -15,27 +15,26 @@ This Guide will show you how to create an minimal UEFI Port for your Device. <br
 <tr><td>
   
 - Adding Devices
-    - [Requirements](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#device-recuirements)
-    - [Copying Files](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#copying-files-step-1)
-    - [Creating Config](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-the-config-file-step-2)
-    - [Creating Files](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-files-step-3)
-         - [Creating .dsc & .dec & .fdf File](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-dsc--dec--fdf-file-step-31)
-              - [Creating .dsc](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-dsc-file-step-311)
-              - [Creating .dec](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-dec-file-step-312)
-              - [Creating .fdf](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-fdf-file-step-313)
-         - [Creating fdf.inc Files](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-fdfinc-files-step-32)
-              - [Creating ACPI.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-acpiinc-step-321)
-              - [Creating APRIORI.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-aprioriinc-step-322)
-              - [Creating DXE.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-dxeinc-step-323)
-              - [Creating RAW.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-rawinc-step-324)
-              - [Creating FDT.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-fdtinc-step-325)
-         - [Creating MemoryMap](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-platformmemorymap-library-step-33)
-         - [Creating PlatformPei](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#creating-platformpei-library-step-34)
-    - [Building](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#building)
-    - [Troubleshooting](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#troubleshooting)
-         - [DxeCore](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#dxecore)
-         - [Crash](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#device-rebootsgets-stuck-on-something)
-         - [Synchronous Exception](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Device.md#synchronous-exception)
+    - [Requirements](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#device-recuirements)
+    - [Copying Files](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#copying-files-step-1)
+    - [Creating Config](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-the-config-file-step-2)
+    - [Creating Files](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-files-step-3)
+         - [Creating .dsc & .dec & .fdf File](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-dsc--dec--fdf-file-step-31)
+              - [Creating .dsc](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-dsc-file-step-311)
+              - [Creating .dec](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-dec-file-step-312)
+              - [Creating .fdf](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-fdf-file-step-313)
+         - [Creating fdf.inc Files](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-fdfinc-files-step-32)
+              - [Creating ACPI.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-acpiinc-step-321)
+              - [Creating APRIORI.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-aprioriinc-step-322)
+              - [Creating DXE.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-dxeinc-step-323)
+              - [Creating RAW.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-rawinc-step-324)
+              - [Creating FDT.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-fdtinc-step-325)
+         - [Creating MemoryMap](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-platformmemorymap-library-step-33)
+    - [Building](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#building)
+    - [Troubleshooting](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#troubleshooting)
+         - [DxeCore](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#dxecore)
+         - [Crash](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#device-rebootsgets-stuck-on-something)
+         - [Synchronous Exception](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#synchronous-exception)
 
 </td></tr> </table>
 
@@ -53,17 +52,25 @@ Lets begin with Copying Files. <br />
 Copy the fdt File from `/sys/firmware/` and Place it as `<Device Codename.dtb>` under `./ImageResources/DTBs/`. <br />
 Extract your xbl from `/dev/block/by-name/` and Place it somewhere you can reach it. <br />
 After Copying the xbl File or the uefi File extract all UEFI Binaries from it with [UEFIReader](https://github.com/WOA-Project/UEFIReader). <br />
-Now Move all the output Files from UEFI Reader in `./Platforms/Binaries/<Device Codename>/`.
+Now Move all the output Files from UEFI Reader in `./Binaries/<Device Codename>/`.
 
 ## Creating the Config File (Step 2)
 
 Every Device has its own config file to define some device specific things like: SoC. <br />
-Create a File called `<Device Codename>.conf` in `./configs/devices/`. <br />
+Create a File called `<Device Codename>.conf` in `./configs/`. <br />
 It should contain at least this:
 ```
-SOC_PLATFORM="<SOC Codename>"
+# General Config
 TARGET_DEVICE_VENDOR="<Device Vendor>"
+
+# UEFI FD Config
+TARGET_FD_BASE="<FD Base>"
+TARGET_FD_SIZE="<FD Size>"
+TARGET_FD_BLOCKS="<FD Blocks>"
 ```
+If your Device has Models with diffrent RAM Sizes, Add `MULTIPLE_RAM_SIZE="TRUE"` under General Config. <br />
+`<FD Base/Size Value>` is the UEFI FD Value in the MemoryMap (uefiplat.cfg). <br />
+`<FD Blocks>` is the Number of Blocks UEFI FD has, [<FD Size> / 0x1000].
 
 ## Creating Files (Step 3)
 
@@ -73,19 +80,13 @@ Struckture of the Device Files:
 ├── Include
 │   ├── ACPI.inc
 │   ├── APRIORI.inc
-│   ├── Configuration
-│   │   └── DeviceConfigurationMap.h
 │   ├── DXE.inc
 │   ├── FDT.inc
 │   └── RAW.inc
 ├── Library
-│   ├── PlatformMemoryMapLib
-│   │   ├── PlatformMemoryMapLib.c
-│   │   └── PlatformMemoryMapLib.inf
-│   └── PlatformPei
-│       ├── PlatformPeiLib.c
-│       ├── PlatformPeiLib.inf
-│       └── PlatformPeiLibInternal.h
+│   └── PlatformMemoryMapLib
+│       ├── PlatformMemoryMapLib.c
+│       └── PlatformMemoryMapLib.inf
 ├── PlatformBuild.py
 ├── <Device Codename>.dec
 ├── <Device Codename>.dsc
@@ -97,7 +98,7 @@ Struckture of the Device Files:
 ## Creating .dsc File (Step 3.1.1)
 
 Lets begin with the `.dsc` File <br />
-Create a File called `<Device Codename>.dsc` in `./Platforms/<Device Vendor>/<Device Codename>/`. <br />
+Create a File called `<Device Codename>.dsc` in `./Platforms/<Device Vendor>/<Device Codename>Pkg/`. <br />
 Here is an template:
 ```
 ## @file
@@ -133,37 +134,39 @@ Here is an template:
 
 [LibraryClasses.common]
   PlatformMemoryMapLib|<Device Codename>Pkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
-  PlatformPeiLib|<Device Codename>Pkg/Library/PlatformPei/PlatformPeiLib.inf
 
 [PcdsFixedAtBuild.common]
   gArmTokenSpaceGuid.PcdSystemMemoryBase|<Start Address>    # Starting address
   gArmTokenSpaceGuid.PcdSystemMemorySize|<RAM Size>         # 8GB Size
+
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor|L"<Your Github Name>"
 
   gArmTokenSpaceGuid.PcdCpuVectorBaseAddress|<CPU Vector Base Address>
 
   gEmbeddedTokenSpaceGuid.PcdPrePiStackBase|<UEFI Stack Base Address>
   gEmbeddedTokenSpaceGuid.PcdPrePiStackSize|<UEFI Stack Size>
 
+  # SmBios
+  gQcomPkgTokenSpaceGuid.PcdSmbiosSystemVendor|"<Device Vendor>"
+  gQcomPkgTokenSpaceGuid.PcdSmbiosSystemModel|"<Device Model>"
+  gQcomPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"<Device Codename>"
+  gQcomPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"<Device_Model>_<Device_Codename>"
+  gQcomPkgTokenSpaceGuid.PcdSmbiosBoardModel|"<Device Model>"
+
   # Simple FrameBuffer
-  gQcomTokenSpaceGuid.PcdMipiFrameBufferWidth|<Display Width>
-  gQcomTokenSpaceGuid.PcdMipiFrameBufferHeight|<Display Height>
-  gQcomTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|<Display Bpp>
-
-  # UART
-  gQcomTokenSpaceGuid.PcdDebugUartPortBase|<UART Base Address>
-
-  # Device Info
-  gQcomTokenSpaceGuid.PcdSmbiosSystemVendor|"<Device Vendor>"
-  gQcomTokenSpaceGuid.PcdSmbiosSystemModel|"<Device Model>"
-  gQcomTokenSpaceGuid.PcdSmbiosSystemRetailModel|"<Device Codename>"
-  gQcomTokenSpaceGuid.PcdSmbiosSystemRetailSku|"<Device_Model>_<Device_Codename>"
-  gQcomTokenSpaceGuid.PcdSmbiosBoardModel|"<Device Model>"
+  gQcomPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|<Display Width>
+  gQcomPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|<Display Height>
+  gQcomPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|<Display Bpp>
 
 [PcdsDynamicDefault.common]
   gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|<Display Width>
   gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|<Display Height>
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|<Display Width>
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|<Display Height>
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|<Setup Con Column>
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|<Setup Con Row>
+  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|<Con Column>
+  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|<Con Row>
 
 !include SM8350Pkg/SM8350.dsc.inc
 ```
@@ -174,7 +177,9 @@ Here is an template:
 `<CPU Vector Base Address>` is the Base Address of `CPU Vectors` in the MemoryMap (uefiplat.cfg). <br />
 `<UEFI Stack base/Size>` is the Base/Size Address of `UEFI Stack` in the MemoryMap (uefiplat.cfg). <br />
 `<UART Base Address>` is the First Hex Address of the serial0 Node in your dts. <br />
-`<Device Bpp>` is the Value of your Display bits per pixel, [<Display Width> * <Display Height> / 8 or 6 or 4] Valied Resoults are: 32, 24 and 16.
+`<Device Bpp>` is the Value of your Display bits per pixel, [<Display Width> * <Display Height> / 8 or 6 or 4] Valid Resoults are: 32, 24 and 16. <br />
+`<Setup Con Column> / <Con Column>` is the Value of [<Display Width> / 8]. <br />
+`<Setup Con Row> / <Con Row>` is the Value of [<Display Height> / 19].
 
 ## Creating .dec File (Step 3.1.2)
 
@@ -228,13 +233,13 @@ The .fdf File contains Specific Stuff about your Device, Here is an template how
 ################################################################################
 
 [FD.<Device Codename>_UEFI]
-BaseAddress   = <UEFI FD Base Address>|gArmTokenSpaceGuid.PcdFdBaseAddress # The base address of the FLASH Device.
-Size          = <UEFI FD Size>|gArmTokenSpaceGuid.PcdFdSize        # The size in bytes of the FLASH Device
+BaseAddress   = $(FD_BASE)|gArmTokenSpaceGuid.PcdFdBaseAddress # The base address of the FLASH Device.
+Size          = $(FD_SIZE)|gArmTokenSpaceGuid.PcdFdSize        # The size in bytes of the FLASH Device
 ErasePolarity = 1
 
 # This one is tricky, it must be: BlockSize * NumBlocks = Size
 BlockSize     = 0x1000
-NumBlocks     = <UEFI FD NumBlocks>
+NumBlocks     = $(FD_BLOCKS)
 
 ################################################################################
 #
@@ -252,7 +257,7 @@ NumBlocks     = <UEFI FD NumBlocks>
 #
 ################################################################################
 
-0x00000000|<UEFI FD Size>
+0x00000000|$(FD_SIZE)
 gArmTokenSpaceGuid.PcdFvBaseAddress|gArmTokenSpaceGuid.PcdFvSize
 FV = FVMAIN_COMPACT
 
@@ -307,10 +312,6 @@ READ_LOCK_STATUS   = TRUE
   INF HidPkg/HidKeyboardDxe/HidKeyboardDxe.inf
   INF HidPkg/HidMouseAbsolutePointerDxe/HidMouseAbsolutePointerDxe.inf
 
-  # Disk IO
-  INF MdeModulePkg/Bus/Scsi/ScsiBusDxe/ScsiBusDxe.inf
-  INF MdeModulePkg/Bus/Scsi/ScsiDiskDxe/ScsiDiskDxe.inf
-
   # ACPI and SMBIOS
   INF MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
   INF MdeModulePkg/Universal/Acpi/AcpiPlatformDxe/AcpiPlatformDxe.inf
@@ -325,65 +326,13 @@ READ_LOCK_STATUS   = TRUE
 
   INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 
-  INF MsGraphicsPkg/GopOverrideDxe/GopOverrideDxe.inf
-  INF MsCorePkg/MuCryptoDxe/MuCryptoDxe.inf
+  !include QcomPkg/Frontpage.fdf.inc
+
   INF DfciPkg/IdentityAndAuthManager/IdentityAndAuthManagerDxe.inf
-  INF DfciPkg/SettingsManager/SettingsManagerDxe.inf
-  INF MsGraphicsPkg/MsUiTheme/Dxe/MsUiThemeProtocol.inf
-  INF MsGraphicsPkg/RenderingEngineDxe/RenderingEngineDxe.inf
-  INF MsGraphicsPkg/DisplayEngineDxe/DisplayEngineDxe.inf
-  INF OemPkg/BootMenu/BootMenu.inf
-  INF RuleOverride = UI QcomPkg/Applications/FrontPage/FrontPage.inf
-  INF PcBdsPkg/MsBootPolicy/MsBootPolicy.inf
-  INF MdeModulePkg/Universal/BootManagerPolicyDxe/BootManagerPolicyDxe.inf
-  INF MdeModulePkg/Universal/RegularExpressionDxe/RegularExpressionDxe.inf
-  INF DfciPkg/DfciManager/DfciManager.inf
-  INF MsGraphicsPkg/OnScreenKeyboardDxe/OnScreenKeyboardDxe.inf
-  INF MsGraphicsPkg/SimpleWindowManagerDxe/SimpleWindowManagerDxe.inf
-  INF MsGraphicsPkg/MsEarlyGraphics/Dxe/MsEarlyGraphics.inf
-
-  INF MsWheaPkg/HwErrBert/HwErrBert.inf
-  INF MsWheaPkg/MsWheaReport/Dxe/MsWheaReportDxe.inf
-
-  # Hardware Health (Menu) application
-  INF MsWheaPkg/HwhMenu/HwhMenu.inf
-
-  INF MsCorePkg/AcpiRGRT/AcpiRgrt.inf
-
-  INF DfciPkg/Application/DfciMenu/DfciMenu.inf
-
-  FILE APPLICATION = PCD(gPcBdsPkgTokenSpaceGuid.PcdShellFile) {
-    SECTION PE32 = $(OUTPUT_DIRECTORY)/$(TARGET)_$(TOOL_CHAIN_TAG)/AARCH64/Shell.efi
-    SECTION UI = "Shell"
-  }
 
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
-    SECTION RAW = QcomPkg/Applications/FrontPage/Resources/BootLogo.bmp
+    SECTION RAW = <Device Codename>Pkg/Resources/BootLogo.bmp      # The Splash Screen of your Device
     SECTION UI = "Logo"
-  }
-
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdFrontPageLogoFile) {
-    SECTION RAW = QcomPkg/Applications/FrontPage/Resources/FrontpageLogo.bmp
-  }
-
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLowBatteryFile) {
-    SECTION RAW = QcomPkg/Applications/FrontPage/Resources/LBAT.bmp
-  }
-
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdThermalFile) {
-    SECTION RAW = QcomPkg/Applications/FrontPage/Resources/THOT.bmp
-  }
-
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdVolumeUpIndicatorFile) {
-    SECTION RAW = QcomPkg/Applications/FrontPage/Resources/VolumeUp.bmp
-  }
-
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdFirmwareSettingsIndicatorFile) {
-    SECTION RAW = QcomPkg/Applications/FrontPage/Resources/FirmwareSettings.bmp
-  }
-
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdBootFailIndicatorFile) {
-    SECTION RAW = QcomPkg/Applications/FrontPage/Resources/NoBoot.bmp
   }
 
   # TODO: Make this Image for every single Device
@@ -392,9 +341,8 @@ READ_LOCK_STATUS   = TRUE
   }
 
   INF QcomPkg/UFP/ufpdevicefw.inf
-  INF QcomPkg/Drivers/KernelErrataPatcher/KernelErrataPatcher.inf
-  INF QcomPkg/Drivers/ColorbarsDxe/ColorbarsDxe.inf
   INF QcomPkg/Drivers/GpioButtons/GpioButtons.inf
+  INF QcomPkg/Drivers/KernelErrataPatcher/KernelErrataPatcher.inf
 
   # NOTE: Only add these two entries if your Device is an A/B Device.
   # If unsure leave them out of the File.
@@ -435,9 +383,6 @@ READ_LOCK_STATUS   = TRUE
   !include QcomPkg/CommonFdf.fdf.inc
 ```
 
-`<UEFI FD Base/Size Value>` is the UEFI FD Value in the MemoryMap (uefiplat.cfg). <br />
-`<UEFI FD NumBlocks>` is the Number of Blocks UEFI FD has, [<UEFI FD Size> / 0x1000].
-
 ## Creating .fdf.inc Files (Step 3.2)
 
 Now we create some files for the `.fdf` File
@@ -476,10 +421,10 @@ FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606CD {
 ## Creating APRIORI.inc (Step 3.2.2)
 
 Now we continue with `APRIORI.inc`, Create `APRIORI.inc` in `./Platforms/<Device Vendor>/<Device Codename>Pkg/Include/`. <br />
-Now we need the order of the Binaries in `APRIORI.inc`, Use UEFITool to get the Order:
+We need the order of the Binaries in `APRIORI.inc`, Use UEFITool to get the Order:
 
-![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/APRIORI1.png)
-![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/APRIORI2.png)
+![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/APRIORI1.png)
+![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/APRIORI2.png)
 
 Next we place all the Binaries in `APRIORI.inc` like this:
 ```
@@ -498,6 +443,8 @@ INF QcomPkg/Drivers/SimpleFbDxe/SimpleFbDxe.inf
 `PciBusDxe` should be over `Fat`. <br />
 `SimpleFbDxe` should replace `DisplayDxe` if DisplayDxe dosen't work already.
 
+Your APRIORI.inc should **NOT** Have SecurityStub in it, If so remove it or UEFI will get Stuck on that one.
+
 ## Creating DXE.inc File (Step 3.2.3)
 
 After that we can now move on to `DXE.inc`, Create `DXE.inc` in `./Platforms/<Device Vendor>/<Device Codename>Pkg/Include/`. <br />
@@ -509,7 +456,6 @@ INF <Path to .inf>
 Also here again you need to add some extra Stuff:
 ```
 INF ArmPkg/Drivers/ArmPsciMpServicesDxe/ArmPsciMpServicesDxe.inf
-INF AdvLoggerPkg/AdvancedFileLogger/AdvancedFileLogger.inf
 INF MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
 INF MdeModulePkg/Universal/Acpi/FirmwarePerformanceDataTableDxe/FirmwarePerformanceDxe.inf
 INF MdeModulePkg/Universal/PCD/Dxe/Pcd.inf
@@ -518,7 +464,6 @@ INF MdeModulePkg/Bus/Usb/UsbMouseAbsolutePointerDxe/UsbMouseAbsolutePointerDxe.i
 ```
 
 `ArmPsciMpServicesDxe` should be under `TimerDxe`. <br />
-`AdvancedFileLogger` should be under `FvSimpleFileSystemDxe`. <br />
 `BootGraphicsResourceTableDxe` should be under `BdsDxe`. <br />
 `FirmwarePerformanceDxe` should be under `BootGraphicsResourceTableDxe`. <br />
 `Pcd` should be under `FirmwarePerformanceDxe`. <br />
@@ -591,13 +536,7 @@ would become in the Memory Map:
 {"Display Reserved",  0xEA600000, 0x02400000, AddMem, MEM_RES, SYS_MEM_CAP, Reserv, WRITE_THROUGH_XN},
 ```
 Do that with every Memory Region but if an `#` is infront of an Memory Region do not add it. <br />
-After that it should look something like [this](https://github.com/Robotix22/MU-Qcom/blob/main/Platforms/Xiaomi/viliPkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.c).
-
-## Creating PlatformPei Library (Step 3.4)
-
-If there is an Device with the same SoC as yours copy that PlatformPei and paste it in your Library Folder. <br />
-In the .inf File replace the Device Codename with yours. <br />
-But if there is no Device you may wana try similiar Devices.
+After that it should look something like [this](https://github.com/Robotix22/Mu-Qcom/blob/main/Platforms/Xiaomi/viliPkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.c).
 
 ## Building
 
@@ -628,6 +567,6 @@ If The Phone reboots after booting UEFI the Issue is may an Driver again. <br />
 
 That also may happen if you Port UEFI. <br />
 
-![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/Synchronous-Exception.jpg)
+![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Synchronous-Exception.jpg)
 
 One of these Drivers causes the Issue, In that Example it it PILDxe, you can cut it for now.
