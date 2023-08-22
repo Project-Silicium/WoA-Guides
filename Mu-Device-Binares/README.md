@@ -32,7 +32,7 @@ This part of UEFI-Guides is intended for those who want to know which binary dev
 
 ### DALSYSDxe:
 - Info: This driver is used by UEFI to create an abstraction over the DalLib library.
-  This library is used to manage the Device Abstraction Layer/
+  This library is used to manage the Device Abstraction Layer.
 - Protocol: Soon...
 
 ### DisplayDxe:
