@@ -1,6 +1,5 @@
 # Mu-Device-Binary
-
-## This part of the UEFI-Guides is for those who want to know which binary device drivers (drivers from XBL) are responsible for what and how to use their protocols
+This part of UEFI-Guides is intended for those who want to know which binary device drivers (drivers from XBL) are responsible for what, which protocols they implement and how to use them.
 
 ### AdcDxe:
 - Info: Soon...
