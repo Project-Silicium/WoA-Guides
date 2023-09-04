@@ -60,8 +60,18 @@ Also Change the GUID, Generate a random one [here](https://guidgenerator.com/)
 
 In this File we need to change a lot. <br />
 Lets begin with renaming the old SoC Name to your SoC Name. <br />
-After that we change `PcdArmArchTimerSecIntrNum` and `PcdArmArchTimerIntrNum` to thr right Value. <br />
-If the SoC is older than SM8350 use `17` and `18` if not use `29` and `30`. <br />
+After that we change `PcdArmArchTimerSecIntrNum`, `PcdArmArchTimerIntrNum`, `PcdArmArchTimerVirtIntrNum` and `PcdArmArchTimerHypIntrNum` to thr right Value. <br />
+In the dts search for "timer", It will show you a node about timer, That Node contains the Right Values. <br />
+Example:
+```
+timer {
+  compatible = "arm,armv8-timer";
+  interrupts = <0x01 0x01 0xf08 0x01 0x02 0xf08 0x01 0x03 0xf08 0x01 0x00 0xf08>;
+                      |               |                |               |
+                  1st Value      2nd Value         3rd Value       4th Value
+  clock-frequency = <0x124f800>;
+};
+```
 
 `PcdGicDistributorBase` and `PcdGicRedistributorsBase` are the two Values of the interrupt-controller node in the dts. <br />
 Take a look at https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom in your SoC dts to find these Values. <br />
