@@ -129,8 +129,18 @@ Here is an template:
   SKUID_IDENTIFIER               = DEFAULT
   FLASH_DEFINITION               = <Device Codename>Pkg/<Device Codename>.fdf
   USE_DISPLAYDXE                 = 0
+  # Set this to 1 If your Device is A/B Device
   AB_SLOT_SUPPORT                = 0
   USE_UART                       = 0
+
+  # If your SoC has multimple variants define the Number here
+  # If not don't add this Define
+  SOC_TYPE                       = 2
+
+# If your SoC has multimple variants define the Number here
+# If not don't add this Build Option
+[BuildOptions.common]
+  *_*_*_CC_FLAGS = -DSOC_TYPE=$(SOC_TYPE)
 
 [LibraryClasses.common]
   PlatformMemoryMapLib|<Device Codename>Pkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
@@ -168,18 +178,18 @@ Here is an template:
   gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|<Con Column>
   gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|<Con Row>
 
-!include SM8350Pkg/SM8350.dsc.inc
+!include <SoC Codename>Pkg/<SoC Codenmae>.dsc.inc
 ```
 
 `<GUID>` is a Value to identify your Device, Generate one [here](https://guidgenerator.com/)
 `<Start Address>` is the Start Address of the MemoryMap (uefiplat.cfg). <br />
-`<RAM Size>` is the RAM size of your Device, [<RAM Size in hex> * 0x100000]. <br />
+`<RAM Size>` is the RAM size of your Device, [(RAM Size in hex) * 0x100000]. <br />
 `<CPU Vector Base Address>` is the Base Address of `CPU Vectors` in the MemoryMap (uefiplat.cfg). <br />
 `<UEFI Stack base/Size>` is the Base/Size Address of `UEFI Stack` in the MemoryMap (uefiplat.cfg). <br />
 `<UART Base Address>` is the First Hex Address of the serial0 Node in your dts. <br />
-`<Device Bpp>` is the Value of your Display bits per pixel, [<Display Width> * <Display Height> / 8 or 6 or 4] Valid Resoults are: 32, 24 and 16. <br />
-`<Setup Con Column> / <Con Column>` is the Value of [<Display Width> / 8]. <br />
-`<Setup Con Row> / <Con Row>` is the Value of [<Display Height> / 19].
+`<Device Bpp>` is the Value of your Display bits per pixel, [(Display Width) * (Display Height) / 8 or 6 or 4] Valid Resoults are: 32, 24 and 16. <br />
+`<Setup Con Column> / <Con Column>` is the Value of [(Display Width) / 8]. <br />
+`<Setup Con Row> / <Con Row>` is the Value of [(Display Height) / 19].
 
 ## Creating .dec File (Step 3.1.2)
 
@@ -194,7 +204,7 @@ Here is an template what it should contain:
   PACKAGE_VERSION                     = 0.1
 
 [Includes.common]
-  Include                             # Root include for the package
+  Include                               # Root include for the package
 
 [Guids.common]
   # NOTE: For these Values you need to use the GUID you generated earlier!
@@ -340,7 +350,6 @@ READ_LOCK_STATUS   = TRUE
     SECTION RAW = QcomPkg/Include/Resources/RegulatoryLogos.png
   }
 
-  INF QcomPkg/UFP/ufpdevicefw.inf
   INF QcomPkg/Drivers/GpioButtons/GpioButtons.inf
   INF QcomPkg/Drivers/KernelErrataPatcher/KernelErrataPatcher.inf
 
