@@ -22,12 +22,12 @@ This Guide will show your how to boot UEFI on your Device.
    - PC / Laptop
    - Fastboot or Odin depending on your Device
    - Unlocked Bootloader
-   - [UEFI Image](https://github.com/Robotix22/Mu-Qcom)
+   - [UEFI Image](https://github.com/Robotix22/Mu-Qcom/releases)
 
 ## Getting UEFI
 
 Let's begin with getting the UEFI Boot Image. <br />
-You need to compile a UEFI Image as We don't include UEFI Images in Releases, Follow [this](https://github.com/Robotix22/Mu-Qcom/blob/main/Building.md) Guide to compile a UEFI Image.
+Download the UEFI Image or compile a UEFI Image, Follow [this](https://github.com/Robotix22/Mu-Qcom/blob/main/Building.md) Guide to compile a UEFI Image.
 
 ## Booting UEFI (Method 1) [Recommended]
 
