@@ -1,5 +1,10 @@
 # Mu-Qcom Guides
 
+## ⚠️ Warning
+
+Some Guides are not Finisched, Please try to avoid non Finisched Guides. <br />
+If you are Uncomfortable modding your Device, Please don't follow any Modding Guides here.
+
 ## General Guides:
 
    - [Booting](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/General/Boot.md)
