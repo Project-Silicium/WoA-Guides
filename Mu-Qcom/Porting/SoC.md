@@ -62,7 +62,7 @@ In this File we need to change a lot. <br />
 Lets begin with renaming the old SoC Name to your SoC Name. <br />
 After that we change `PcdArmArchTimerSecIntrNum` and `PcdArmArchTimerIntrNum` to thr right Value. <br />
 If the SoC is older than SM8350 use `17` and `18` if not use `29` and `30`. <br />
-If your SoC is 6 Gen or older than 6 Gen use the Timer Values from dts <br />
+If your SoC is 6 Gen or older than 6 Gen, add `PcdArmArchTimerVirtIntrNum` and `PcdArmArchTimerHypIntrNum` under the other two, use the Timer Values from dts <br />
 In the dts search for "timer", It will show you a node about timer, That Node contains the Right Values. <br />
 Example:
 ```
