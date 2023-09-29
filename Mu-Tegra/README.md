@@ -2,7 +2,7 @@
 
 ## General Guides:
 
-   - [Booting](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Tegra/General/Boot.md)
+   - [Booting](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Tegra/General/Boot.md) **Outdated!**
 
 ## Porting Guides:
 
