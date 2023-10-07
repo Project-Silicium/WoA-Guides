@@ -60,12 +60,24 @@ Also Change the GUID, Generate a random one [here](https://guidgenerator.com/)
 
 In this File we need to change a lot. <br />
 Lets begin with renaming the old SoC Name to your SoC Name. <br />
-After that we change `PcdArmArchTimerSecIntrNum` and `PcdArmArchTimerIntrNum` to thr right Value. <br />
-If the SoC is older than SM8350 use `17` and `18` if not use `29` and `30`. <br />
-If your SoC is 6 Gen or older than 6 Gen, add `PcdArmArchTimerVirtIntrNum` and `PcdArmArchTimerHypIntrNum` under the other two, use the Timer Values from dts <br />
-In the dts search for "timer", It will show you a node about timer, That Node contains the Right Values. <br />
-Example:
+After that we change the Timer & Gic Value to the right Values according to your SoC. <br />
+Lets Beginn with the Timer Values. <br />
+First, Change the `PcdArmArchTimerFreqInHz` to the right Value, You can find that Value in your DTB in the`timer` node:
 ```
+# NOTE: Use your DTB
+timer {
+  compatible = "arm,armv8-timer";
+  interrupts = <0x01 0x01 0xf08 0x01 0x02 0xf08 0x01 0x03 0xf08 0x01 0x00 0xf08>;
+  clock-frequency = <0x124f800>;
+                         |
+                  Freq In Hz Value
+};
+```
+Convert the Hex Value to a Decimal Value. <br />
+Then, We come to the interrupt Values. <br />
+`PcdArmArchTimerSecIntrNum`, `PcdArmArchTimerIntrNum`, `PcdArmArchTimerVirtIntrNum` and `PcdArmArchTimerHypIntrNum` are the Interrupts.
+```
+# NOTE: Use your DTB
 timer {
   compatible = "arm,armv8-timer";
   interrupts = <0x01 0x01 0xf08 0x01 0x02 0xf08 0x01 0x03 0xf08 0x01 0x00 0xf08>;
@@ -74,10 +86,41 @@ timer {
   clock-frequency = <0x124f800>;
 };
 ```
+Again, Change the Hex Values to Decimal Values. <br />
+Before adding these Values to the PCDs we need to do some Maths :D<br />
+```
+For SM8350 and newer:
+SecIntrNum = 29 + <1st Value>
+IntrNum = 30 + <2st Value>
+VirtIntrNum = 27 + <3rd Value>
+HypIntrNum = 26 + <4th Value>
 
-`PcdGicDistributorBase` and `PcdGicRedistributorsBase` are the two Values of the interrupt-controller node in the dts. <br />
+For SM8250 and older:
+SecIntrNum = 17 + <1st Value>
+IntrNum = 18 + <2st Value>
+VirtIntrNum = 27 + <3rd Value>
+HypIntrNum = 26 + <4th Value>
+```
+After you calculated the Values, You add them to the PCDs. <br>
+
+Now We will Change the Gic Values. <br />
+`PcdGicDistributorBase` and `PcdGicRedistributorsBase` are the two Values of the `interrupt-controller` node in the dts. <br />
+```
+# NOTE: Use your DTB
+interrupt-controller@17a00000 {
+  compatible = "arm,gic-v3";
+  #interrupt-cells = <0x03>;
+  interrupt-controller;
+  #redistributor-regions = <0x01>;
+  redistributor-stride = <0x00 0x20000>;
+  reg = <0x17a00000 0x10000 0x17a60000 0x100000>;
+             |                  |
+         1st Value          2nd Value
+  interrupts = <0x01 0x09 0x04>;
+  phandle = <0x01>;
+};
+```
 `PcdGicInterruptInterfaceBase` and `PcdInterruptBaseAddress` are the same Value as `PcdGicDistributorBase`. <br />
-Take a look at https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom in your SoC dts to find these Values. <br />
 Set `PcdAcpiDefaultOemRevision` to your SoC Name Example: `SM8350 -> 0x00008350`
 
 Now we need to set `PcdCoreCount` and `PcdClusterCount` to the right Value, You can findout these Values by looking at the specs of the SoC.
@@ -108,62 +151,18 @@ Lets begin with `SMBIOS_TABLE_TYPE4`:
 It defines some CPU Values like Speed and Clusters. <br />
 Here is a template Section:
 ```
-SMBIOS_TABLE_TYPE4 mProcessorInfoType4 = {
+SMBIOS_TABLE_TYPE4 mProcessorInfoType4_<Cluster Name> = {
     {EFI_SMBIOS_TYPE_PROCESSOR_INFORMATION, sizeof(SMBIOS_TABLE_TYPE4), 0},
     1,                // Socket String
-    CentralProcessor, // ProcessorType;				      ///< The
-                      // enumeration value from PROCESSOR_TYPE_DATA.
+    CentralProcessor, // ProcessorType;          ///< The enumeration value from
+                      // PROCESSOR_TYPE_DATA.
     ProcessorFamilyIndicatorFamily2, // ProcessorFamily;        ///< The
                                      // enumeration value from
                                      // PROCESSOR_FAMILY2_DATA.
     2,                               // ProcessorManufacture String;
     {                                // ProcessorId;
-     {
-         // PROCESSOR_SIGNATURE
-         0, //  ProcessorSteppingId:4;
-         0, //  ProcessorModel:     4;
-         0, //  ProcessorFamily:    4;
-         0, //  ProcessorType:      2;
-         0, //  ProcessorReserved1: 2;
-         0, //  ProcessorXModel:    4;
-         0, //  ProcessorXFamily:   8;
-         0, //  ProcessorReserved2: 4;
-     },
-
-     {
-         // PROCESSOR_FEATURE_FLAGS
-         0, //  ProcessorFpu       :1;
-         0, //  ProcessorVme       :1;
-         0, //  ProcessorDe        :1;
-         0, //  ProcessorPse       :1;
-         0, //  ProcessorTsc       :1;
-         0, //  ProcessorMsr       :1;
-         0, //  ProcessorPae       :1;
-         0, //  ProcessorMce       :1;
-         0, //  ProcessorCx8       :1;
-         0, //  ProcessorApic      :1;
-         0, //  ProcessorReserved1 :1;
-         0, //  ProcessorSep       :1;
-         0, //  ProcessorMtrr      :1;
-         0, //  ProcessorPge       :1;
-         0, //  ProcessorMca       :1;
-         0, //  ProcessorCmov      :1;
-         0, //  ProcessorPat       :1;
-         0, //  ProcessorPse36     :1;
-         0, //  ProcessorPsn       :1;
-         0, //  ProcessorClfsh     :1;
-         0, //  ProcessorReserved2 :1;
-         0, //  ProcessorDs        :1;
-         0, //  ProcessorAcpi      :1;
-         0, //  ProcessorMmx       :1;
-         0, //  ProcessorFxsr      :1;
-         0, //  ProcessorSse       :1;
-         0, //  ProcessorSse2      :1;
-         0, //  ProcessorSs        :1;
-         0, //  ProcessorReserved3 :1;
-         0, //  ProcessorTm        :1;
-         0, //  ProcessorReserved4 :2;
-     }},
+     {0x00, 0x00, 0x00, 0x00},
+     {0x00, 0x00, 0x00, 0x00}},
     3, // ProcessorVersion String;
     {
         // Voltage;
@@ -173,34 +172,135 @@ SMBIOS_TABLE_TYPE4 mProcessorInfoType4 = {
         0, // ProcessorVoltageCapabilityReserved  :1; ///< Bit 3, must be zero.
         0, // ProcessorVoltageReserved            :3; ///< Bits 4-6, must be
            // zero.
-        0  // ProcessorVoltageIndicateLegacy      :1;
+        1  // ProcessorVoltageIndicateLegacy      :1;
     },
     0,                     // ExternalClock;
-    <Max speed of your SoC>, // MaxSpeed;
-    <Max speed of your SoC>, // CurrentSpeed;
+    <Max Speed of your SoC>,                  // MaxSpeed;
+    <Max Speed of your SoC>,,                  // CurrentSpeed;
     0x41,                  // Status;
-    ProcessorUpgradeOther, // ProcessorUpgrade;      ///< The enumeration value
-                           // from PROCESSOR_UPGRADE.
+    ProcessorUpgradeOther, // ProcessorUpgrade;         ///< The enumeration
+                           // value from PROCESSOR_UPGRADE.
     0,                     // L1CacheHandle;
     0,                     // L2CacheHandle;
-    0,                     // L3CacheHandle;
+    0xFFFF,                // L3CacheHandle;
     0,                     // SerialNumber;
     0,                     // AssetTag;
-    4,                     // PartNumber;
-    <Amount of Cores your SoC has>, // CoreCount;
-    <Amount of Cores your SoC has>, // EnabledCoreCount;
-    <Amount of Cores your SoC has>, // ThreadCount;
-    0xAC,                        // ProcessorCharacteristics;
-    ProcessorFamilyARM,          // ARM Processor Family;
+    7,                     // PartNumber;
+    <Amount of Cores for this Cluster>,                     // CoreCount;
+    <Amount of Cores for this Cluster>,,                     // EnabledCoreCount;
+    0,                     // ThreadCount;
+    0xEC, // ProcessorCharacteristics; ///< The enumeration value from
+          // PROCESSOR_CHARACTERISTIC_FLAGS ProcessorReserved1              :1;
+          // ProcessorUnknown                :1;
+          // Processor64BitCapble            :1;
+          // ProcessorMultiCore              :1;
+          // ProcessorHardwareThread         :1;
+          // ProcessorExecuteProtection      :1;
+          // ProcessorEnhancedVirtualization :1;
+          // ProcessorPowerPerformanceCtrl    :1;
+          // Processor128bitCapble            :1;
+          // ProcessorReserved2               :7;
+    ProcessorFamilyARM, // ARM Processor Family;
+    0,                  // CoreCount2;
+    0,                  // EnabledCoreCount2;
+    0,                  // ThreadCount2;
 };
 ```
+Depending, How much Clusters you have, You need to add these to SMBios. <br />
+For Example, Your SoC has 2 Clusters, Then you two of these. <br />
+Change `CoreCount` and `EnabledCoreCount` to the amount of Cores the Cluster has. <br />
+Then You Change `MaxSpeed` and `CurrentSpeed` to the Max Speed your SoC can. <br />
+These two Values need to be in Hz Size. <br />
+
 After you modified these, we move on to `SMBIOS_TABLE_TYPE7`. <br />
 Here is a template of Type 7:
 ```
+SMBIOS_TABLE_TYPE7 mCacheInfoType7_L1I = {
+    {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
+    1,     // SocketDesignation String
+    0x280, // Cache Configuration
+           // Cache Level        :3  (L1)
+           // Cache Socketed     :1  (Not Socketed)
+           // Reserved           :1
+           // Location           :2  (Internal)
+           // Enabled/Disabled   :1  (Enabled)
+           // Operational Mode   :2  (Unknown)
+           // Reserved           :6
+    <Size of L1I>, // Maximum Size
+    <Size of L1I>, // Install Size
+    {
+        // Supported SRAM Type
+        0, // Other             :1
+        1, // Unknown           :1
+        0, // NonBurst          :1
+        0, // Burst             :1
+        0, // PiplelineBurst    :1
+        0, // Synchronous       :1
+        0, // Asynchronous      :1
+        0  // Reserved          :9
+    },
+    {
+        // Current SRAM Type
+        0, // Other             :1
+        1, // Unknown           :1
+        0, // NonBurst          :1
+        0, // Burst             :1
+        0, // PiplelineBurst    :1
+        0, // Synchronous       :1
+        0, // Asynchronous      :1
+        0  // Reserved          :9
+    },
+    0,                      // Cache Speed unknown
+    CacheErrorParity,       // Error Correction
+    CacheTypeInstruction,   // System Cache Type
+    CacheAssociativityOther // Associativity
+};
+
+SMBIOS_TABLE_TYPE7 mCacheInfoType7_L1D = {
+    {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
+    1,     // SocketDesignation String
+    0x280, // Cache Configuration
+           // Cache Level        :3  (L1)
+           // Cache Socketed     :1  (Not Socketed)
+           // Reserved           :1
+           // Location           :2  (Internal)
+           // Enabled/Disabled   :1  (Enabled)
+           // Operational Mode   :2  (Unknown)
+           // Reserved           :6
+    <Size of L1D>, // Maximum Size
+    <Size of L1D>, // Install Size
+    {
+        // Supported SRAM Type
+        0, // Other             :1
+        1, // Unknown           :1
+        0, // NonBurst          :1
+        0, // Burst             :1
+        0, // PiplelineBurst    :1
+        0, // Synchronous       :1
+        0, // Asynchronous      :1
+        0  // Reserved          :9
+    },
+    {
+        // Current SRAM Type
+        0, // Other             :1
+        1, // Unknown           :1
+        0, // NonBurst          :1
+        0, // Burst             :1
+        0, // PiplelineBurst    :1
+        0, // Synchronous       :1
+        0, // Asynchronous      :1
+        0  // Reserved          :9
+    },
+    0,                      // Cache Speed unknown
+    CacheErrorParity,       // Error Correction
+    CacheTypeInstruction,   // System Cache Type
+    CacheAssociativityOther // Associativity
+};
+
 SMBIOS_TABLE_TYPE7 mCacheInfoType7_L2 = {
     {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
     1,     // SocketDesignation String
-    0x380, // Cache Configuration
+    0x281, // Cache Configuration
            // Cache Level        :3  (L1)
            // Cache Socketed     :1  (Not Socketed)
            // Reserved           :1
@@ -241,7 +341,7 @@ SMBIOS_TABLE_TYPE7 mCacheInfoType7_L2 = {
 SMBIOS_TABLE_TYPE7 mCacheInfoType7_L3 = {
     {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
     1,     // SocketDesignation String
-    0x380, // Cache Configuration
+    0x282, // Cache Configuration
            // Cache Level        :3  (L1)
            // Cache Socketed     :1  (Not Socketed)
            // Reserved           :1
@@ -278,12 +378,13 @@ SMBIOS_TABLE_TYPE7 mCacheInfoType7_L3 = {
     CacheTypeInstruction,  // System Cache Type
     CacheAssociativity2Way // Associativity
 };
-CHAR8 *mCacheInfoType7Strings[] = {"L2 Instruction", "L2 Data", "L3", NULL};
+CHAR8 *mCacheInfoType7Strings[] = {"L1 Instruction", "L1 Data", "L2", "L3"};
 ```
 You can get all these Infos if you look up the specs of your SoC or find these in the dtb of your Device. <br />
-If Your SoC dosen't have L3 for example then just remove it, Or if it has L1 then just add L1. <br />
+If Your SoC dosen't have L3 for example then just remove it. <br />
+
 After that We move to `SMBIOS_TABLE_TYPE17`. <br />
-There you just need to change one Value: `RAM Speed`, That should be in the Specs of your SoC. <br />
+There you just need to change one Value: `Speed`, That should be in the Specs of your SoC. <br />
 Then Moddify The Data Updates for `TYPE4`, `TYPE7` and `TYPE17` according to what you changed before.
 
 ## Modify Librarys (Step 1.4)
