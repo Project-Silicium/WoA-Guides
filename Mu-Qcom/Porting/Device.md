@@ -137,7 +137,7 @@ Here is an template:
   # If not don't add this Define
   SOC_TYPE                       = 2
 
-# If your SoC has multimple variants define the Number here
+# If your SoC has multimple variants keep this Build Option
 # If not don't add this Build Option
 [BuildOptions.common]
   *_*_*_CC_FLAGS = -DSOC_TYPE=$(SOC_TYPE)
@@ -147,7 +147,7 @@ Here is an template:
 
 [PcdsFixedAtBuild.common]
   gArmTokenSpaceGuid.PcdSystemMemoryBase|<Start Address>    # Starting address
-  gArmTokenSpaceGuid.PcdSystemMemorySize|<RAM Size>         # 8GB Size
+  gArmTokenSpaceGuid.PcdSystemMemorySize|<RAM Size>         # <RAM Size> GB Size
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor|L"<Your Github Name>"
 
@@ -351,7 +351,6 @@ READ_LOCK_STATUS   = TRUE
   }
 
   INF QcomPkg/Drivers/GpioButtons/GpioButtons.inf
-  INF QcomPkg/Drivers/KernelErrataPatcher/KernelErrataPatcher.inf
 
   # NOTE: Only add these two entries if your Device is an A/B Device.
   # If unsure leave them out of the File.
