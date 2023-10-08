@@ -89,15 +89,8 @@ timer {
 Again, Change the Hex Values to Decimal Values. <br />
 Before adding these Values to the PCDs we need to do some Maths :D<br />
 ```
-For SM8350 and newer:
 SecIntrNum = 29 + <1st Value>
 IntrNum = 30 + <2st Value>
-VirtIntrNum = 27 + <3rd Value>
-HypIntrNum = 26 + <4th Value>
-
-For SM8250 and older:
-SecIntrNum = 17 + <1st Value>
-IntrNum = 18 + <2st Value>
 VirtIntrNum = 27 + <3rd Value>
 HypIntrNum = 26 + <4th Value>
 ```
