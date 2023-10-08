@@ -87,14 +87,7 @@ timer {
 };
 ```
 Again, Change the Hex Values to Decimal Values. <br />
-Before adding these Values to the PCDs we need to do some Maths :D<br />
-```
-SecIntrNum = 29 + <1st Value>
-IntrNum = 30 + <2st Value>
-VirtIntrNum = 27 + <3rd Value>
-HypIntrNum = 26 + <4th Value>
-```
-After you calculated the Values, You add them to the PCDs. <br>
+You might have Problems with Buttons later by using these Values. <br />
 
 Now We will Change the Gic Values. <br />
 `PcdGicDistributorBase` and `PcdGicRedistributorsBase` are the two Values of the `interrupt-controller` node in the dts. <br />
