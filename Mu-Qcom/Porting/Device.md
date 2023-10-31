@@ -128,6 +128,8 @@ Here is an template:
   BUILD_TARGETS                  = DEBUG|RELEASE
   SKUID_IDENTIFIER               = DEFAULT
   FLASH_DEFINITION               = <Device Codename>Pkg/<Device Codename>.fdf
+  # Set this to 1 if your Device has a RGB Display (Newer Devices have BGR instead of RGB)
+  DISPLAY_USES_RGBA              = 0
   USE_DISPLAYDXE                 = 0
   # Set this to 1 If your Device is A/B Device
   AB_SLOT_SUPPORT                = 0
@@ -309,7 +311,8 @@ READ_LOCK_STATUS   = TRUE
 
   # Secure Boot Key Enroll
   INF SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
-  #INF QcomPkg/Drivers/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
+  INF QcomPkg/Drivers/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
+  INF QcomPkg/Drivers/SystemIntegrityPolicyProvisioningDxe/SystemIntegrityPolicyProvisioningDxe.inf
 
   INF EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
 
