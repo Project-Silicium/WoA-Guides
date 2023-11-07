@@ -123,7 +123,9 @@ gQcomPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) <SoC Name> @ <So
 gQcomPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"<SoC Codename>"
 ```
 
-You also need to change the UART Value, You can get it from your dts serial0 node.
+You also need to change the UART Value, You can get it from your dts serial0 node. <br />
+Now the last thing you need to do is Update the `USE_PHYSICAL_TIMER` Define at the Top. <br />
+Change it to 0 If your SoC Uses a Virtual Timer, Otherwise Set it to 1.
 
 ## Modify SmBios (Step 1.3)
 
