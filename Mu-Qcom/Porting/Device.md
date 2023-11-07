@@ -30,6 +30,7 @@ This Guide will show you how to create an minimal UEFI Port for your Device. <br
               - [Creating RAW.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-rawinc-step-324)
               - [Creating FDT.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-fdtinc-step-325)
          - [Creating MemoryMap](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-platformmemorymap-library-step-33)
+         - [Creating Boot Script](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-android-boot-image-script-step-34)
     - [Building](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#building)
     - [Troubleshooting](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#troubleshooting)
          - [DxeCore](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#dxecore)
@@ -567,6 +568,13 @@ Now you just need to add that as a Memory Region:
 {"RAM Partition",     <Start Address>,<Size Address>, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
 ```
 After that it should look something like [this](https://github.com/Robotix22/Mu-Qcom/blob/main/Platforms/Xiaomi/sweet_k6aPkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.c).
+
+## Creating Android Boot Image Script (Step 3.4)
+
+You also need to create a Script that creates the Boot Image. <br />
+You can Copy a Device with similear/Same Boot Image Creation Script and just replace the Code Name with yours. <br />
+If there is no Device with similear Boot Image Creation Script, Extract the Original Android Boot Image with AIK (Android Image Kitchen). <br />
+Then you just use the Info that the Tool Gives you and Put them into the Script.
 
 ## Building
 
