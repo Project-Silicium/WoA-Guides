@@ -62,6 +62,9 @@ It should contain at least this:
 ```
 # General Config
 TARGET_DEVICE_VENDOR="<Device Vendor>"
+# Depending on your Device State Set this correct
+# Aviable States: STATBLE, LIMITED and UNSTABLE
+STATUS="LIMITED"
 
 # UEFI FD Config
 TARGET_FD_BASE="<FD Base>"
@@ -140,9 +143,9 @@ Here is an template:
   SOC_TYPE                       = 2
 
 # If your SoC has multimple variants keep this Build Option
-# If not don't add this Build Option
+# If not don't add "-DSOC_TYPE=$(SOC_TYPE)" to the Build Options.
 [BuildOptions.common]
-  *_*_*_CC_FLAGS = -DSOC_TYPE=$(SOC_TYPE)
+  *_*_*_CC_FLAGS = -DSOC_TYPE=$(SOC_TYPE) -DDISPLAY_USES_RGBA=$(DISPLAY_USES_RGBA)
 
 [LibraryClasses.common]
   PlatformMemoryMapLib|<Device Codename>Pkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
@@ -185,13 +188,14 @@ Here is an template:
 
 `<GUID>` is a Value to identify your Device, Generate one [here](https://guidgenerator.com/)
 `<Start Address>` is the Start Address of the MemoryMap (uefiplat.cfg). <br />
-`<RAM Size>` is the RAM size of your Device, [(RAM Size in hex) * 0x100000]. <br />
+`<RAM Size>` is the RAM size of your Device, `<RAM Size in hex> * 0x100000`. <br />
 `<CPU Vector Base Address>` is the Base Address of `CPU Vectors` in the MemoryMap (uefiplat.cfg). <br />
 `<UEFI Stack base/Size>` is the Base/Size Address of `UEFI Stack` in the MemoryMap (uefiplat.cfg). <br />
-`<UART Base Address>` is the First Hex Address of the serial0 Node in your dts. <br />
-`<Device Bpp>` is the Value of your Display bits per pixel, [(Display Width) * (Display Height) / 8 or 6 or 4] Valid Resoults are: 32, 24 and 16. <br />
-`<Setup Con Column> / <Con Column>` is the Value of [(Display Width) / 8]. <br />
-`<Setup Con Row> / <Con Row>` is the Value of [(Display Height) / 19].
+`<UART Base Address>` is the First Hex Address of the `serial0` Node in your dts. <br />
+`<Device Bpp>` is the Value of your Display Bits Per Pixel, Depending on your Resolution, You can find out what Bpp it uses, Example: `1280x720` Resolution is 24 Bpp. <br />
+If it is higher then It may become 32 or if it less of that it might becomes 16. <br />
+`<Setup Con Column> / <Con Column>` is the Value of `<Display Width> / 8`. <br />
+`<Setup Con Row> / <Con Row>` is the Value of `<Display Height> / 19`.
 
 ## Creating .dec File (Step 3.1.2)
 
@@ -343,11 +347,6 @@ READ_LOCK_STATUS   = TRUE
 
   INF DfciPkg/IdentityAndAuthManager/IdentityAndAuthManagerDxe.inf
 
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
-    SECTION RAW = <Device Codename>Pkg/Resources/BootLogo.bmp      # The Splash Screen of your Device
-    SECTION UI = "Logo"
-  }
-
   # TODO: Make this Image for every single Device
   FILE FREEFORM = PCD(gMsCorePkgTokenSpaceGuid.PcdRegulatoryGraphicFileGuid) {
     SECTION RAW = QcomPkg/Include/Resources/RegulatoryLogos.png
@@ -454,7 +453,8 @@ INF QcomPkg/Drivers/SimpleFbDxe/SimpleFbDxe.inf
 `PciBusDxe` should be over `Fat`. <br />
 `SimpleFbDxe` should replace `DisplayDxe` if DisplayDxe dosen't work already.
 
-Your APRIORI.inc should **NOT** Have SecurityStub in it, If so remove it or UEFI will get Stuck on that one.
+Your APRIORI.inc should **NOT** Have SecurityStub in it, If so remove it or UEFI will get Stuck on that one. <br />
+Check other Devices APRIORI.inc File to get an Idea, What to replace with the Mu Driver and what not.
 
 ## Creating DXE.inc File (Step 3.2.3)
 
@@ -481,6 +481,8 @@ INF MdeModulePkg/Bus/Usb/UsbMouseAbsolutePointerDxe/UsbMouseAbsolutePointerDxe.i
 `SimpleFbDxe` should replace `DisplayDxe` if DisplayDxe dosen't work already. <br />
 `UsbMouseAbsolutePointerDxe` should be under `UsbKbDxe`. <br />
 
+Check other Devices DXE.inc File to get an Idea, What to replace with the Mu Driver and what not.
+
 ## Creating RAW.inc (Step 3.2.4)
 
 Now lets move on to `RAW.inc`. <br />
@@ -491,6 +493,8 @@ FILE FREEFORM = <GUID> {
   SECTION UI = "<Name>"
 }
 ```
+
+You may also want to ignore the Raw Files that are Pictures, That Saves Space in the UEFI Image.
 
 ## Creating FDT.inc (Step 3.2.5)
 
@@ -547,12 +551,29 @@ would become in the Memory Map:
 {"Display Reserved",  0xEA600000, 0x02400000, AddMem, MEM_RES, SYS_MEM_CAP, Reserv, WRITE_THROUGH_XN},
 ```
 Do that with every Memory Region but if an `#` is infront of an Memory Region do not add it. <br />
-After that it should look something like [this](https://github.com/Robotix22/Mu-Qcom/blob/main/Platforms/Xiaomi/viliPkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.c).
+
+Then you need to add a `RAM Partition` to the Memory Map to increase the Chances of Dxe Core to be able to load. <br />
+Dump your iomem File from your Device: `dd if=/proc/iomem of=/sdcard/iomem.txt`. <br />
+After that Open that File and Scroll Down to the Last `System RAM` Region. <br />
+For Example this is your `System RAM` Region:
+```
+e2800000-27fffffff : System RAM
+```
+The First Address is the Start Address, But the Second Address is not the Size! <br />
+Its the Ending Addess. To get the Size do this: `<Start Address> - <End Address>`, Thats your Size <br />
+Now you just need to add that as a Memory Region:
+```
+# Add it under "RAM partition regions".
+{"RAM Partition",     <Start Address>,<Size Address>, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+```
+After that it should look something like [this](https://github.com/Robotix22/Mu-Qcom/blob/main/Platforms/Xiaomi/sweet_k6aPkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.c).
 
 ## Building
 
 Now Build your Device with:
 ```
+# If your Device has the config "MULTIPLE_RAM_SIZE" then add the -m Option ad Well.
+# Example: -m 4 (For 4 GB Memory)
 ./build_uefi.sh -d <Codename> -r DEBUG
 ```
 
