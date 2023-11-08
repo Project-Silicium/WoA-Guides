@@ -74,7 +74,7 @@ TARGET_FD_BLOCKS="<FD Blocks>"
 ```
 If your Device has Models with diffrent RAM Sizes, Add `MULTIPLE_RAM_SIZE="TRUE"` under General Config. <br />
 `<FD Base/Size Value>` is the UEFI FD Value in the MemoryMap (uefiplat.cfg). <br />
-`<FD Blocks>` is the Number of Blocks UEFI FD has, [<FD Size> / 0x1000].
+`<FD Blocks>` is the Number of Blocks UEFI FD has, `<UEFI FD Size> / 0x1000`.
 
 ## Creating Files (Step 3)
 
