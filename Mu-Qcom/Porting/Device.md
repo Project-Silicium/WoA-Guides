@@ -561,7 +561,7 @@ For Example this is your `System RAM` Region:
 e2800000-27fffffff : System RAM
 ```
 The First Address is the Start Address, But the Second Address is not the Size! <br />
-Its the Ending Addess. To get the Size do this: `<Start Address> - <End Address>`, Thats your Size <br />
+Its the Ending Address. To get the Size do this: `<End Address> - <Start Address>`, Thats your Size <br />
 Now you just need to add that as a Memory Region:
 ```
 # Add it under "RAM partition regions".
