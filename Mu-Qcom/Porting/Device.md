@@ -61,18 +61,23 @@ Every Device has its own config file to define some device specific things like:
 Create a File called `<Device Codename>.conf` in `./configs/`. <br />
 It should contain at least this:
 ```
-# General Config
+# General Configs
 TARGET_DEVICE_VENDOR="<Device Vendor>"
 # Depending on your Device State Set this correct
 # Aviable States: STATBLE, LIMITED and UNSTABLE
 STATUS="LIMITED"
 
-# UEFI FD Config
+# RAM Configs
+
+# ARCH Configs
+DEFAULT_ARCH_TYPE="AARCH64"
+
+# UEFI FD Configs
 TARGET_FD_BASE="<FD Base>"
 TARGET_FD_SIZE="<FD Size>"
 TARGET_FD_BLOCKS="<FD Blocks>"
 ```
-If your Device has Models with diffrent RAM Sizes, Add `MULTIPLE_RAM_SIZE="TRUE"` under General Config. <br />
+If your Device has Models with diffrent RAM Sizes, Add `MULTIPLE_RAM_SIZE="TRUE"` under RAM Configs. <br />
 `<FD Base/Size Value>` is the UEFI FD Value in the MemoryMap (uefiplat.cfg). <br />
 `<FD Blocks>` is the Number of Blocks UEFI FD has, `<UEFI FD Size> / 0x1000`.
 
@@ -127,7 +132,7 @@ Here is an template:
   PLATFORM_GUID                  = <GUID>
   PLATFORM_VERSION               = 0.1
   DSC_SPECIFICATION              = 0x00010005
-  OUTPUT_DIRECTORY               = Build/<Device Codename>Pkg
+  OUTPUT_DIRECTORY               = Build/<Device Codename>Pkg-$(ARCH)
   SUPPORTED_ARCHITECTURES        = AARCH64
   BUILD_TARGETS                  = DEBUG|RELEASE
   SKUID_IDENTIFIER               = DEFAULT
