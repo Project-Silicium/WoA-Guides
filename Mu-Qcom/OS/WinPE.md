@@ -48,6 +48,8 @@ Download Windows PE and extract the zip File somewhere, where you can reach it.
 We will now format the cust Partition to FAT32:
 ```
 # NOTE: Not all Devices have a cust Partition
+#       Some OnePlus Devices also have a cust Partition but under a diffrent Name
+#       The Name is as we know this: oem_cust1_a/b
 mkfs.fat -F32 -s1 /dev/block/by-name/cust
 ```
 
