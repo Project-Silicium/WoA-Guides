@@ -28,9 +28,9 @@ This Guide will show you how to create an minimal UEFI Port for your Device. <br
               - [Creating APRIORI.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-aprioriinc-step-322)
               - [Creating DXE.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-dxeinc-step-323)
               - [Creating RAW.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-rawinc-step-324)
-              - [Creating FDT.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-fdtinc-step-325)
-         - [Creating MemoryMap](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-platformmemorymap-library-step-33)
-         - [Creating Boot Script](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-android-boot-image-script-step-34)
+         - [Creating Config Map](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-configurationmap-library-step-33)
+         - [Creating MemoryMap](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-platformmemorymap-library-step-34)
+         - [Creating Boot Script](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-android-boot-image-script-step-35)
     - [Building](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#building)
     - [Troubleshooting](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#troubleshooting)
          - [DxeCore](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#dxecore)
@@ -93,9 +93,12 @@ Struckture of the Device Files:
 │   ├── FDT.inc
 │   └── RAW.inc
 ├── Library
-│   └── PlatformMemoryMapLib
-│       ├── PlatformMemoryMapLib.c
-│       └── PlatformMemoryMapLib.inf
+│   ├── PlatformMemoryMapLib
+│   │   ├── PlatformMemoryMapLib.c
+│   │   └── PlatformMemoryMapLib.inf
+│   └── DeviceConfigurationMapLib
+│       ├── DeviceConfigurationMapLib.c
+│       └── DeviceConfigurationMapLib
 ├── PlatformBuild.py
 ├── <Device Codename>.dec
 ├── <Device Codename>.dsc
@@ -319,21 +322,12 @@ READ_LOCK_STATUS   = TRUE
   !include Include/DXE.inc
   !include Include/RAW.inc
 
-  # Secure Boot Key Enroll
-  INF SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
-  INF QcomPkg/Drivers/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
-  INF QcomPkg/Drivers/SystemIntegrityPolicyProvisioningDxe/SystemIntegrityPolicyProvisioningDxe.inf
-
   INF EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
 
   # BDS
   INF MdeModulePkg/Universal/SmbiosDxe/SmbiosDxe.inf
   INF MdeModulePkg/Universal/SetupBrowserDxe/SetupBrowserDxe.inf
   INF MdeModulePkg/Universal/DriverHealthManagerDxe/DriverHealthManagerDxe.inf
-
-  # HID Support
-  INF HidPkg/HidKeyboardDxe/HidKeyboardDxe.inf
-  INF HidPkg/HidMouseAbsolutePointerDxe/HidMouseAbsolutePointerDxe.inf
 
   # ACPI and SMBIOS
   INF MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
@@ -342,12 +336,6 @@ READ_LOCK_STATUS   = TRUE
 
   # ACPI Tables
   !include Include/ACPI.inc
-
-  # DT
-  INF EmbeddedPkg/Drivers/DtPlatformDxe/DtPlatformDxe.inf
-  !include Include/FDT.inc
-
-  INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 
   !include QcomPkg/Frontpage.fdf.inc
 
@@ -473,8 +461,6 @@ INF <Path to .inf>
 Also here again you need to add some extra Stuff:
 ```
 INF ArmPkg/Drivers/ArmPsciMpServicesDxe/ArmPsciMpServicesDxe.inf
-INF MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
-INF MdeModulePkg/Universal/Acpi/FirmwarePerformanceDataTableDxe/FirmwarePerformanceDxe.inf
 INF MdeModulePkg/Universal/PCD/Dxe/Pcd.inf
 INF QcomPkg/Drivers/SimpleFbDxe/SimpleFbDxe.inf
 INF MdeModulePkg/Bus/Usb/UsbMouseAbsolutePointerDxe/UsbMouseAbsolutePointerDxe.inf
@@ -482,8 +468,6 @@ INF MdeModulePkg/Bus/Usb/UsbMouseAbsolutePointerDxe/UsbMouseAbsolutePointerDxe.i
 
 `ArmPsciMpServicesDxe` should be under `TimerDxe`. <br />
 `BootGraphicsResourceTableDxe` should be under `BdsDxe`. <br />
-`FirmwarePerformanceDxe` should be under `BootGraphicsResourceTableDxe`. <br />
-`Pcd` should be under `FirmwarePerformanceDxe`. <br />
 `SimpleFbDxe` should replace `DisplayDxe` if DisplayDxe dosen't work already. <br />
 `UsbMouseAbsolutePointerDxe` should be under `UsbKbDxe`. <br />
 
@@ -502,21 +486,45 @@ FILE FREEFORM = <GUID> {
 
 You may also want to ignore the Raw Files that are Pictures, That Saves Space in the UEFI Image.
 
-## Creating FDT.inc (Step 3.2.5)
+## Creating DeviceConfigurationMap Library (Step 3.3)
 
-After Creating RAW.inc we now add FDT.inc. <br />
-Your FDT.inc should contain this:
+Now, We move on to creating a Configuration Map for your Device. <br />
+We need uefiplat.cfg from XBL to create This Map. <br />
+Here is an Template for the .c File:
 ```
-# Mainline DTB
-#FILE FREEFORM = 25462CDA-221F-47DF-AC1D-259CFAA4E326 {
-#  SECTION RAW = <Device Codename>Pkg/FdtBlob/<SoC Codename>-<Device Model>.dtb
-#  SECTION UI = "DeviceTreeBlob"
-#}
-```
-If you have an mainline DTB for your Device add it to `./Platforms/<Device Vendor>/<Device Codename>Pkg/FdtBlob/`. <br />
-then uncomment the Mainline DTB part. <br />
+#include <Library/BaseLib.h>
+#include <Library/DeviceConfigurationMapLib.h>
 
-## Creating PlatformMemoryMap Library (Step 3.3)
+STATIC
+CONFIGURATION_DESCRIPTOR_EX
+gDeviceConfigurationDescriptorEx[] = {
+  /* Terminator */
+  {"Terminator", 0xFFFFFFFF}
+};
+
+CONFIGURATION_DESCRIPTOR_EX
+*GetDeviceConfigurationMap()
+{
+  return gDeviceConfigurationDescriptorEx;
+}
+```
+Place all Configs from `[ConfigParameters]` (uefiplat.cfg) In the .c File. <br />
+Here is an Example:
+```
+EnableShell = 0x1
+```
+Becomes this:
+```
+{"EnableShell", 0x1},
+```
+Configs that have Strings instead of Decimal won't be added:
+```
+# This for Example
+OsTypeString = "LA"
+```
+And don't add `ConfigParameterCount` to the .c File either.
+
+## Creating PlatformMemoryMap Library (Step 3.4)
 
 Lets move on making Memory Map. <br />
 We will use uefiplat.cfg to create the Memory Map. <br />
@@ -574,7 +582,7 @@ Now you just need to add that as a Memory Region:
 ```
 After that it should look something like [this](https://github.com/Robotix22/Mu-Qcom/blob/main/Platforms/Xiaomi/sweet_k6aPkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.c).
 
-## Creating Android Boot Image Script (Step 3.4)
+## Creating Android Boot Image Script (Step 3.5)
 
 You also need to create a Script that creates the Boot Image. <br />
 You can Copy a Device with similear/Same Boot Image Creation Script and just replace the Code Name with yours. <br />
