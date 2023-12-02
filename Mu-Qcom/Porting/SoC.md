@@ -29,10 +29,8 @@ Struckture of Files for SoCs:
 │       ├── SmBiosTableDxe.c
 │       └── SmBiosTableDxe.inf
 ├── Include
-│   ├── Configuration
-│   │   └── DeviceConfigurationMap.h
-│   ├── Library
-│   │   └── PlatformHobs.h
+│   └── Library
+│       └── PlatformHobs.h
 ├── Library
 │   └── <Librarys>
 ├── <SOC Codename>.dec
