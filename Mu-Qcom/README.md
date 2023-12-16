@@ -72,7 +72,7 @@ If you are Uncomfortable modding your Device, Please don't follow any Modding Gu
 
 ### Xiaomi Mi Max 3
 
-   - No Guides yet
+   - [Enabling Mass Storage](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/Xiaomi-Mi-Max-3/Mass-Storage.md)
 
 ### Huawei Y6 2018
 
