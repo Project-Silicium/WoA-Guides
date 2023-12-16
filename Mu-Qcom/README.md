@@ -12,17 +12,21 @@ If you are Uncomfortable modding your Device, Please don't follow any Modding Gu
 ## Porting Guides:
 
    - [Adding SoCs](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/SoC.md)
+       - [Creating Minimal ACPI Tables](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/ACPI.md) **NOTE: Not Finisched!**
    - [Adding Devices](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md)
        - [Patching Binaries](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Binaries.md) **NOTE: Not Finisched!**
-       - [Creating ACPI Tables](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/ACPI.md) **NOTE: Not Finisched!**
 
 ## Device Guides:
 
-### Galaxy Tab S8 5G
+### Samsung Galaxy Tab S8 5G
 
    - [Enabling Mass Storage](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/Galaxy-Tab-S8-5G/Mass-Storage.md)
 
-### Galaxy Z Fold 3 5G
+### Samsung Galaxy Z Fold 3 5G
+
+   - No Guides yet
+
+### Xiaomi Mi 11
 
    - No Guides yet
 
@@ -30,23 +34,63 @@ If you are Uncomfortable modding your Device, Please don't follow any Modding Gu
 
    - No Guides yet
 
-### Redmi Note 12 Pro
+### Xiaomi Poco F3
 
    - No Guides yet
 
-### Mi A3
+### Lenovo Legion Tab Y700
 
    - No Guides yet
 
-### Redmi Note 8/8T
+### Xiaomi Pad 6
 
    - No Guides yet
 
-### Redmi 9T
+### OnePlus 8T
+
+   - No Guides yet
+
+### Xiaomi Redmi Note 12 Pro
+
+   - No Guides yet
+
+### Xiaomi Redmi 10C
+
+   - No Guides yet
+
+### Xiaomi Mi A3
+
+   - No Guides yet
+
+### Xiaomi Redmi Note 8/8T
+
+   - No Guides yet
+
+### Xiaomi Redmi 9T
+
+   - No Guides yet
+
+### Xiaomi Mi Max 3
+
+   - No Guides yet
+
+### Huawei Y6 2018
 
    - No Guides yet
 
 ## Vendor Guides:
+
+### Huawei
+
+   - No Guides yet
+
+### Lenovo
+
+   - No Guides yet
+
+### OnePlus
+
+   - No Guides yet
 
 ### Samsung
 
