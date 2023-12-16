@@ -64,7 +64,7 @@ If you are Uncomfortable modding your Device, Please don't follow any Modding Gu
 
 ### Xiaomi Redmi Note 8/8T
 
-   - No Guides yet
+   - [Enabling Mass Storage](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/Xiaomi-Redmi-Note-8/Mass-Storage.md)
 
 ### Xiaomi Redmi 9T
 
