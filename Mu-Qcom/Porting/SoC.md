@@ -24,6 +24,8 @@ This Guide will show you how to make an UEFI Port for an Snapdragon SoC
 Struckture of Files for SoCs:
 ```
 ./Silicon/Qualcomm/<SoC Codename>Pkg/
+├── AcpiTables
+│   └── <ACPI Tables>
 ├── Drivers
 │   └── SmBiosTableDxe
 │       ├── SmBiosTableDxe.c
@@ -121,7 +123,6 @@ gQcomPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) <SoC Name> @ <So
 gQcomPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"<SoC Codename>"
 ```
 
-You also need to change the UART Value, You can get it from your dts serial0 node. <br />
 Now the last thing you need to do is Update the `USE_PHYSICAL_TIMER` Define at the Top. <br />
 Change it to 0 If your SoC Uses a Virtual Timer, Otherwise Set it to 1.
 
@@ -137,18 +138,62 @@ Lets begin with `SMBIOS_TABLE_TYPE4`:
 It defines some CPU Values like Speed and Clusters. <br />
 Here is a template Section:
 ```
-SMBIOS_TABLE_TYPE4 mProcessorInfoType4_<Cluster Name> = {
+SMBIOS_TABLE_TYPE4 mProcessorInfoType4 = {
     {EFI_SMBIOS_TYPE_PROCESSOR_INFORMATION, sizeof(SMBIOS_TABLE_TYPE4), 0},
     1,                // Socket String
-    CentralProcessor, // ProcessorType;          ///< The enumeration value from
-                      // PROCESSOR_TYPE_DATA.
+    CentralProcessor, // ProcessorType;				      ///< The
+                      // enumeration value from PROCESSOR_TYPE_DATA.
     ProcessorFamilyIndicatorFamily2, // ProcessorFamily;        ///< The
                                      // enumeration value from
                                      // PROCESSOR_FAMILY2_DATA.
     2,                               // ProcessorManufacture String;
     {                                // ProcessorId;
-     {0x00, 0x00, 0x00, 0x00},
-     {0x00, 0x00, 0x00, 0x00}},
+     {
+         // PROCESSOR_SIGNATURE
+         0, //  ProcessorSteppingId:4;
+         0, //  ProcessorModel:     4;
+         0, //  ProcessorFamily:    4;
+         0, //  ProcessorType:      2;
+         0, //  ProcessorReserved1: 2;
+         0, //  ProcessorXModel:    4;
+         0, //  ProcessorXFamily:   8;
+         0, //  ProcessorReserved2: 4;
+     },
+
+     {
+         // PROCESSOR_FEATURE_FLAGS
+         0, //  ProcessorFpu       :1;
+         0, //  ProcessorVme       :1;
+         0, //  ProcessorDe        :1;
+         0, //  ProcessorPse       :1;
+         0, //  ProcessorTsc       :1;
+         0, //  ProcessorMsr       :1;
+         0, //  ProcessorPae       :1;
+         0, //  ProcessorMce       :1;
+         0, //  ProcessorCx8       :1;
+         0, //  ProcessorApic      :1;
+         0, //  ProcessorReserved1 :1;
+         0, //  ProcessorSep       :1;
+         0, //  ProcessorMtrr      :1;
+         0, //  ProcessorPge       :1;
+         0, //  ProcessorMca       :1;
+         0, //  ProcessorCmov      :1;
+         0, //  ProcessorPat       :1;
+         0, //  ProcessorPse36     :1;
+         0, //  ProcessorPsn       :1;
+         0, //  ProcessorClfsh     :1;
+         0, //  ProcessorReserved2 :1;
+         0, //  ProcessorDs        :1;
+         0, //  ProcessorAcpi      :1;
+         0, //  ProcessorMmx       :1;
+         0, //  ProcessorFxsr      :1;
+         0, //  ProcessorSse       :1;
+         0, //  ProcessorSse2      :1;
+         0, //  ProcessorSs        :1;
+         0, //  ProcessorReserved3 :1;
+         0, //  ProcessorTm        :1;
+         0, //  ProcessorReserved4 :2;
+     }},
     3, // ProcessorVersion String;
     {
         // Voltage;
@@ -158,66 +203,46 @@ SMBIOS_TABLE_TYPE4 mProcessorInfoType4_<Cluster Name> = {
         0, // ProcessorVoltageCapabilityReserved  :1; ///< Bit 3, must be zero.
         0, // ProcessorVoltageReserved            :3; ///< Bits 4-6, must be
            // zero.
-        1  // ProcessorVoltageIndicateLegacy      :1;
+        0  // ProcessorVoltageIndicateLegacy      :1;
     },
     0,                     // ExternalClock;
-    <Max Speed of your SoC>,                  // MaxSpeed;
-    <Max Speed of your SoC>,,                  // CurrentSpeed;
+    <Max Freq of SoC>,     // MaxSpeed;
+    <Max Freq of SoC>,     // CurrentSpeed;
     0x41,                  // Status;
-    ProcessorUpgradeOther, // ProcessorUpgrade;         ///< The enumeration
-                           // value from PROCESSOR_UPGRADE.
+    ProcessorUpgradeOther, // ProcessorUpgrade;      ///< The enumeration value
+                           // from PROCESSOR_UPGRADE.
     0,                     // L1CacheHandle;
     0,                     // L2CacheHandle;
-    0xFFFF,                // L3CacheHandle;
+    0,                     // L3CacheHandle;
     0,                     // SerialNumber;
     0,                     // AssetTag;
-    7,                     // PartNumber;
-    <Amount of Cores for this Cluster>,                     // CoreCount;
-    <Amount of Cores for this Cluster>,,                     // EnabledCoreCount;
-    0,                     // ThreadCount;
-    0xEC, // ProcessorCharacteristics; ///< The enumeration value from
-          // PROCESSOR_CHARACTERISTIC_FLAGS ProcessorReserved1              :1;
-          // ProcessorUnknown                :1;
-          // Processor64BitCapble            :1;
-          // ProcessorMultiCore              :1;
-          // ProcessorHardwareThread         :1;
-          // ProcessorExecuteProtection      :1;
-          // ProcessorEnhancedVirtualization :1;
-          // ProcessorPowerPerformanceCtrl    :1;
-          // Processor128bitCapble            :1;
-          // ProcessorReserved2               :7;
-    ProcessorFamilyARM, // ARM Processor Family;
-    0,                  // CoreCount2;
-    0,                  // EnabledCoreCount2;
-    0,                  // ThreadCount2;
+    4,                     // PartNumber;
+    <Count of Cores of your SoC>,                     // CoreCount;
+    <Count of Cores of your SoC>,                     // EnabledCoreCount;
+    <Count of Cores of your SoC>,                     // ThreadCount;
+    0xAC,                        // ProcessorCharacteristics;
+    ProcessorFamilyARM,          // ARM Processor Family;
 };
 ```
 Depending, How much Clusters you have, You need to add these to SMBios. <br />
 For Example, Your SoC has 2 Clusters, Then you two of these. <br />
-Change `CoreCount` and `EnabledCoreCount` to the amount of Cores the Cluster has. <br />
+Change `CoreCount`, `EnabledCoreCount` and `ThreadCount` to the amount of Cores the Cluster has. <br />
 Then You Change `MaxSpeed` and `CurrentSpeed` to the Max Speed your SoC can. <br />
-These two Values need to be in Hz Size. <br />
+These two Values need to be in MHz Size. <br />
 
 After you modified these, we move on to `SMBIOS_TABLE_TYPE7`. <br />
 Here is a template of Type 7:
 ```
-SMBIOS_TABLE_TYPE7 mCacheInfoType7_L1I = {
+SMBIOS_TABLE_TYPE7 mCacheInfoType7_L1IC = {
     {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
-    1,     // SocketDesignation String
-    0x280, // Cache Configuration
-           // Cache Level        :3  (L1)
-           // Cache Socketed     :1  (Not Socketed)
-           // Reserved           :1
-           // Location           :2  (Internal)
-           // Enabled/Disabled   :1  (Enabled)
-           // Operational Mode   :2  (Unknown)
-           // Reserved           :6
-    <Size of L1I>, // Maximum Size
-    <Size of L1I>, // Install Size
+    1,      // SocketDesignation String
+    0x0280, // Cache Configuration
+    <Size of L1>, // Maximum Size
+    <Size of L1>, // Install Size
     {
         // Supported SRAM Type
         0, // Other             :1
-        1, // Unknown           :1
+        0, // Unknown           :1
         0, // NonBurst          :1
         0, // Burst             :1
         0, // PiplelineBurst    :1
@@ -228,7 +253,7 @@ SMBIOS_TABLE_TYPE7 mCacheInfoType7_L1I = {
     {
         // Current SRAM Type
         0, // Other             :1
-        1, // Unknown           :1
+        0, // Unknown           :1
         0, // NonBurst          :1
         0, // Burst             :1
         0, // PiplelineBurst    :1
@@ -237,28 +262,22 @@ SMBIOS_TABLE_TYPE7 mCacheInfoType7_L1I = {
         0  // Reserved          :9
     },
     0,                      // Cache Speed unknown
-    CacheErrorParity,       // Error Correction
+    CacheErrorParity,       // Error Correction Multi
     CacheTypeInstruction,   // System Cache Type
-    CacheAssociativityOther // Associativity
+    CacheAssociativity16Way // Associativity
 };
+CHAR8 *mCacheInfoType7_L1ICStrings[] = {"L1 Instruction Cache", NULL};
 
-SMBIOS_TABLE_TYPE7 mCacheInfoType7_L1D = {
+SMBIOS_TABLE_TYPE7 mCacheInfoType7_L1DC = {
     {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
-    1,     // SocketDesignation String
-    0x280, // Cache Configuration
-           // Cache Level        :3  (L1)
-           // Cache Socketed     :1  (Not Socketed)
-           // Reserved           :1
-           // Location           :2  (Internal)
-           // Enabled/Disabled   :1  (Enabled)
-           // Operational Mode   :2  (Unknown)
-           // Reserved           :6
-    <Size of L1D>, // Maximum Size
-    <Size of L1D>, // Install Size
+    1,      // SocketDesignation String
+    0x0280, // Cache Configuration
+    <Size of L1>, // Maximum Size
+    <Size of L1>, // Install Size
     {
         // Supported SRAM Type
         0, // Other             :1
-        1, // Unknown           :1
+        0, // Unknown           :1
         0, // NonBurst          :1
         0, // Burst             :1
         0, // PiplelineBurst    :1
@@ -269,7 +288,7 @@ SMBIOS_TABLE_TYPE7 mCacheInfoType7_L1D = {
     {
         // Current SRAM Type
         0, // Other             :1
-        1, // Unknown           :1
+        0, // Unknown           :1
         0, // NonBurst          :1
         0, // Burst             :1
         0, // PiplelineBurst    :1
@@ -278,28 +297,22 @@ SMBIOS_TABLE_TYPE7 mCacheInfoType7_L1D = {
         0  // Reserved          :9
     },
     0,                      // Cache Speed unknown
-    CacheErrorParity,       // Error Correction
-    CacheTypeInstruction,   // System Cache Type
-    CacheAssociativityOther // Associativity
+    CacheErrorParity,       // Error Correction Multi
+    CacheTypeData,          // System Cache Type
+    CacheAssociativity16Way // Associativity
 };
+CHAR8 *mCacheInfoType7_L1DCStrings[] = {"L1 Data Cache", NULL};
 
-SMBIOS_TABLE_TYPE7 mCacheInfoType7_L2 = {
+SMBIOS_TABLE_TYPE7 mCacheInfoType7_L2C = {
     {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
-    1,     // SocketDesignation String
-    0x281, // Cache Configuration
-           // Cache Level        :3  (L1)
-           // Cache Socketed     :1  (Not Socketed)
-           // Reserved           :1
-           // Location           :2  (Internal)
-           // Enabled/Disabled   :1  (Enabled)
-           // Operational Mode   :2  (Unknown)
-           // Reserved           :6
+    1,      // SocketDesignation String
+    0x0281, // Cache Configuration
     <Size of L2>, // Maximum Size
     <Size of L2>, // Install Size
     {
         // Supported SRAM Type
         0, // Other             :1
-        1, // Unknown           :1
+        0, // Unknown           :1
         0, // NonBurst          :1
         0, // Burst             :1
         0, // PiplelineBurst    :1
@@ -310,48 +323,7 @@ SMBIOS_TABLE_TYPE7 mCacheInfoType7_L2 = {
     {
         // Current SRAM Type
         0, // Other             :1
-        1, // Unknown           :1
-        0, // NonBurst          :1
-        0, // Burst             :1
-        0, // PiplelineBurst    :1
-        0, // Synchronous       :1
-        0, // Asynchronous      :1
-        0  // Reserved          :9
-    },
-    0,                      // Cache Speed unknown
-    CacheErrorParity,       // Error Correction
-    CacheTypeInstruction,   // System Cache Type
-    CacheAssociativityOther // Associativity
-};
-
-SMBIOS_TABLE_TYPE7 mCacheInfoType7_L3 = {
-    {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
-    1,     // SocketDesignation String
-    0x282, // Cache Configuration
-           // Cache Level        :3  (L1)
-           // Cache Socketed     :1  (Not Socketed)
-           // Reserved           :1
-           // Location           :2  (Internal)
-           // Enabled/Disabled   :1  (Enabled)
-           // Operational Mode   :2  (Unknown)
-           // Reserved           :6
-    <Size of L3>, // Maximum Size
-    <Size of L3>, // Install Size
-    {
-        // Supported SRAM Type
-        0, // Other             :1
-        1, // Unknown           :1
-        0, // NonBurst          :1
-        0, // Burst             :1
-        0, // PiplelineBurst    :1
-        0, // Synchronous       :1
-        0, // Asynchronous      :1
-        0  // Reserved          :9
-    },
-    {
-        // Current SRAM Type
-        0, // Other             :1
-        1, // Unknown           :1
+        0, // Unknown           :1
         0, // NonBurst          :1
         0, // Burst             :1
         0, // PiplelineBurst    :1
@@ -360,13 +332,48 @@ SMBIOS_TABLE_TYPE7 mCacheInfoType7_L3 = {
         0  // Reserved          :9
     },
     0,                     // Cache Speed unknown
-    CacheErrorParity,      // Error Correction
-    CacheTypeInstruction,  // System Cache Type
-    CacheAssociativity2Way // Associativity
+    CacheErrorParity,      // Error Correction Multi
+    CacheTypeUnified,      // System Cache Type
+    CacheAssociativity8Way // Associativity
 };
-CHAR8 *mCacheInfoType7Strings[] = {"L1 Instruction", "L1 Data", "L2", "L3"};
+CHAR8 *mCacheInfoType7_L2CStrings[] = {"L2 Cache", NULL};
+
+SMBIOS_TABLE_TYPE7 mCacheInfoType7_L3C = {
+    {EFI_SMBIOS_TYPE_CACHE_INFORMATION, sizeof(SMBIOS_TABLE_TYPE7), 0},
+    1,      // SocketDesignation String
+    0x0282, // Cache Configuration
+    <Size of L3>, // Maximum Size
+    <Size of L3>, // Install Size
+    {
+        // Supported SRAM Type
+        0, // Other             :1
+        0, // Unknown           :1
+        0, // NonBurst          :1
+        0, // Burst             :1
+        0, // PiplelineBurst    :1
+        0, // Synchronous       :1
+        0, // Asynchronous      :1
+        0  // Reserved          :9
+    },
+    {
+        // Current SRAM Type
+        0, // Other             :1
+        0, // Unknown           :1
+        0, // NonBurst          :1
+        0, // Burst             :1
+        0, // PiplelineBurst    :1
+        0, // Synchronous       :1
+        0, // Asynchronous      :1
+        0  // Reserved          :9
+    },
+    0,                     // Cache Speed unknown
+    CacheErrorParity,      // Error Correction Multi
+    CacheTypeUnified,      // System Cache Type
+    CacheAssociativity8Way // Associativity
+};
+CHAR8 *mCacheInfoType7_L3CStrings[] = {"L3 Cache", NULL};
 ```
-You can get all these Infos if you look up the specs of your SoC or find these in the dtb of your Device. <br />
+You can get these Cache Sizes from a App in the Play Store called `CPU Info (open-source)`. <br />
 If Your SoC dosen't have L3 for example then just remove it. <br />
 
 After that We move to `SMBIOS_TABLE_TYPE17`. <br />
