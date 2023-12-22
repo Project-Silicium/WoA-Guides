@@ -11,9 +11,9 @@ If you are Uncomfortable modding your Device, Please don't follow any Modding Gu
 
 ## Porting Guides:
 
-   - [Adding SoCs](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/SoC.md) **Outdated!**
+   - [Adding SoCs](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/SoC.md)
        - [Creating Minimal ACPI Tables](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/ACPI.md) **NOTE: Not Finisched!**
-   - [Adding Devices](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md) **Outdated!**
+   - [Adding Devices](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md)
        - [Patching Binaries](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Binaries.md) **NOTE: Not Finisched!**
 
 ## Device Guides:
