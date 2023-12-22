@@ -69,9 +69,6 @@ STATUS="LIMITED"
 
 # RAM Configs
 
-# ARCH Configs
-DEFAULT_ARCH_TYPE="AARCH64"
-
 # UEFI FD Configs
 TARGET_FD_BASE="<FD Base>"
 TARGET_FD_SIZE="<FD Size>"
@@ -90,12 +87,11 @@ Struckture of the Device Files:
 │   ├── ACPI.inc
 │   ├── APRIORI.inc
 │   ├── DXE.inc
-│   ├── FDT.inc
 │   └── RAW.inc
 ├── Library
-│   ├── PlatformMemoryMapLib
-│   │   ├── PlatformMemoryMapLib.c
-│   │   └── PlatformMemoryMapLib.inf
+│   ├── DeviceMemoryMapLib
+│   │   ├── DeviceMemoryMapLib.c
+│   │   └── DeviceMemoryMapLib.inf
 │   └── DeviceConfigurationMapLib
 │       ├── DeviceConfigurationMapLib.c
 │       └── DeviceConfigurationMapLib
@@ -118,8 +114,7 @@ Here is an template:
 #  Copyright (c) 2011-2015, ARM Limited. All rights reserved.
 #  Copyright (c) 2014, Linaro Limited. All rights reserved.
 #  Copyright (c) 2015 - 2016, Intel Corporation. All rights reserved.
-#  Copyright (c) 2018 - 2019, Bingxing Wang. All rights reserved.
-#  Copyright (c) 2022, Xilin Wu. All rights reserved.
+#  Copyright (c) 2018, Bingxing Wang. All rights reserved.
 #
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 #
@@ -135,9 +130,9 @@ Here is an template:
   PLATFORM_GUID                  = <GUID>
   PLATFORM_VERSION               = 0.1
   DSC_SPECIFICATION              = 0x00010005
-  OUTPUT_DIRECTORY               = Build/<Device Codename>Pkg-$(ARCH)
+  OUTPUT_DIRECTORY               = Build/<Device Codename>Pkg
   SUPPORTED_ARCHITECTURES        = AARCH64
-  BUILD_TARGETS                  = DEBUG|RELEASE
+  BUILD_TARGETS                  = RELEASE|DEBUG
   SKUID_IDENTIFIER               = DEFAULT
   FLASH_DEFINITION               = <Device Codename>Pkg/<Device Codename>.fdf
   # Set this to 1 if your Device has a RGB Display (Newer Devices have BGR instead of RGB)
@@ -145,7 +140,6 @@ Here is an template:
   USE_DISPLAYDXE                 = 0
   # Set this to 1 If your Device is A/B Device
   AB_SLOT_SUPPORT                = 0
-  USE_UART                       = 0
 
   # If your SoC has multimple variants define the Number here
   # If not don't add this Define
@@ -157,18 +151,19 @@ Here is an template:
   *_*_*_CC_FLAGS = -DSOC_TYPE=$(SOC_TYPE) -DDISPLAY_USES_RGBA=$(DISPLAY_USES_RGBA)
 
 [LibraryClasses.common]
-  PlatformMemoryMapLib|<Device Codename>Pkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
+  DeviceMemoryMapLib|<Device Codename>Pkg/Library/DeviceMemoryMapLib/DeviceMemoryMapLib.inf
+  DeviceConfigurationMapLib|<Device Codename>Pkg/Library/DeviceConfigurationMapLib/DeviceConfigurationMapLib.inf
 
 [PcdsFixedAtBuild.common]
-  gArmTokenSpaceGuid.PcdSystemMemoryBase|<Start Address>    # Starting address
-  gArmTokenSpaceGuid.PcdSystemMemorySize|<RAM Size>         # <RAM Size> GB Size
+  gArmTokenSpaceGuid.PcdSystemMemoryBase|<Start Address>                 # Starting address
+  gArmTokenSpaceGuid.PcdSystemMemorySize|<RAM Size>                      # <RAM Size> GB Size
 
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor|L"<Your Github Name>"
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor|L"<Your Github Name>" # Device Maintainer
 
   gArmTokenSpaceGuid.PcdCpuVectorBaseAddress|<CPU Vector Base Address>
 
   gEmbeddedTokenSpaceGuid.PcdPrePiStackBase|<UEFI Stack Base Address>
-  gEmbeddedTokenSpaceGuid.PcdPrePiStackSize|<UEFI Stack Size>
+  gEmbeddedTokenSpaceGuid.PcdPrePiStackSize|<UEFI Stack Size>            # 256K stack
 
   # SmBios
   gQcomPkgTokenSpaceGuid.PcdSmbiosSystemVendor|"<Device Vendor>"
@@ -200,7 +195,6 @@ Here is an template:
 `<RAM Size>` is the RAM size of your Device, `<RAM Size in hex> * 0x100000`. <br />
 `<CPU Vector Base Address>` is the Base Address of `CPU Vectors` in the MemoryMap (uefiplat.cfg). <br />
 `<UEFI Stack base/Size>` is the Base/Size Address of `UEFI Stack` in the MemoryMap (uefiplat.cfg). <br />
-`<UART Base Address>` is the First Hex Address of the `serial0` Node in your dts. <br />
 `<Device Bpp>` is the Value of your Display Bits Per Pixel, Depending on your Resolution, You can find out what Bpp it uses, Example: `1280x720` Resolution is 24 Bpp. <br />
 If it is higher then It may become 32 or if it less of that it might becomes 16. <br />
 `<Setup Con Column> / <Con Column>` is the Value of `<Display Width> / 8`. <br />
@@ -337,13 +331,16 @@ READ_LOCK_STATUS   = TRUE
   # ACPI Tables
   !include Include/ACPI.inc
 
-  !include QcomPkg/Frontpage.fdf.inc
+  INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 
   INF DfciPkg/IdentityAndAuthManager/IdentityAndAuthManagerDxe.inf
 
-  # TODO: Make this Image for every single Device
-  FILE FREEFORM = PCD(gMsCorePkgTokenSpaceGuid.PcdRegulatoryGraphicFileGuid) {
-    SECTION RAW = QcomPkg/Include/Resources/RegulatoryLogos.png
+  !include QcomPkg/Frontpage.fdf.inc
+
+  # Depending on your Screen Size Replace "Medium" with "Big" or "Small"
+  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
+    SECTION RAW = QcomPkg/Include/Resources/BootLogo_Medium.bmp
+    SECTION UI = "Logo"
   }
 
   INF QcomPkg/Drivers/GpioButtons/GpioButtons.inf
@@ -384,7 +381,7 @@ READ_LOCK_STATUS   = TRUE
     }
   }
 
-  !include QcomPkg/CommonFdf.fdf.inc
+  !include QcomPkg/Common.fdf.inc
 ```
 
 ## Creating .fdf.inc Files (Step 3.2)
@@ -415,9 +412,6 @@ FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606CD {
 # SECTION RAW = <SoC Codename>Pkg/AcpiTables/SPCR.aml
 # SECTION RAW = <SoC Codename>Pkg/AcpiTables/TPM2.aml
 # SECTION RAW = <SoC Codename>Pkg/AcpiTables/XSDT.aml
-  SECTION RAW = QcomPkg/AcpiTables/common/SSDT.aml
-  SECTION RAW = QcomPkg/AcpiTables/common/TPMDev.aml
-  SECTION RAW = QcomPkg/AcpiTables/common/SoftwareTpm2Table.aml
   SECTION UI = "AcpiTables" 
 }
 ```
@@ -438,16 +432,15 @@ After you ordered and added all the Files you also need to add some extra stuff 
 ```
 INF MdeModulePkg/Universal/PCD/Dxe/Pcd.inf
 INF ArmPkg/Drivers/ArmPsciMpServicesDxe/ArmPsciMpServicesDxe.inf
-INF MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
+INF QcomPkg/Drivers/ClockSpeedUpDxe/ClockSpeedUpDxe.inf
 INF QcomPkg/Drivers/SimpleFbDxe/SimpleFbDxe.inf
 ```
 
 `Pcd` should be under `DxeMain`. <br />
 `ArmPsciMpServicesDxe` should be under `TimerDxe`. <br />
-`PciBusDxe` should be over `Fat`. <br />
+`ClockSpeedUpDxe` should be under `ClockDxe`. <br />
 `SimpleFbDxe` should replace `DisplayDxe` if DisplayDxe dosen't work already.
 
-Your APRIORI.inc should **NOT** Have SecurityStub in it, If so remove it or UEFI will get Stuck on that one. <br />
 Check other Devices APRIORI.inc File to get an Idea, What to replace with the Mu Driver and what not.
 
 ## Creating DXE.inc File (Step 3.2.3)
@@ -462,15 +455,18 @@ Also here again you need to add some extra Stuff:
 ```
 INF ArmPkg/Drivers/ArmPsciMpServicesDxe/ArmPsciMpServicesDxe.inf
 INF MdeModulePkg/Universal/PCD/Dxe/Pcd.inf
+INF QcomPkg/Drivers/ClockSpeedUpDxe/ClockSpeedUpDxe.inf
 INF QcomPkg/Drivers/SimpleFbDxe/SimpleFbDxe.inf
 INF MdeModulePkg/Bus/Usb/UsbMouseAbsolutePointerDxe/UsbMouseAbsolutePointerDxe.inf
 ```
 
 `ArmPsciMpServicesDxe` should be under `TimerDxe`. <br />
-`BootGraphicsResourceTableDxe` should be under `BdsDxe`. <br />
+`Pcd` should be under `DxeMain`. <br />
+`ClockSpeedUpDxe` should be under `ClockDxe`. <br />
 `SimpleFbDxe` should replace `DisplayDxe` if DisplayDxe dosen't work already. <br />
 `UsbMouseAbsolutePointerDxe` should be under `UsbKbDxe`. <br />
 
+Its Recommended to not Add any EFI Applications from XBL to `DXE.inc`. <br />
 Check other Devices DXE.inc File to get an Idea, What to replace with the Mu Driver and what not.
 
 ## Creating RAW.inc (Step 3.2.4)
@@ -532,27 +528,27 @@ Create a Folder Named `PlatformMemoryMapLib` in `./Platforms/<Device Vendor>/<De
 After that create two Files called `PlatformMemoryMapLib.c` and `PlatformMemoryMapLib.inf`. <br />
 Here is an template for the .c File:
 ```
-#include <Library/BaseLib.h>
-#include <Library/PlatformMemoryMapLib.h>
+STATIC
+ARM_MEMORY_REGION_DESCRIPTOR_EX
+gDeviceMemoryDescriptorEx[] = {
+  // Name, Address, Length, HobOption, ResourceAttribute, ArmAttributes, ResourceType, MemoryType
 
-static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
-    /* Name               Address     Length      HobOption        ResourceAttribute    ArmAttributes
-                                                          ResourceType          MemoryType */
+  // DDR Regions
 
-    /* DDR Regions */
+  // RAM partition regions
 
-    /* RAM partition regions */
+  // Other memory regions
 
-    /* Other memory regions */
+  // Register regions
 
-    /* Register regions */
+  // Terminator for MMU
+  {"Terminator", 0, 0, 0, 0, 0, 0, 0}
+};
 
-    /* Terminator for MMU */
-    {"Terminator", 0, 0, 0, 0, 0, 0, 0}};
-
-ARM_MEMORY_REGION_DESCRIPTOR_EX *GetPlatformMemoryMap()
+ARM_MEMORY_REGION_DESCRIPTOR_EX*
+GetDeviceMemoryMap()
 {
-    return gDeviceMemoryDescriptorEx;
+  return gDeviceMemoryDescriptorEx;
 }
 ```
 
@@ -573,14 +569,15 @@ For Example this is your `System RAM` Region:
 ```
 e2800000-27fffffff : System RAM
 ```
-The First Address is the Start Address, But the Second Address is not the Size! <br />
-Its the Ending Address. To get the Size do this: `<End Address> - <Start Address>`, Thats your Size <br />
+The First Address is the Start Address, **But the Second Address is not the Size!** <br />
+Its the Ending Address. Before we can get the Size, You need to Round up the End Address. <br />
+Once that is done do this: `<End Address> - <Start Address>`, Thats your Size. <br />
 Now you just need to add that as a Memory Region:
 ```
 # Add it under "RAM partition regions".
 {"RAM Partition",     <Start Address>,<Size Address>, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
 ```
-After that it should look something like [this](https://github.com/Robotix22/Mu-Qcom/blob/main/Platforms/Xiaomi/sweet_k6aPkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.c).
+After that it should look something like [this](https://github.com/Robotix22/Mu-Qcom/blob/main/Platforms/Xiaomi/limePkg/Library/DeviceMemoryMapLib/DeviceMemoryMapLib.c).
 
 ## Creating Android Boot Image Script (Step 3.5)
 
@@ -593,7 +590,7 @@ Then you just use the Info that the Tool Gives you and Put them into the Script.
 
 Now Build your Device with:
 ```
-# If your Device has the config "MULTIPLE_RAM_SIZE" then add the -m Option ad Well.
+# If your Device has the config "MULTIPLE_RAM_SIZE" then add the -m Option as Well.
 # Example: -m 4 (For 4 GB Memory)
 ./build_uefi.sh -d <Codename> -r DEBUG
 ```
@@ -622,4 +619,4 @@ That also may happen if you Port UEFI. <br />
 
 ![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Synchronous-Exception.jpg)
 
-One of these Drivers causes the Issue, In that Example it it PILDxe, you can cut it for now.
+One of these Drivers causes the Issue, In that Example it it PILDxe, you can commend it for now.
