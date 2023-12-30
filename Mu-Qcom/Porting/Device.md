@@ -29,7 +29,7 @@ This Guide will show you how to create an minimal UEFI Port for your Device. <br
               - [Creating DXE.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-dxeinc-step-323)
               - [Creating RAW.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-rawinc-step-324)
          - [Creating Config Map](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-configurationmap-library-step-33)
-         - [Creating MemoryMap](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-platformmemorymap-library-step-34)
+         - [Creating MemoryMap](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-devicememorymap-library-step-34)
          - [Creating Boot Script](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#creating-android-boot-image-script-step-35)
     - [Building](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#building)
     - [Troubleshooting](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md#troubleshooting)
@@ -520,12 +520,12 @@ OsTypeString = "LA"
 ```
 And don't add `ConfigParameterCount` to the .c File either.
 
-## Creating PlatformMemoryMap Library (Step 3.4)
+## Creating DeviceMemoryMap Library (Step 3.4)
 
 Lets move on making Memory Map. <br />
 We will use uefiplat.cfg to create the Memory Map. <br />
-Create a Folder Named `PlatformMemoryMapLib` in `./Platforms/<Device Vendor>/<Device Codename>Pkg/Library/`. <br />
-After that create two Files called `PlatformMemoryMapLib.c` and `PlatformMemoryMapLib.inf`. <br />
+Create a Folder Named `DeviceMemoryMapLib` in `./Platforms/<Device Vendor>/<Device Codename>Pkg/Library/`. <br />
+After that create two Files called `DeviceMemoryMapLib.c` and `DeviceMemoryMapLib.inf`. <br />
 Here is an template for the .c File:
 ```
 STATIC
@@ -552,7 +552,7 @@ GetDeviceMemoryMap()
 }
 ```
 
-Place all `DDR` Memory Regions under `DDR Regions` in `PlatformMemoryMapLib.c`, Example:
+Place all `DDR` Memory Regions under `DDR Regions` in `DeviceMemoryMapLib.c`, Example:
 ```
 0xEA600000, 0x02400000, "Display Reserved",  AddMem, MEM_RES, SYS_MEM_CAP, Reserv, WRITE_THROUGH_XN
 ```
