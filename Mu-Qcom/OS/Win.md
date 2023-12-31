@@ -61,6 +61,7 @@ adb push parted gdisk /workspace/
 ```
 After you copied parted and gdisk to workspace make it executeable and run parted:
 ```
+# NOTE: If your device has memory type eMMC, instead of sda use mmcblk0!
 chmod 744 parted gdisk
 ./parted /dev/block/sda
 ```
@@ -77,6 +78,8 @@ Number  Start   End     Size    File system  Name             Flags
 ```
 Once you noted the Number, Start and End Address delete userdata and create is again but smaller: <br />
 ```
+# NOTE: Some devices use f2fs filesystem for userdata, ext4 won't suit them!
+# CAREFULLY: If you have a problem with the number of partitions (you can’t create another partition), you can try deleting the cust partition and making an esp partition in its place, but you lose Android updates!
 # Deleting userdata will wipe all your data in Android!
 (parted) rm <Number>
 (parted) mkpart userdata ext4 <Start> <End / 2>
@@ -94,9 +97,9 @@ reboot recovery
 ```
 After that format the partitions:
 ```
-mke2fs -t ext4 /dev/block/sda<Number>        # Userdata
-mkfs.fat -F32 -s1 /dev/block/sda<Number + 1> # ESP
-mkfs.ntfs -f /dev/block/sda<Number + 2>      # Windows
+mke2fs -t ext4 /dev/block/by-name/userdata        # Userdata
+mkfs.fat -F32 -s1 /dev/block/by-name/esp          # ESP
+mkfs.ntfs -f /dev/block/by-name/win               # Windows
 ```
 If formating userdata gives a error reboot to recovery and format userdata in the Custom Recovery GUI. <br />
 
@@ -111,6 +114,7 @@ After that boot the UEFI Image then it enters Windows Boot Manager select `Devel
 Then connect your Device to the PC / Laptop and find the Windows and esp partition. <br />
 Open diskpart in Command Promt and Find all needed Partitions:
 ```
+# NOTE: Most likely, your system itself will assign a letter to the win partition.
 DISKPART> lis dis
 # you can findout the Device ID by looking at the Sizes you may regonize your Device Internal Storage Size.
 DISKPART> sel dis <Device ID>
@@ -150,6 +154,23 @@ bcdedit /store BCD /set "{default}" nointegritychecks on
 bcdedit /store BCD /set "{default}" recoveryenabled no
 ```
 After that reboot to recovery and remove Mass Storage, then reboot into UEFI and enjoy your Windows Installation.
+
+## Fixing work USB (Step 6)
+
+After you boot into the system, you will be taken to OOBE or the desktop (depending on the image) and find that the USB does not work. In order to fix this you must:
+
+Boot into custom recovery and run them mass storage script according to the instructions that can be found for your device here [Mu-Qcom Guides](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/README.md)
+
+After that, in the command line of your PC, enter:
+ ```
+# R: Is what we assigned in the diskpart part, replace the letter if you used another letter.
+ reg load HKLM\OFFLINE R:\Windows\System32\Config\System 
+ regedit
+```
+In HKEY_LOCAL_MACHINE/OFFLINE/ControlSet001/Control/USB/OsDefaultRoleSwitchMode change value to 1
+After, in the command line of your PC, enter
+```reg unload HKLM\OFFLINE```
+Done!
 
 ## Reinstalling Windows
 
