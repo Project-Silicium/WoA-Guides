@@ -79,7 +79,6 @@ Number  Start   End     Size    File system  Name             Flags
 Once you noted the Number, Start and End Address delete userdata and create is again but smaller: <br />
 ```
 # NOTE: Some devices use f2fs filesystem for userdata, ext4 won't suit them!
-# CAREFULLY: If you have a problem with the number of partitions (you can’t create another partition), you can try deleting the cust partition and making an esp partition in its place, but you lose Android updates!
 # Deleting userdata will wipe all your data in Android!
 (parted) rm <Number>
 (parted) mkpart userdata ext4 <Start> <End / 2>
@@ -168,8 +167,10 @@ After that, in the command line of your PC, enter:
  regedit
 ```
 In HKEY_LOCAL_MACHINE/OFFLINE/ControlSet001/Control/USB/OsDefaultRoleSwitchMode change value to 1
+
 After, in the command line of your PC, enter
 ```reg unload HKLM\OFFLINE```
+
 Done!
 
 ## Reinstalling Windows
