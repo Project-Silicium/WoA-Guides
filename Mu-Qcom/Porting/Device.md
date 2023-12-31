@@ -337,12 +337,6 @@ READ_LOCK_STATUS   = TRUE
 
   !include QcomPkg/Frontpage.fdf.inc
 
-  # Depending on your Screen Size Replace "Medium" with "Big" or "Small"
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
-    SECTION RAW = QcomPkg/Include/Resources/BootLogo_Medium.bmp
-    SECTION UI = "Logo"
-  }
-
   INF QcomPkg/Drivers/GpioButtons/GpioButtons.inf
 
   # NOTE: Only add these two entries if your Device is an A/B Device.
