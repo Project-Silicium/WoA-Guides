@@ -79,7 +79,10 @@ Number  Start   End     Size    File system  Name             Flags
 Once you noted the Number, Start and End Address delete userdata and create is again but smaller: <br />
 ```
 # NOTE: Some devices use f2fs filesystem for userdata, ext4 won't suit them!
-# CAREFULLY: If you have a problem with the number of partitions (you can’t create another partition), you can try deleting the cust partition and making an esp partition in its place, but you lose Android updates!
+# If you have a problem with the number of partitions
+# (can’t create another partition), you can try:
+# NOTE: If your device has memory type eMMC, instead of sda use mmcblk0!
+sgdisk --resize-table 99 /dev/block/sda # 99 number of maximum allowed partitions
 # Deleting userdata will wipe all your data in Android!
 (parted) rm <Number>
 (parted) mkpart userdata ext4 <Start> <End / 2>
