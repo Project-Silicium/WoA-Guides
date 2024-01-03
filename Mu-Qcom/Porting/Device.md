@@ -63,9 +63,6 @@ It should contain at least this:
 ```
 # General Configs
 TARGET_DEVICE_VENDOR="<Device Vendor>"
-# Depending on your Device State Set this correct
-# Aviable States: STATBLE, LIMITED and UNSTABLE
-STATUS="LIMITED"
 
 # RAM Configs
 
