@@ -17,7 +17,7 @@ This Guide will show you how to enable Mass Storage in TWRP for Xiaomi Redmi Not
 
 ## Things you need:
    - PC / Laptop
-   - TWRP
+   - [OrangeFox](https://orangefox.download/device/ginkgo)
    - Unlocked Bootloader
    - Modded [msc.sh](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/Xiaomi-Redmi-Note-8/msc.sh) script
 
