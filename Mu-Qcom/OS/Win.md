@@ -124,20 +124,20 @@ DISKPART> sel dis <Device ID>
 DISKPART> lis par
 DISKPART> sel par <Number + 1>
 # Use a other Letter if "X" is not availbe.
-DISKPART> assing letter X
+DISKPART> assign letter X
 DISKPART> sel par <Number + 2>
 # Use a other Letter if "R" is not availbe.
-DISKPART> assing letter R
+DISKPART> assign letter R
 DISKPART> exit
 ```
 Now we will apply install.wim using dism:
 ```
-# R: Is what we assinged in the diskpart part, replace the letter if you used another letter.
+# R: Is what we assigned in the diskpart part, replace the letter if you used another letter.
 dism /apply-image /ImageFile:<Path to install.wim> /index:1 /ApplyDir:R:\
 ```
 After that we need to create the Boot Files other wise our UEFI won't regonise Windows:
 ```
-# R: and X: Is what we assinged in the diskpart part, replace the letter if you used another letter.
+# R: and X: Is what we assigned in the diskpart part, replace the letter if you used another letter.
 bcdboot R:\Windows /s X: /f UEFI
 ```
 
