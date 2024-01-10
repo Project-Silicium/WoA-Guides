@@ -2,7 +2,7 @@
 
 ## Description
 
-This Guide will show you how to enable Mass Storage in TWRP for Xiaomi Redmi Note 8/8T.
+This Guide will show you how to enable Mass Storage in OrangeFox for Xiaomi Redmi Note 8/8T.
 
 <table>
 <tr><th>Table of Contents</th></th>
@@ -23,19 +23,19 @@ This Guide will show you how to enable Mass Storage in TWRP for Xiaomi Redmi Not
 
 ## Preparing (Step 1)
 
-Okay, First you need to boot into the Custom Recovery (TWRP) and then enable MTP if disabled (Mount -> Enable MTP). <br />
-Then download the msc.sh script and push it to your Device, For Example to `/sdcard/`: <br />
+Okay, First you need to boot into the Custom Recovery (OrangeFox) and then enable MTP if disabled (Mount -> Enable MTP). <br />
+Then download the msc.sh script and push it to your Device, For Example to `/cache/`: <br />
 ```
-adb push <Path to msc.sh> /sdcard/
+adb push <Path to msc.sh> /cache/
 ```
 
 ## Enable (Step 2)
 
-After you pushed msc.sh to `/sdcard/` make it executeable and run it **only once**:
+After you pushed msc.sh to `/cache/` make it executeable and run it **only once**:
 ```
 adb shell
-chmod 744 /sdcard/msc.sh
-./sdcard/msc.sh
+chmod 755 /cache/msc.sh
+./cache/msc.sh
 ```
 There will be some errors in output but that dosen't break anything. <br />
 On your PC or Laptop should now show up all the partitions of your Phone from LUN 0.
