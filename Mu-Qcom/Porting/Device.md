@@ -172,7 +172,7 @@ Here is an template:
   # Simple FrameBuffer
   gQcomPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|<Display Width>
   gQcomPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|<Display Height>
-  gQcomPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|<Display Bpp>
+  gQcomPkgTokenSpaceGuid.PcdMipiFrameBufferColorDepth|<Display Color Depth>
 
 [PcdsDynamicDefault.common]
   gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|<Display Width>
@@ -192,7 +192,7 @@ Here is an template:
 `<RAM Size>` is the RAM size of your Device, `<RAM Size in hex> * 0x100000`. <br />
 `<CPU Vector Base Address>` is the Base Address of `CPU Vectors` in the MemoryMap (uefiplat.cfg). <br />
 `<UEFI Stack base/Size>` is the Base/Size Address of `UEFI Stack` in the MemoryMap (uefiplat.cfg). <br />
-`<Device Bpp>` is the Value of your Display Bits Per Pixel, Depending on your Resolution, You can find out what Bpp it uses, Example: `1280x720` Resolution is 24 Bpp. <br />
+`<Display Color Depth>` is the Value of your Display Color Depth, It can be Found in the Specs of your Phone, For Example on [www.devicespecifications.com](https://www.devicespecifications.com/). <br />
 If it is higher then It may become 32 or if it less of that it might becomes 16. <br />
 `<Setup Con Column> / <Con Column>` is the Value of `<Display Width> / 8`. <br />
 `<Setup Con Row> / <Con Row>` is the Value of `<Display Height> / 19`.
