@@ -1,11 +1,11 @@
-# Booting UEFI on your Device
+# Booting UEFI on your device
 
 ## Description
 
-This Guide will show your how to boot UEFI on your Device.
+This guide will show you how to boot UEFI on your device.
 
 <table>
-<tr><th>Table of Contents</th></th>
+<tr><th>Table of contents</th></th>
 <tr><td>
 
 - Booting UEFI
@@ -20,46 +20,46 @@ This Guide will show your how to boot UEFI on your Device.
 
 ## Requirements
    - PC / Laptop
-   - Fastboot or Odin depending on your Device
-   - Unlocked Bootloader
-   - [UEFI Image](https://github.com/Robotix22/Mu-Qcom/releases)
+   - Fastboot or Odin depending on your device
+   - Unlocked bootloader
+   - [UEFI image](https://github.com/Robotix22/Mu-Qcom/releases)
 
 ## Getting UEFI
 
-Let's begin with getting the UEFI Boot Image. <br />
-Download the UEFI Image or compile a UEFI Image, Follow [this](https://github.com/Robotix22/Mu-Qcom/blob/main/Building.md) Guide to compile a UEFI Image.
+Let's begin with getting the UEFI boot image. <br />
+Download the UEFI image or compile a UEFI image, Follow [this](https://github.com/Robotix22/Mu-Qcom/blob/main/Building.md) Guide to compile a UEFI image.
 
 ## Booting UEFI (Method 1) [Recommended]
 
-**NOTE: For Devices with fastboot only!**
+**NOTE: For devices with fastboot only!**
 
-In this Method we don't flash the Device, We only put UEFI in RAM and boot from it. <br />
-Open a Terminal and execute the `fastboot boot` command:
+In this method we don't flash anything to the device, We only put the UEFI in RAM and boot from it. <br />
+Open a terminal and execute the `fastboot boot` command:
 ```
-fastboot boot <Path to UEFI Image>
+fastboot boot <Path to UEFI image>
 ```
-After that your Device should boot UEFI. <br />
-Keep in mind that you need to do that everytime if you want to boot UEFI. <br />
+After that your device should boot the UEFI. <br />
+Keep in mind that you need to do this everytime you want to boot the UEFI. <br />
 
 ## Flashing UEFI (Method 2)
 
-If you don't wanna keep executing the command to boot UEFI, this Method will show you how to Keep UEFI even after Reboot. <br />
-First you should backup your Boot Partition if you decide to remove UEFI. <br />
-After you backed up the Boot Partition we can move on to flashing UEFI. <br />
+If you don't want to keep executing the command to boot UEFI, this method will show you how to keep the UEFI even after a reboot. <br />
+First you should backup your boot partition, which you will need if you decide to remove the UEFI later. <br />
+After you backed up the boot partition we can move on to flashing the UEFI. <br />
 
 ### Fastboot
 
-Open a Terminal and execute the `fastboot flash` command:
+Open a terminal and execute the `fastboot flash` command:
 ```
-# NOTE: On A/B Devices you need to add _a or _b at the end of boot depending on what Slot you are
-fastboot flash boot <Path to UEFI Image>
+# NOTE: On A/B Devices you need to add _a or _b at the end of boot depending on what slot you are on
+fastboot flash boot <Path to UEFI image>
 ```
 
 ### Odin
 
-If your Device is a Samsung Device you probally use Odin to flash the Device. <br />
-First rename the UEFI Image to `boot.img` or else Odin won't flash it. <br />
-Then you need to compress the UEFI Image in a `.tar` File so that Odin can read it. <br />
-After that Open Odin and select the UEFI Image on tha AP Tab. <br />
-Now press Start and it will start Flashing. <br />
+If your Device is a Samsung Device you will have to use Odin to flash anything on the device. <br />
+First rename the UEFI image to `boot.img` or else Odin won't flash it. <br />
+Then you need to compress the UEFI image in a `.tar` file so that Odin can read it. <br />
+After that open Odin and select the UEFI image on the AP tab. <br />
+Now press start and it will start flashing. <br />
 Once that is done it will reboot and boot the UEFI Image.
