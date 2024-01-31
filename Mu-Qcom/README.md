@@ -1,96 +1,96 @@
-# Mu-Qcom Guides
+# Mu-Qcom guides
 
 ## ⚠️ Warning
 
-Some Guides are not Finisched, Please try to avoid non Finisched Guides. <br />
-If you are Uncomfortable modding your Device, Please don't follow any Modding Guides here.
+Some guides are not finished, please try to avoid non finished guides. <br />
+If you are uncomfortable modding your device, please don't follow any of the guides here.
 
-## General Guides:
+## General guides:
 
    - [Booting](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/General/Boot.md)
 
-## Porting Guides:
+## Porting guides:
 
    - [Adding SoCs](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/SoC.md)
-       - [Creating Minimal ACPI Tables](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/ACPI.md) **NOTE: Not Finisched!**
-   - [Adding Devices](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md) **Outdated!**
-       - [Patching Binaries](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Binaries.md) **NOTE: Not Finisched!**
+       - [Creating minimal ACPI tables](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/ACPI.md) **NOTE: Not finished!**
+   - [Adding devices](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md) **Outdated!**
+       - [Patching binaries](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Binaries.md) **NOTE: Not finished!**
 
-## Device Guides:
+## Device guides:
 
 ### Samsung Galaxy Tab S8 5G
 
-   - [Enabling Mass Storage](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/Galaxy-Tab-S8-5G/Mass-Storage.md)
+   - [Enabling mass storage](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/Galaxy-Tab-S8-5G/Mass-Storage.md)
 
 ### Samsung Galaxy Z Fold 3 5G
 
-   - No Guides yet
+   - No guides yet
 
 ### Xiaomi Mi 11
 
-   - No Guides yet
+   - No guides yet
 
 ### Xiaomi 11T Pro
 
-   - No Guides yet
+   - No guides yet
 
 ### Xiaomi Poco F3
 
-   - No Guides yet
+   - No guides yet
 
 ### Lenovo Legion Tab Y700
 
-   - No Guides yet
+   - No guides yet
 
 ### Xiaomi Pad 6
 
-   - No Guides yet
+   - No guides yet
 
 ### OnePlus 8T
 
-   - [Enabling Mass Storage](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/OnePlus-8T/Mass-Storage.md)
+   - [Enabling mass storage](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/OnePlus-8T/Mass-Storage.md)
 
 ### Xiaomi Redmi Note 12 Pro
 
-   - No Guides yet
+   - No guides yet
 
 ### Xiaomi Redmi 10C
 
-   - [Enabling Mass Storage](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/Xiaomi-Redmi-10C/Mass-Storage.md)
+   - [Enabling mass storage](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/Xiaomi-Redmi-10C/Mass-Storage.md)
 
 ### Xiaomi Mi A3
 
-   - No Guides yet
+   - No guides yet
 
 ### Xiaomi Redmi Note 8/8T
 
-   - [Enabling Mass Storage](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/Xiaomi-Redmi-Note-8/Mass-Storage.md)
+   - [Enabling mass storage](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/Xiaomi-Redmi-Note-8/Mass-Storage.md)
 
 ### Xiaomi Redmi 9T
 
-   - No Guides yet
+   - No guides yet
 
 ### Xiaomi Mi Max 3
 
-   - [Enabling Mass Storage](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/Xiaomi-Mi-Max-3/Mass-Storage.md)
+   - [Enabling mass storage](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/Xiaomi-Mi-Max-3/Mass-Storage.md)
 
 ### Huawei Y6 2018
 
-   - No Guides yet
+   - No guides yet
 
-## Vendor Guides:
+## Vendor guides:
 
 ### Huawei
 
-   - No Guides yet
+   - No guides yet
 
 ### Lenovo
 
-   - No Guides yet
+   - No guides yet
 
 ### OnePlus
 
-   - No Guides yet
+   - No guides yet
 
 ### Samsung
 
@@ -98,9 +98,9 @@ If you are Uncomfortable modding your Device, Please don't follow any Modding Gu
 
 ### Xiaomi
 
-   - No Guides yet
+   - No guides yet
 
-## OS Guides:
+## OS guides:
 
 ### Windows
 
