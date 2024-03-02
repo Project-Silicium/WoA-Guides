@@ -11,14 +11,14 @@ This Guide will show you how to install full Windows on your Device.
 <tr><td>
   
 - Installing Windows
-    - [What's needed](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/Win.md#needed-things)
-    - [Prepare](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/Win.md#preparing-step-1)
-        - [ISO](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/Win.md#windows-image-step-11)
-        - [Drivers](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/Win.md#windows-drivers-step-12)
-    - [Partition UFS](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/Win.md#partition-ufs-step-2)
-    - [Install](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/Win.md#installing-step-3)
-    - [Apply Drivers](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/Win.md#applying-drivers-step-4)
-- [Reinstall Windows](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/Win.md#reinstalling-windows)
+    - [What's needed](#needed-things)
+    - [Prepare](#preparing-step-1)
+        - [ISO](#windows-image-step-11)
+        - [Drivers](#windows-drivers-step-12)
+    - [Partition UFS](#partition-ufs-step-2)
+    - [Install](#installing-step-3)
+    - [Apply Drivers](#applying-drivers-step-4)
+- [Reinstall Windows](#reinstalling-windows)
 
 </td></tr> </table>
 
@@ -162,7 +162,7 @@ After that reboot to recovery and remove Mass Storage, then reboot into UEFI and
 
 After you boot into the system, you will be taken to OOBE or the desktop (depending on the image) and find that the USB does not work. In order to fix this you must:
 
-Boot into custom recovery and run them mass storage script according to the instructions that can be found for your device here [Mu-Qcom Guides](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/README.md)
+Boot into custom recovery and run them mass storage script according to the instructions that can be found for your device here [Mu-Qcom Guides](/Mu-Qcom/README.md)
 
 After that, in the command line of your PC, enter:
  ```

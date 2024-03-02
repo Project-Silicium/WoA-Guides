@@ -9,13 +9,13 @@ This Guide will show you how to make an UEFI Port for an Snapdragon SoC
 <tr><td>
   
 - Adding SoCs
-    - [Copying Files & Modify](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#copying-files--modify-them-step-1)
-        - [SoC Folder](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#creating-soc-folder-step-11)
-        - [Core Files](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-dsc.inc--dec-file-step-12)
-            - [.dec File](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-dec-file-step-121)
-            - [.dsc.inc File](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-dsc.inc-file-step-122)
-        - [Modify SMBios](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-smbios-step-13)
-        - [Modify Librarys](https://github.com/Robotix22/UEFI-Guides/blob/main/MU-Qcom/Porting/SoC.md#modify-librarys-step-14)
+    - [Copying Files & Modify](#copying-files--modify-them-step-1)
+        - [SoC Folder](#creating-soc-folder-step-11)
+        - [Core Files](#modify-dsc.inc--dec-file-step-12)
+            - [.dec File](#modify-dec-file-step-121)
+            - [.dsc.inc File](#modify-dsc.inc-file-step-122)
+        - [Modify SMBios](#modify-smbios-step-13)
+        - [Modify Librarys](#modify-librarys-step-14)
 
 </td></tr> </table>
 

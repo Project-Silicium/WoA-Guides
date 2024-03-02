@@ -11,16 +11,16 @@ This Guide will show you how to Install Windows PE on your Device.
 <tr><td>
   
 - Installing Windows PE
-    - [What's needed](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/WinPE.md#things-you-need)
-    - [Installing](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/WinPE.md#installation)
-        - [Method 1](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/WinPE.md#method-1-cust)
-            - [Preparing](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/WinPE.md#preparing-step-1)
-            - [Formating](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/WinPE.md#formating-cust-partition-step-2)
-            - [Copy Files](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/WinPE.md#copying-windows-pe-files-step-3)
-        - [Method 2](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/WinPE.md#method-2-partitions)
-            - [Preparing](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/WinPE.md#preparing-step-1-1)
-            - [Partition](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/WinPE.md#partitions-step-2)
-            - [Copy Files](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/WinPE.md#copying-winpe-files-step-3)
+    - [What's needed](#things-you-need)
+    - [Installing](#installation)
+        - [Method 1](#method-1-cust)
+            - [Preparing](#preparing-step-1)
+            - [Formating](#formating-cust-partition-step-2)
+            - [Copy Files](#copying-windows-pe-files-step-3)
+        - [Method 2](#method-2-partitions)
+            - [Preparing](#preparing-step-1-1)
+            - [Partition](#partitions-step-2)
+            - [Copy Files](#copying-winpe-files-step-3)
 
 </td></tr> </table>
 
