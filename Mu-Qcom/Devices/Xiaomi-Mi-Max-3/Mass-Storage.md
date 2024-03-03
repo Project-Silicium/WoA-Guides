@@ -9,9 +9,9 @@ This Guide will show you how to enable Mass Storage in TWRP for Xiaomi Mi Max 3.
 <tr><td>
   
 - Enabling Mass Storage
-   - [What's needed](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/Xiaomi-Mi-Max-3/Mass-Storage.md#things-you-need)
-   - [Preparing](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/Xiaomi-Mi-Max-3/Mass-Storage.md#preparing-step-1)
-   - [Enable](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/Xiaomi-Mi-Max-3/Mass-Storage.md#enable-mass-storage-step-2)
+   - [What's needed](#things-you-need)
+   - [Preparing](#preparing-step-1)
+   - [Enable](#enable-mass-storage-step-2)
 
 </td></tr> </table>
 
@@ -19,7 +19,7 @@ This Guide will show you how to enable Mass Storage in TWRP for Xiaomi Mi Max 3.
    - PC / Laptop
    - TWRP
    - Unlocked Bootloader
-   - Modded [msc.sh](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/Xiaomi-Mi-Max-3/msc.sh) script
+   - Modded [msc.sh](msc.sh) script
 
 ## Preparing (Step 1)
 

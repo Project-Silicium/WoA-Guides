@@ -9,12 +9,12 @@ This Guide will show your how to boot UEFI on your Device.
 <tr><td>
 
 - Booting UEFI
-    - [Requirements](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/General/Boot.md#recuirements)
-    - [Getting UEFI](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/General/Boot.md#getting-uefi)
-    - [Method 1](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/General/Boot.md#booting-uefi-method-1-recommended)
-    - [Method 2](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/General/Boot.md#flashing-uefi-method-2)
-       - [Fastboot](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/General/Boot.md#fastboot)
-       - [Odin](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/General/Boot.md#odin)
+    - [Requirements](#recuirements)
+    - [Getting UEFI](#getting-uefi)
+    - [Method 1](#booting-uefi-method-1-recommended)
+    - [Method 2](#flashing-uefi-method-2)
+       - [Fastboot](#fastboot)
+       - [Odin](#odin)
 
 </td></tr> </table>
 

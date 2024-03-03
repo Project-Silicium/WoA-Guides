@@ -7,20 +7,20 @@ If you are uncomfortable modding your device, please don't follow any of the gui
 
 ## General guides:
 
-   - [Booting](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/General/Boot.md)
+   - [Booting](General/Boot.md)
 
 ## Porting guides:
 
-   - [Adding SoCs](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/SoC.md)
-       - [Creating minimal ACPI tables](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/ACPI.md) **NOTE: Not finished!**
-   - [Adding devices](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device.md) **Outdated!**
-       - [Patching binaries](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Binaries.md) **NOTE: Not finished!**
+   - [Adding SoCs](Porting/SoC.md)
+       - [Creating minimal ACPI tables](Porting/ACPI.md) **NOTE: Not finished!**
+   - [Adding devices](Porting/Device.md) **Outdated!**
+       - [Patching binaries](Porting/Binaries.md) **NOTE: Not finished!**
 
 ## Device guides:
 
 ### Samsung Galaxy Tab S8 5G
 
-   - [Enabling mass storage](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/Galaxy-Tab-S8-5G/Mass-Storage.md)
+   - [Enabling mass storage](Devices/Galaxy-Tab-S8-5G/Mass-Storage.md)
 
 ### Samsung Galaxy Z Fold 3 5G
 
@@ -48,7 +48,7 @@ If you are uncomfortable modding your device, please don't follow any of the gui
 
 ### OnePlus 8T
 
-   - [Enabling mass storage](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/OnePlus-8T/Mass-Storage.md)
+   - [Enabling mass storage](Devices/OnePlus-8T/Mass-Storage.md)
 
 ### Xiaomi Redmi Note 12 Pro
 
@@ -56,7 +56,7 @@ If you are uncomfortable modding your device, please don't follow any of the gui
 
 ### Xiaomi Redmi 10C
 
-   - [Enabling mass storage](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/Xiaomi-Redmi-10C/Mass-Storage.md)
+   - [Enabling mass storage](Devices/Xiaomi-Redmi-10C/Mass-Storage.md)
 
 ### Xiaomi Mi A3
 
@@ -64,7 +64,7 @@ If you are uncomfortable modding your device, please don't follow any of the gui
 
 ### Xiaomi Redmi Note 8/8T
 
-   - [Enabling mass storage](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/Xiaomi-Redmi-Note-8/Mass-Storage.md)
+   - [Enabling mass storage](Devices/Xiaomi-Redmi-Note-8/Mass-Storage.md)
 
 ### Xiaomi Redmi 9T
 
@@ -72,7 +72,7 @@ If you are uncomfortable modding your device, please don't follow any of the gui
 
 ### Xiaomi Mi Max 3
 
-   - [Enabling mass storage](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Devices/Xiaomi-Mi-Max-3/Mass-Storage.md)
+   - [Enabling mass storage](Devices/Xiaomi-Mi-Max-3/Mass-Storage.md)
 
 ### Huawei Y6 2018
 
@@ -94,7 +94,7 @@ If you are uncomfortable modding your device, please don't follow any of the gui
 
 ### Samsung
 
-   - [Fixing UFS](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Vendors/Samsung/Fix-UFS.md)
+   - [Fixing UFS](Vendors/Samsung/Fix-UFS.md)
 
 ### Xiaomi
 
@@ -104,9 +104,9 @@ If you are uncomfortable modding your device, please don't follow any of the gui
 
 ### Windows
 
-   - [Installing Windows PE](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/WinPE.md)
-   - [Installing Windows](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/Win.md)
+   - [Installing Windows PE](OS/WinPE.md)
+   - [Installing Windows](OS/Win.md)
 
 ### Linux
 
-   - ~~[Installing Linux](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/OS/Linux.md)~~ Coming soon
+   - [Installing Linux](OS/Linux.md)

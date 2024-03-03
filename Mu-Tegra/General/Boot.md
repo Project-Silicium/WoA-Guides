@@ -9,9 +9,9 @@ This Guide will show your how to boot UEFI on your Device.
 <tr><td>
 
 - Booting UEFI
-    - [Requirements](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Tegra/General/Boot.md#recuirements)
-    - [Getting UEFI](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Tegra/General/Boot.md#getting-uefi)
-    - [UEFI Chainload](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Tegra/General/Boot.md#uefi-chainload)
+    - [Requirements](#recuirements)
+    - [Getting UEFI](#getting-uefi)
+    - [UEFI Chainload](#uefi-chainload)
 
 </td></tr> </table>
 
