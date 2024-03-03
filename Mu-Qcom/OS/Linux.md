@@ -185,8 +185,16 @@ After that unmount device:
 ### Connect to the internet
 
 1. Connect usb internet source (USB tethering or USB to ethernet card)
-2. Run `dhcpd &` after logging in to get ip address
+2. Run `dhcpcd &` after logging in to get ip address
 3. Check internet access by `ping 1.1.1.1`
+
+### Initialize the pacman keyring and populate the Arch Linux ARM package signing keys
+
+```
+pacman-key --init
+pacman-key --populate archlinuxarm
+```
+After doing this you can now use pacman to install packages
 
 ### Install Desktop Enviroment
 
