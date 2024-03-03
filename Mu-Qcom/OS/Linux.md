@@ -172,6 +172,14 @@ You can get the UUID by using the blkid command:
 
 In this case UUID would be `cbcc0246-582a-4edf-933b-8a85011b7646`
 
+After that unmount device:
+
+```
+[root@wisnia tmp]# umount tmp/boot
+[root@wisnia tmp]# umount tmp/
+[root@wisnia tmp]# sync
+```
+
 ## Things to do post installation
 
 ### Connect to the internet
