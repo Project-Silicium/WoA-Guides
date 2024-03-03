@@ -124,10 +124,11 @@ Mount the usb according to the mount points above:
 
 Like this:
 ```
-~/uefi » mkdir tmp
-~/uefi » sudo mount /dev/sdx2 tmp/
-~/uefi » mkdir tmp/boot
-~/uefi » sudo mount /dev/sdx1 tmp/boot/
+~/uefi » su root
+[root@wisnia uefi]# mkdir tmp
+[root@wisnia uefi]# mount /dev/sdx2 tmp/
+[root@wisnia uefi]# mkdir tmp/boot
+[root@wisnia uefi]# mount /dev/sdx1 tmp/boot/
 ```
 
 ## Installing System (Step 3)
