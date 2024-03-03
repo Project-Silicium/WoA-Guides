@@ -13,24 +13,24 @@ This Guide will show you how to create an UEFI Port for your Device. <br />
 <tr><td>
   
 - Adding Devices
-    - [Requirements](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device/Device.md#recuirements)
-    - [Copying Files](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device/Device.md#copying-files-step-1)
-    - [Creating Config](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device/Device.md#creating-the-config-file-step-2)
-    - [Creating Files](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device/Device.md#creating-files-step-3)
-         - [Creating .dsc & .dec & .fdf File](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device/Device.md#creating-dsc--dec--fdf-file-step-31)
-              - [Creating .dsc](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device/Device.md#creating-dsc-file-step-311)
-              - [Creating .dec](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device/Device.md#creating-dec-file-step-312)
-              - [Creating .fdf](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device/Device.md#creating-fdf-file-step-313)
-         - [Creating fdf.inc Files](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device/Device.md#creating-fdfinc-files-step-32)
-              - [Creating ACPI.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device/Device.md#creating-acpiinc-step-321)
-              - [Creating APRIORI.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device/Device.md#creating-aprioriinc-step-322)
-              - [Creating DXE.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device/Device.md#creating-dxeinc-step-323)
-              - [Creating RAW.inc](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device/Device.md#creating-rawinc-step-324)
-         - [Creating Config Map](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device/Device.md#creating-configurationmap-library-step-33)
-         - [Creating MemoryMap](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device/Device.md#creating-devicememorymap-library-step-34)
-         - [Creating Boot Script](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device/Device.md#creating-android-boot-image-script-step-35)
-    - [Building](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device/Device.md#building)
-    - [Troubleshooting](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device/Device.md#troubleshooting)
+    - [Requirements](#recuirements)
+    - [Copying Files](#copying-files-step-1)
+    - [Creating Config](#creating-the-config-file-step-2)
+    - [Creating Files](#creating-files-step-3)
+         - [Creating .dsc & .dec & .fdf File](#creating-dsc--dec--fdf-file-step-31)
+              - [Creating .dsc](#creating-dsc-file-step-311)
+              - [Creating .dec](#creating-dec-file-step-312)
+              - [Creating .fdf](#creating-fdf-file-step-313)
+         - [Creating fdf.inc Files](#creating-fdfinc-files-step-32)
+              - [Creating ACPI.inc](#creating-acpiinc-step-321)
+              - [Creating APRIORI.inc](#creating-aprioriinc-step-322)
+              - [Creating DXE.inc](#creating-dxeinc-step-323)
+              - [Creating RAW.inc](#creating-rawinc-step-324)
+         - [Creating Config Map](#creating-configurationmap-library-step-33)
+         - [Creating MemoryMap](#creating-devicememorymap-library-step-34)
+         - [Creating Boot Script](#creating-android-boot-image-script-step-35)
+    - [Building](#building)
+    - [Troubleshooting](#troubleshooting)
 
 </td></tr> </table>
 
@@ -396,8 +396,8 @@ For Now, Leave it Empty, When your UEFI is working stable then you can Follow th
 We continue with `APRIORI.inc`, Create `APRIORI.inc` in `Mu-Qcom/Platforms/<Device Vendor>/<Device Codename>Pkg/Include/`. <br />
 Now we need the order of the Binaries in `APRIORI.inc`, Use UEFITool to get the Order:
 
-![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device/APRIORI-1.png)
-![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Device/APRIORI-2.png)
+![Preview](Pictures/APRIORI-1.png)
+![Preview](Pictures/APRIORI-2.png)
 
 Next we place all the Binaries in `APRIORI.inc` like this:
 ```

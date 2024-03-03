@@ -14,11 +14,11 @@ This Guide will show you how to make an UEFI Port for an Snapdragon SoC.
 <tr><td>
   
 - Adding SoCs
-    - [Copying Files & Modify](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/SoC/SoC.md#copying-files--modify-them-step-1)
-        - [SoC Folder](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/SoC/SoC.md#creating-soc-folder-step-11)
-        - [.dsc.inc File](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/SoC/SoC.md#modify-dsc.inc-file-step-12)
-        - [Modify SMBios](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/SoC/SoC.md#modify-smbios-step-13)
-        - [Modify Librarys](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/SoC/SoC.md#modify-librarys-step-14)
+    - [Copying Files & Modify](#copying-files--modify-them-step-1)
+        - [SoC Folder](#creating-soc-folder-step-11)
+        - [.dsc.inc File](#modify-dsc.inc-file-step-12)
+        - [Modify SMBios](#modify-smbios-step-13)
+        - [Modify Librarys](#modify-librarys-step-14)
 
 </td></tr> </table>
 
@@ -55,13 +55,13 @@ After that we change the Timer & GIC Values to the right Values according to you
 First, Open TimerDxe.efi from a Device's XBL with the same SoC in GHex. <br />
 After that, Search `AutoGen.c` in TimerDxe.efi:
 
-![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/SoC/Pictures/GHex-Search-1.png)
-![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/SoC/Pictures/GHex-Search-2.png)
+![Preview](Pictures/GHex-Search-1.png)
+![Preview](Pictures/GHex-Search-2.png)
 
 Once you Pressed `Find Next`, It will bring you to the Location where PCDs are Stored. <br />
 The Timer Values are PCDs, So you will find then there, Here for wich is wich:
 
-![Preview](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/SoC/Pictures/GHex-Timer-PCDs.png)
+![Preview](Pictures/GHex-Timer-PCDs.png)
 
 Convert these 4 Timer Interrupt Hex Values in Decimal Values and Put them in the .dsc.inc File. <br />
 It should look like this after that:

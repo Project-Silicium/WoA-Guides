@@ -9,12 +9,12 @@ This Guide will show you how to create a Patch for EFI Drivers from xbl
 <tr><td>
   
 - Patching Binaries
-    - [Requirements](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Binaries.md#requirements)
-    - [Method 1](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Binaries.md#requirements)
-       - [Preparing](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Binaries.md#preparing-step-1)
-       - [Analyze](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Binaries.md#analyzing-step-2)
-       - [Patch](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Binaries.md#patching-step-3)
-    - [Method 2](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/Binaries.md#method-2-creating-a-patch)
+    - [Requirements](#requirements)
+    - [Method 1](#requirements)
+       - [Preparing](#preparing-step-1)
+       - [Analyze](#analyzing-step-2)
+       - [Patch](#patching-step-3)
+    - [Method 2](#method-2-creating-a-patch)
 
 </td></tr> </table>
 

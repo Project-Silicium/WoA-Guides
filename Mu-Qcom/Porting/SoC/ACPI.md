@@ -14,15 +14,15 @@ This Guide will show you how to create minimal ACPI Tables for a SoC that Device
 <tr><td>
   
 - Minimal ACPI Tables
-    - [Requirements](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/ACPI.md#recuirements)
-    - [Explanation](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/ACPI.md#explanation-for-acpi-tables)
-    - [Creating ACPI Tables](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/ACPI.md#creating-acpi-tables-step-1)
-      - [Creating APIC](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/ACPI.md#creating-apicdsl-step-11)
-      - [Creating APIC UniCore](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/ACPI.md#creating-apicunicoredsl-step-12)
-      - [Creating DSDT](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/ACPI.md#creating-dsdtminimaldsl-step-13)
-      - [Creating FACP](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/ACPI.md#creating-facpdsl-step-14)
-      - [Creating GTDT](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/ACPI.md#creating-gtdtdsl-step-15)
-    - [Compiling](https://github.com/Robotix22/UEFI-Guides/blob/main/Mu-Qcom/Porting/ACPI.md#compiling-acpi-tables-step-2)
+    - [Requirements](#recuirements)
+    - [Explanation](#explanation-for-acpi-tables)
+    - [Creating ACPI Tables](#creating-acpi-tables-step-1)
+      - [Creating APIC](#creating-apicdsl-step-11)
+      - [Creating APIC UniCore](#creating-apicunicoredsl-step-12)
+      - [Creating DSDT](#creating-dsdtminimaldsl-step-13)
+      - [Creating FACP](#creating-facpdsl-step-14)
+      - [Creating GTDT](#creating-gtdtdsl-step-15)
+    - [Compiling](#compiling-acpi-tables-step-2)
 
 </td></tr> </table>
 
