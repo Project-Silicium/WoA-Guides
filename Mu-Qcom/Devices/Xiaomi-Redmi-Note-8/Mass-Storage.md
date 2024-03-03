@@ -19,7 +19,7 @@ This Guide will show you how to enable Mass Storage in OrangeFox for Xiaomi Redm
    - PC / Laptop
    - [OrangeFox](https://orangefox.download/device/ginkgo)
    - Unlocked Bootloader
-   - Modded [msc.sh](msc.sh) script
+   - Modded [msc.sh](Resources/msc.sh) script
 
 ## Preparing (Step 1)
 

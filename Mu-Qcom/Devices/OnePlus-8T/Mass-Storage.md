@@ -20,7 +20,7 @@ This Guide will show you how to enable Mass Storage in OrangeFox for OnePlus 8T.
    - PC / Laptop
    - [OrangeFox](https://github.com/Wishmasterflo/android_device_oneplus_kebab/releases/download/V15/OrangeFox-R11.1-Unofficial-OnePlus8T_9R-V15.img)
    - Unlocked Bootloader
-   - Modded [msc.sh](msc.sh) script
+   - Modded [msc.sh](Resources/msc.sh) script
 
 ## Preparing (Step 1)
 
@@ -41,7 +41,7 @@ chmod 755 /cache/msc.sh
 ## Driver (Step 2.1)
 
 If your phone appears in Device Manager as MTP with an exclamation point, then install the driver as shown in the screenshot:
-<img align="right" src="Install-Driver.png" width="500" alt="Preview">
+<img align="right" src="Pictures/Install-Driver.png" width="500" alt="Preview">
 
 There will be some errors in output but that dosen't break anything. <br />
 On your PC or Laptop should now show up all the partitions of your Phone from LUN 0.

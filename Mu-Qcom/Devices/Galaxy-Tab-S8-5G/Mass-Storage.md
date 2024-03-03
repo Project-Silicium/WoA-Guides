@@ -19,7 +19,7 @@ This Guide will show you how to enable Mass Storage in TWRP for the Galaxy Tab S
    - PC / Laptop
    - [TWRP](https://forum.xda-developers.com/t/recovery-unofficial-twrp-for-galaxy-tab-s8-series-snapdragon.4455491/)
    - Unlocked Bootloader
-   - Modded [msc.sh](msc.sh) script
+   - Modded [msc.sh](Resources/msc.sh) script
 
 ## Preparing (Step 1)
 

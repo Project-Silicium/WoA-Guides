@@ -19,7 +19,7 @@ This Guide will show you how to enable Mass Storage in TWRP for Xiaomi Redmi 10C
    - PC / Laptop
    - TWRP
    - Unlocked Bootloader
-   - Modded [msc.sh](msc.sh) script
+   - Modded [msc.sh](Resources/msc.sh) script
 
 ## Preparing (Step 1)
 
