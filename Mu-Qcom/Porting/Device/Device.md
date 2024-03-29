@@ -64,7 +64,8 @@ Here is how you Use it:
 # Windows
 UEFIReader.exe <UEFI Partition>.img out
 ```
-Now Move all the output Files from UEFI Reader in `Mu-Qcom/Binaries/<Device Codename>/`.
+Now Move all the output Files from UEFI Reader in `Mu-Qcom/Binaries/<Device Codename>/`. <br />
+Then Execute `CleanUp.sh` in the Binaries Folder once.
 
 ## Creating the Config File (Step 2)
 
