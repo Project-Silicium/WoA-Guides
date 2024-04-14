@@ -15,7 +15,7 @@ You can either use build-in UFS storage, SD Card or external USB device.
     - [What's needed](#needed-things)
     - [Partition Device](#partition-device-step-1)
         - [Partition UFS](#partition-ufs)
-        - [Partition USB](#partition-usb)
+        - [Partition USB](#partition-usb--sd-card-method-2)
     - [Install](#installing-system-step-2)
     - [Install Bootloader](#installing-and-configuring-refind-step-3)
     - [Things to do post install](#things-to-do-post-installation)
@@ -177,6 +177,8 @@ You can get the UUID by using the blkid command:
 ```
 
 In this case UUID would be `cbcc0246-582a-4edf-933b-8a85011b7646`
+
+> NOTE: You might want to add `acpi=force` to the command line, because at the time of writing this guide booting with mainline device tree isn't working
 
 After that unmount device:
 
