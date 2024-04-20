@@ -397,8 +397,8 @@ For Now, Leave it Empty, When your UEFI is working stable then you can Follow th
 We continue with `APRIORI.inc`, Create `APRIORI.inc` in `Mu-Qcom/Platforms/<Device Vendor>/<Device Codename>Pkg/Include/`. <br />
 Now we need the order of the Binaries in `APRIORI.inc`, Use UEFITool to get the Order:
 
-![Preview](Pictures/APRIORI-1.png)
-![Preview](Pictures/APRIORI-2.png)
+![Preview](Pictures/APRIORI1.png)
+![Preview](Pictures/APRIORI2.png)
 
 Next we place all the Binaries in `APRIORI.inc` like this:
 ```
