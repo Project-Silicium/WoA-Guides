@@ -34,6 +34,7 @@ adb push <Path to msc.sh> /sdcard/
 After you pushed msc.sh to `/sdcard/` make it executeable and run it **only once**:
 ```
 adb shell
+setenforce 0
 chmod 744 /sdcard/msc.sh
 ./sdcard/msc.sh
 ```
