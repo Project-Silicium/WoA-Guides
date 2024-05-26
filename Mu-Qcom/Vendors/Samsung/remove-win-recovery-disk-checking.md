@@ -1,18 +1,17 @@
-# Fixing UFS
-
-**WARNING: This Guide only works if your Samsung Device has an Mass Storage Guide!**
+# Removing Windows recovery and disk checking
 
 ## Description
 
-This Guide will show you how to make UFS usable under Windows and Linux.
+Windows recovery and disk checking on startup can destroy your UFS partition table on Samsung devices. <br />
+Unfortunately even if you disable these options with BCD policies, in some cases Windows will ignore your BCD setting and still boot to recovery or start disk checking. <br />
 
 <table>
 <tr><th>Table of Contents</th></th>
 <tr><td>
   
-- Enabling Mass Storage
+- Removing Windows recovery and disk checking
    - [What's needed](#things-you-need)
-   - [Preparing](#preparing-step-1)
+   - [Enable mass storage](#preparing-step-1)
    - [Fix](#fix-ufs-step-2)
      - [Set Online](#setting-ufs-online-step-21)
      - [Restore GPT](#restoring-ufs-step-22)
@@ -24,54 +23,29 @@ This Guide will show you how to make UFS usable under Windows and Linux.
    - Custom Recovery like TWRP
    - Unlocked Bootloader
    - msc.sh script for your Device
-   - [GDisk](https://renegade-project.tech/tools/gdisk.7z)
 
-## Preparing (Step 1)
+## Enable mass storage mode (Step 1)
 
-Before we Fix UFS we need to prepare some things. <br />
+To remove these Windows features, you need to put your device in [mass storage mode](https://github.com/arminask/WoA-Guides/blob/main/Mu-Qcom/README.md#device-guides). <br />
 If you haven't already follow the Mass Storage Guide of your Device as its needed here. <br />
-Make sure you have gdisk on your Device, If not push it to your Device:
-```
-# External SD recommended
-adb push <Path to gdisk> /external_sd/
-```
-After you pushed gdisk make it executeable:
-```
-chmod 744 gdisk
-```
 
-## Fix UFS (Step 2)
+## Remove Windows recovery (Step 2)
 
-***⚠️ In this Section of the Guide you can easly brick your Device! ⚠️***
+After you enabled mass storage mode and connected your device to a Windows computer, <br />
+with File Explorer remove this file (Replace W with your device Win partition letter): <br />
+Delete: W:\Windows\System32\Recovery\WinRE.wim
+<br />
+If your Windows installation has booted before (Replace W with your device partition Win partition letter): <br />
+Delete: W:\Recovery
 
-## Setting UFS Online (Step 2.1)
+## Remove autochk executable (Step 3)
 
-Samsung makes by default the UFS LUNs offline on those Devices wich makes UFS unusable under Linux and Windows. <br />
-First enter Mass Storage, then open diskmanager on your PC or Laptop. <br />
-After that search the Device Disk, You should find it easy as it has way to many partitions. <br />
-Once you found the Disk of your Device, right click it and set it Online. <br />
-Now don't panic, Windows set the Disk succesfull to Online but also corrupted the GPT, what ever you do **don't reboot**. <br />
+Now we need to remove autochk.exe executable so that Windows wouldn't be able to perform disk checking/fixing procedure on startup. <br />
 
-## Restoring GPT (Step 2.2)
-
-Now we need to fix our corrupted GPT as Windows corrupted it. <br />
-Open adb shell and execute gdisk:
-```
-adb shell
-./external_sd/gdisk /dev/block/sda
-```
-Once you executed gdisk it warn you that GPT is corrupted. <br />
-To fix that we need to run these following commands: <br />
-First enter `r` (recovery and transformation options) after that it will show this output:
-```
-Recovery/transformation command (? for help):
-```
-There you need to enter `c` (change a partition's name). <br />
-After you did that it will now warn you that some weird things will happen if you do that. <br />
-confirm with `y` (Yes), We are almost done, Now we need to write the Tables. <br />
-Once the command before finisched enter `w` (write table to disk) also there confirm with `y` (Yes). <br />
-gdisk will throw you now out, Your UFS LUN should now be Online and restored to check that Open diskmanager again. <br />
-
-***⚠️ End of the Dangerous Section! ⚠️***
-
-That's it! You successfully Fixed your UFS to make it useable under Windows and Linux.
+## Change executable permissions for deletion (Step 3.1)
+By default, Windows won't let you delete protected files, to change that, we need to add our PC username to the file permissions group. <br />
+(Replace W with your device Win partition letter): <br />
+In W:\Windows\System32 directory find autochk.exe and right click on it. <br />
+Click on Properties > Security > Advanced > Owner change > (Enter your PC username) <br />
+Click Add > Select a principal > (Enter your username) > Check "Full control" under basic permissions. <br />
+Now close all dialog boxes and delete autochk.exe file
