@@ -54,6 +54,7 @@ If you are uncomfortable modding your device, please don't follow any of the gui
 ### Samsung
 
    - [Fixing UFS](Vendors/Samsung/Fix-UFS.md)
+   - [Removing recovery/disk checking in Windows](Vendors/Samsung/remove-win-recovery-disk-checking.md)
 
 ## OS guides:
 
