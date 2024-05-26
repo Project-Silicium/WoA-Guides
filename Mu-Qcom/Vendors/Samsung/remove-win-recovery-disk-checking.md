@@ -27,25 +27,33 @@ Unfortunately even if you disable these options with BCD policies, in some cases
 ## Enable mass storage mode (Step 1)
 
 To remove these Windows features, you need to put your device in [mass storage mode](https://github.com/arminask/WoA-Guides/blob/main/Mu-Qcom/README.md#device-guides). <br />
-If you haven't already follow the Mass Storage Guide of your Device as its needed here. <br />
+If you haven't already, follow Mass Storage Guide for your Device and enable it.<br />
 
 ## Remove Windows recovery (Step 2)
 
 After you enabled mass storage mode and connected your device to a Windows computer, <br />
-with File Explorer remove this file (Replace W with your device Win partition letter): <br />
-Delete: W:\Windows\System32\Recovery\WinRE.wim
-<br />
-If your Windows installation has booted before (Replace W with your device partition Win partition letter): <br />
-Delete: W:\Recovery
+in File Explorer delete this file: <br />
+```
+(Replace W with your device Win partition letter):
+W:\Windows\System32\Recovery\WinRE.wim
+```
 
+<br />
+If your Windows installation has booted before, delete this directory: <br />
+```
+(Replace W with your device Win partition letter):
+W:\Recovery
+```
 ## Remove autochk executable (Step 3)
 
 Now we need to remove autochk.exe executable so that Windows wouldn't be able to perform disk checking/fixing procedure on startup. <br />
 
 ## Change executable permissions for deletion (Step 3.1)
-By default, Windows won't let you delete protected files, to change that, we need to add our PC username to the file permissions group. <br />
+By default, Windows won't let you delete protected files. <br />
+To change that, we need to add our PC username to the file permissions group. <br />
+<br />
 (Replace W with your device Win partition letter): <br />
-In W:\Windows\System32 directory find autochk.exe and right click on it. <br />
+In ``` W:\Windows\System32 ``` directory find autochk.exe and right click on it. <br />
 Click on Properties > Security > Advanced > Owner change > (Enter your PC username) <br />
 Click Add > Select a principal > (Enter your username) > Check "Full control" under basic permissions. <br />
 Now close all dialog boxes and delete autochk.exe file
