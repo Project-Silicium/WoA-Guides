@@ -44,7 +44,7 @@ If your Windows installation has booted before, delete this directory: <br />
 (Replace W with your device Win partition letter):
 W:\Recovery
 ```
-<br />
+
 ## Remove autochk executable (Step 3)
 
 Now we need to remove autochk.exe executable so that Windows wouldn't be able to perform disk checking/fixing procedure on startup. <br />
