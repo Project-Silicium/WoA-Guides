@@ -44,6 +44,7 @@ If your Windows installation has booted before, delete this directory: <br />
 (Replace W with your device Win partition letter):
 W:\Recovery
 ```
+<br />
 ## Remove autochk executable (Step 3)
 
 Now we need to remove autochk.exe executable so that Windows wouldn't be able to perform disk checking/fixing procedure on startup. <br />
@@ -53,7 +54,12 @@ By default, Windows won't let you delete protected files. <br />
 To change that, we need to add our PC username to the file permissions group. <br />
 <br />
 (Replace W with your device Win partition letter): <br />
-In ``` W:\Windows\System32 ``` directory find autochk.exe and right click on it. <br />
+In ```W:\Windows\System32``` directory find ```autochk.exe``` and right click on it. <br />
 Click on Properties > Security > Advanced > Owner change > (Enter your PC username) <br />
 Click Add > Select a principal > (Enter your username) > Check "Full control" under basic permissions. <br />
-Now close all dialog boxes and delete autochk.exe file
+Close all dialog boxes and delete:
+```
+(Replace W with your device Win partition letter):
+W:\Windows\System32\autochk.exe
+```
+<br />
