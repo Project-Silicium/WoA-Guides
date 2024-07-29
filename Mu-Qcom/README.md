@@ -49,6 +49,10 @@ If you are uncomfortable modding your device, please don't follow any of the gui
 
    - [Enabling mass storage](Devices/Xiaomi-Mi-Max-3/Mass-Storage.md)
 
+### Xiaomi Redmi Note 11
+
+   - Just use the Redmi note 10C Mass storage guide [here](Devices/Xiaomi-Redmi-10C/Mass-Storage.md)
+
 ## Vendor guides:
 
 ### Samsung
