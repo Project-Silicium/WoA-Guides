@@ -21,11 +21,10 @@ This Guide will show you how to create an UEFI Port for your Device. <br />
               - [Creating .dsc](#creating-dsc-file-step-311)
               - [Creating .dec](#creating-dec-file-step-312)
               - [Creating .fdf](#creating-fdf-file-step-313)
-         - [Creating fdf.inc Files](#creating-fdfinc-files-step-32)
-              - [Creating ACPI.inc](#creating-acpiinc-step-321)
-              - [Creating APRIORI.inc](#creating-aprioriinc-step-322)
-              - [Creating DXE.inc](#creating-dxeinc-step-323)
-              - [Creating RAW.inc](#creating-rawinc-step-324)
+              - [Creating ACPI.inc](#creating-acpiinc-step-32)
+              - [Creating APRIORI.inc](#creating-aprioriinc-step-321)
+              - [Creating DXE.inc](#creating-dxeinc-step-322)
+              - [Creating RAW.inc](#creating-rawinc-step-323)
          - [Creating Config Map](#creating-configurationmap-library-step-33)
          - [Creating MemoryMap](#creating-devicememorymap-library-step-34)
          - [Creating Boot Script](#creating-android-boot-image-script-step-35)
@@ -64,29 +63,36 @@ Here is how you Use it:
 # Windows
 UEFIReader.exe <UEFI Partition>.img out
 ```
-Now Move all the output Files from UEFI Reader in `Mu-Qcom/Binaries/<Device Codename>/`. <br />
+Now Move all the output Files from UEFI Reader in `Mu-Silicium/Binaries/<Device Codename>/`. <br />
 Then Execute `CleanUp.sh` in the Binaries Folder once.
 
 ## Creating the Config File (Step 2)
 
 Every Device has its own config file to define some device specific things like: SoC. <br />
-Create a File called `<Device Codename>.conf` in `Mu-Qcom/Resources/Configs/`. <br />
+Create a File called `<Device Codename>.conf` in `Mu-Silicium/Resources/Configs/`. <br />
 It should contain at least this:
 ```
 # General Configs
 TARGET_DEVICE_VENDOR="<Device Vendor>"
+TARGET_MULTIPLE_MODELS="TRUE/FALSE"
+TARGET_NUMBER_OF_MODELS="0"
 
 # UEFI FD Configs
 TARGET_FD_BASE="<FD Base>"
 TARGET_FD_SIZE="<FD Size>"
 TARGET_FD_BLOCKS="<FD Blocks>"
+
+# Arch Configs
+TARGET_ARCH="ARMHF/AARCH64"
 ```
 `<FD Base/Size Value>` is the UEFI FD Value in the MemoryMap (uefiplat.cfg). <br />
 `<FD Blocks>` is the Number of Blocks UEFI FD has, `<UEFI FD Size> / 0x1000`.
 
+
+
 ## Creating Files (Step 3)
 
-Struckture of the Device Files:
+Structure of the Device Files:
 ```
 ./Platforms/<Device Vendor>/<Device Codename>Pkg/
 ├── Include
@@ -112,7 +118,7 @@ Struckture of the Device Files:
 ## Creating .dsc File (Step 3.1.1)
 
 Lets begin with the `.dsc` File <br />
-Create a File called `<Device Codename>.dsc` in `Mu-Qcom/Platforms/<Device Vendor>/<Device Codename>Pkg/`. <br />
+Create a File called `<Device Codename>.dsc` in `Mu-Silicium/Platforms/<Device Vendor>/<Device Codename>Pkg/`. <br />
 Here is an template:
 ```
 ##
@@ -142,11 +148,9 @@ Here is an template:
   BUILD_TARGETS                  = RELEASE|DEBUG
   SKUID_IDENTIFIER               = DEFAULT
   FLASH_DEFINITION               = <Device Codename>Pkg/<Device Codename>.fdf
-  USE_DISPLAYDXE                 = 0
-  # Set this to 1 If your Device is A/B Device
-  AB_SLOT_SUPPORT                = 0
+  USE_CUSTOM_DISPLAY_DRIVER      =  0
 
-  # If your SoC has multimple variants define the Number here
+  # If your SoC has multimple variants define the Number here ( Like SDM660 do 660/636/630 )
   # If not don't add this Define
   SOC_TYPE                       = 2
 
@@ -161,7 +165,7 @@ Here is an template:
 
 [PcdsFixedAtBuild]
   # DDR Start Address
-  gArmTokenSpaceGuid.PcdSystemMemoryBase|<Start Address>
+  gArmTokenSpaceGuid.PcdSystemMemoryBase|<Start Address> # Usually 0x80000000
 
   # Device Maintainer
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor|L"<Your Github Name>"
@@ -219,27 +223,13 @@ Here is an template:
 ## Creating .dec File (Step 3.1.2)
 
 After we created the .dsc File we will now continue now with the .dec File. <br />
-Create a File called `<Device Codename>.dec` in `Mu-Qcom/Platforms/<Device Vendor>/<Device Codename>/`. <br />
-Here is an template what it should contain:
-```
-[Defines]
-  DEC_SPECIFICATION                   = 0x00010005
-  PACKAGE_NAME                        = <Device Codename>
-  PACKAGE_GUID                        = <GUID>
-  PACKAGE_VERSION                     = 0.1
-
-[Guids]
-  # NOTE: For these Values you need to use the GUID you generated earlier!
-  # These are just example Values.
-  g<Device Codename>TokenSpaceGuid    = { 0x1ead32ce, 0x3165, 0x49eb, { 0xa9, 0x2d, 0xe8, 0x8a, 0x42, 0x57, 0x20, 0x02 } }
-```
-
-`<GUID>` is the same GUID as in .dsc File.
+Create a File called `<Device Codename>.dec` in `Mu-Silicum/Platforms/<Device Vendor>/<Device Codename>/`. <br />
+You don't need to edit it. Just Create a dec file and leave it empty 
 
 ## Creating .fdf File (Step 3.1.3)
 
 Once the .dec File is complete we can move on to the .fdf File. <br />
-Create File called `<Device Codename>.fdf` in `Mu-Qcom/Platforms/<Device Vendor>/<Device Codename>/`. <br />
+Create File called `<Device Codename>.fdf` in `Mu-Silicium/Platforms/<Device Vendor>/<Device Codename>/`. <br />
 The .fdf File contains Specific Stuff about your Device, Here is an template how it should look:
 ```
 ## @file
@@ -384,15 +374,12 @@ READ_LOCK_STATUS   = TRUE
   !include QcomPkg/Common.fdf.inc
 ```
 
-## Creating .fdf.inc Files (Step 3.2)
 
-Now we create some files for the `.fdf` File
-
-## Creating ACPI.inc (Step 3.2.1)
+## Creating ACPI.inc (Step 3.2)
 
 For Now, Leave it Empty, When your UEFI is working stable then you can Follow the ACPI Guide.
 
-## Creating APRIORI.inc (Step 3.2.2)
+## Creating APRIORI.inc (Step 3.2.1)
 
 We continue with `APRIORI.inc`, Create `APRIORI.inc` in `Mu-Qcom/Platforms/<Device Vendor>/<Device Codename>Pkg/Include/`. <br />
 Now we need the order of the Binaries in `APRIORI.inc`, Use UEFITool to get the Order:
@@ -423,7 +410,7 @@ Also make sure that you don't add `FvSimpleFileSystemDxe`.
 
 Check other Devices APRIORI.inc File to get an Idea, What to replace with the Mu Driver and what not.
 
-## Creating DXE.inc File (Step 3.2.3)
+## Creating DXE.inc File (Step 3.2.2)
 
 After that we can now move on to `DXE.inc`, Create `DXE.inc` in `Mu-Qcom/Platforms/<Device Vendor>/<Device Codename>Pkg/Include/`. <br />
 Now again we need the Order, To get the order of `DXE.inc` Open `xbl` or `uefi` in UEFITool and Expand the FV(s), Then you see the Order. <br />
@@ -456,7 +443,7 @@ Also again, Make sure that you don't add `FvSimpleFileSystemDxe`.
 
 Check other Devices DXE.inc File to get an Idea, What to replace with the Mu Driver and what not.
 
-## Creating RAW.inc (Step 3.2.4)
+## Creating RAW.inc (Step 3.2.3)
 
 You can take the RAW Files Order from DXE.inc that UEFIReader generated. <br />
 Thats how they should look:
@@ -467,7 +454,7 @@ FILE FREEFORM = <GUID> {
 }
 ```
 Just UEFIReader dosen't format the Lines correct, You need to Correct that. <br />
-Also Remove any RAW Section that has an Picture.
+Also Remove any RAW Section that has an Picture. ( Usually it has .bmp as file extension )
 
 ## Creating DeviceConfigurationMap Library (Step 3.3)
 
@@ -513,7 +500,7 @@ And don't add `ConfigParameterCount` to the .c File either.
 
 Lets move on making Memory Map. <br />
 We will use uefiplat.cfg to create the Memory Map. <br />
-Create a Folder Named `DeviceMemoryMapLib` in `Mu-Qcom/Platforms/<Device Vendor>/<Device Codename>Pkg/Library/`. <br />
+Create a Folder Named `DeviceMemoryMapLib` in `Mu-Silicium/Platforms/<Device Vendor>/<Device Codename>Pkg/Library/`. <br />
 After that create two Files called `DeviceMemoryMapLib.c` and `DeviceMemoryMapLib.inf`. <br />
 Here is an template for the .c File:
 ```c
@@ -554,7 +541,7 @@ After that it should look something like [this](https://github.com/Robotix22/Mu-
 ## Creating Android Boot Image Script (Step 3.5)
 
 You also need to create a Script that creates the Boot Image. <br />
-You can Copy a Device with similear/Same Boot Image Creation Script and just replace the Code Name with yours. <br />
+You can Copy a Device with similar/Same Boot Image Creation Script and just replace the Code Name with yours. <br />
 If there is no Device with similear Boot Image Creation Script, Extract the Original Android Boot Image with AIK (Android Image Kitchen). <br />
 Then you just use the Info that the Tool Gives you and Put them into the Script.
 
