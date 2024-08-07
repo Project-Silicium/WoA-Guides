@@ -371,7 +371,7 @@ READ_LOCK_STATUS   = TRUE
     }
   }
 
-  !include QcomPkg/Common.fdf.inc
+  !include SiliciumPkg/Common.fdf.inc
 ```
 
 
