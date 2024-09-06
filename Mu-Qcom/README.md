@@ -33,6 +33,10 @@ If you are uncomfortable modding your device, please don't follow any of the gui
 
    - [Enabling mass storage](Devices/Galaxy-A52s-5G/Mass-Storage.md)
 
+### Samsung Galaxy S21 FE 5G
+
+   - [Enabling mass storage](Devices/Galaxy-S21-FE-5G/Mass-Storage.md)
+
 ### OnePlus 8T
 
    - [Enabling mass storage](Devices/OnePlus-8T/Mass-Storage.md)
