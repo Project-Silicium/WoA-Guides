@@ -2,7 +2,7 @@
 
 ## Description
 
-This Guide will show you how to create an UEFI Port for your Device. <br />
+This Guide will show you how to create a UEFI Port for your Device. <br />
 
 ## WARNING
 
@@ -13,7 +13,7 @@ This Guide will show you how to create an UEFI Port for your Device. <br />
 <tr><td>
   
 - Adding Devices
-    - [Requirements](#recuirements)
+    - [Requirements](#requirements)
     - [Copying Files](#copying-files-step-1)
     - [Creating Config](#creating-the-config-file-step-2)
     - [Creating Files](#creating-files-step-3)
@@ -42,7 +42,7 @@ To Port UEFI to your Phone, It needs the following things:
 - `xbl` or `uefi` in `/dev/block/by-name/`
 - `fdt` in `/sys/firmware/`
 
-It's also recommended to have already some Knowlege about Linux and Windows. <br />
+It's also recommended to have already some Knowledge about Linux and Windows. <br />
 ~~Also a Brain is required to do this.~~
 
 ## Copying Files (Step 1)
@@ -51,26 +51,27 @@ Lets begin with Copying Files. <br />
 Copy the `fdt` File from `/sys/firmware/` and Place it as `<Device Codename.dtb>` under `./Resources/DTBs/`. <br />
 Extract your `xbl` or `uefi` from `/dev/block/by-name/` and Place it somewhere you can reach it:
 ```bash
-# ADB Shell (Might Require Root)
-dd if=/dev/block/by-name/<UEFI Partition> of=/<UEFI Partition>.img
+adb shell
 
-# Linux
+dd if=/dev/block/by-name/<UEFI Partition> of=/<UEFI Partition>.img
+exit
+
 adb pull /<UEFI Partition>.img
 ```
 After Copying the `xbl` File or the `uefi` File, Extract all UEFI Binaries from it with [UEFIReader](https://github.com/WOA-Project/UEFIReader). <br />
-A Compiled Version is Pinned in `#gerneral` in our Discord. <br />
+A Compiled Version is Pinned in `#general` in our Discord. <br />
 Here is how you Use it:
 ```
 # Windows
 UEFIReader.exe <UEFI Partition>.img out
 ```
-Now Move all the output Files from UEFI Reader in `Mu-Qcom/Binaries/<Device Codename>/`. <br />
+Now Move all the output Files from UEFI Reader in `Mu-Silicium/Binaries/<Device Codename>/`. <br />
 Then Execute `CleanUp.sh` in the Binaries Folder once.
 
 ## Creating the Config File (Step 2)
 
 Every Device has its own config file to define some device specific things like: SoC. <br />
-Create a File called `<Device Codename>.conf` in `Mu-Qcom/Resources/Configs/`. <br />
+Create a File called `<Device Codename>.conf` in `Mu-Silicium/Resources/Configs/`. <br />
 It should contain at least this:
 ```
 # General Configs
@@ -100,7 +101,7 @@ Struckture of the Device Files:
 │   │   └── DeviceMemoryMapLib.inf
 │   └── DeviceConfigurationMapLib
 │       ├── DeviceConfigurationMapLib.c
-│       └── DeviceConfigurationMapLib
+│       └── DeviceConfigurationMapLib.inf
 ├── PlatformBuild.py
 ├── <Device Codename>.dec
 ├── <Device Codename>.dsc
@@ -112,8 +113,8 @@ Struckture of the Device Files:
 ## Creating .dsc File (Step 3.1.1)
 
 Lets begin with the `.dsc` File <br />
-Create a File called `<Device Codename>.dsc` in `Mu-Qcom/Platforms/<Device Vendor>/<Device Codename>Pkg/`. <br />
-Here is an template:
+Create a File called `<Device Codename>.dsc` in `Mu-Silicium/Platforms/<Device Vendor>/<Device Codename>Pkg/`. <br />
+Here is a template:
 ```
 ##
 #
@@ -142,18 +143,19 @@ Here is an template:
   BUILD_TARGETS                  = RELEASE|DEBUG
   SKUID_IDENTIFIER               = DEFAULT
   FLASH_DEFINITION               = <Device Codename>Pkg/<Device Codename>.fdf
-  USE_DISPLAYDXE                 = 0
+  USE_CUSTOM_DISPLAY_DRIVER      = 0
   # Set this to 1 If your Device is A/B Device
   AB_SLOT_SUPPORT                = 0
+  HAS_BUILD_IN_KEYBOARD          = 0
 
   # If your SoC has multimple variants define the Number here
   # If not don't add this Define
   SOC_TYPE                       = 2
 
-# If your SoC has multimple variants keep this Build Option
+# If your SoC has multiple variants keep these Build Options
 # If not don't add "-DSOC_TYPE=$(SOC_TYPE)" to the Build Options.
 [BuildOptions]
-  *_*_*_CC_FLAGS = -DSOC_TYPE=$(SOC_TYPE)
+  *_*_*_CC_FLAGS = -DSOC_TYPE=$(SOC_TYPE) -DAB_SLOT_SUPPORT=$(AB_SLOT_SUPPORT) -DHAS_BUILD_IN_KEYBOARD=$(HAS_BUILD_IN_KEYBOARD)
 
 [LibraryClasses]
   DeviceMemoryMapLib|<Device Codename>Pkg/Library/DeviceMemoryMapLib/DeviceMemoryMapLib.inf
@@ -174,16 +176,16 @@ Here is an template:
   gEmbeddedTokenSpaceGuid.PcdPrePiStackSize|<UEFI Stack Size>
 
   # SmBios
-  gQcomPkgTokenSpaceGuid.PcdSmbiosSystemVendor|"<Device Vendor>"
-  gQcomPkgTokenSpaceGuid.PcdSmbiosSystemModel|"<Device Model>"
-  gQcomPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"<Device Codename>"
-  gQcomPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"<Device_Model>_<Device_Codename>"
-  gQcomPkgTokenSpaceGuid.PcdSmbiosBoardModel|"<Device Model>"
+  gSiliciumPkgTokenSpaceGuid.PcdSmbiosSystemVendor|"<Device Vendor>"
+  gSiliciumPkgTokenSpaceGuid.PcdSmbiosSystemModel|"<Device Model>"
+  gSiliciumPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"<Device Codename>"
+  gSiliciumPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"<Device_Model>_<Device_Codename>"
+  gSiliciumPkgTokenSpaceGuid.PcdSmbiosBoardModel|"<Device Model>"
 
   # Simple FrameBuffer
-  gQcomPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|<Display Width>
-  gQcomPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|<Display Height>
-  gQcomPkgTokenSpaceGuid.PcdMipiFrameBufferColorDepth|<Display Color Depth>
+  gSiliciumPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|<Display Width>
+  gSiliciumPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|<Display Height>
+  gSiliciumPkgTokenSpaceGuid.PcdMipiFrameBufferColorDepth|<Display Color Depth>
 
   # Dynamic RAM Start Address
   gQcomPkgTokenSpaceGuid.PcdRamPartitionBase|<Free DDR Region Start Address>
@@ -218,29 +220,15 @@ Here is an template:
 
 ## Creating .dec File (Step 3.1.2)
 
-After we created the .dsc File we will now continue now with the .dec File. <br />
-Create a File called `<Device Codename>.dec` in `Mu-Qcom/Platforms/<Device Vendor>/<Device Codename>/`. <br />
-Here is an template what it should contain:
-```
-[Defines]
-  DEC_SPECIFICATION                   = 0x00010005
-  PACKAGE_NAME                        = <Device Codename>
-  PACKAGE_GUID                        = <GUID>
-  PACKAGE_VERSION                     = 0.1
-
-[Guids]
-  # NOTE: For these Values you need to use the GUID you generated earlier!
-  # These are just example Values.
-  g<Device Codename>TokenSpaceGuid    = { 0x1ead32ce, 0x3165, 0x49eb, { 0xa9, 0x2d, 0xe8, 0x8a, 0x42, 0x57, 0x20, 0x02 } }
-```
-
-`<GUID>` is the same GUID as in .dsc File.
+After we created the .dsc File we will now continue with the .dec File. <br />
+Create a File called `<Device Codename>.dec` in `Mu-Silicium/Platforms/<Device Vendor>/<Device Codename>/`. <br />
+This File should be left Empty.
 
 ## Creating .fdf File (Step 3.1.3)
 
 Once the .dec File is complete we can move on to the .fdf File. <br />
-Create File called `<Device Codename>.fdf` in `Mu-Qcom/Platforms/<Device Vendor>/<Device Codename>/`. <br />
-The .fdf File contains Specific Stuff about your Device, Here is an template how it should look:
+Create File called `<Device Codename>.fdf` in `Mu-Silicium/Platforms/<Device Vendor>/<Device Codename>/`. <br />
+The .fdf File contains Specific Stuff about your Device, Here is a template how it should look:
 ```
 ## @file
 #
@@ -344,8 +332,6 @@ READ_LOCK_STATUS   = TRUE
   # ACPI Tables
   !include Include/ACPI.inc
 
-  INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
-
   INF DfciPkg/IdentityAndAuthManager/IdentityAndAuthManagerDxe.inf
 
   !include QcomPkg/Extra.fdf.inc
@@ -368,7 +354,7 @@ READ_STATUS        = TRUE
 READ_LOCK_CAP      = TRUE
 READ_LOCK_STATUS   = TRUE
 
-  INF QcomPkg/PrePi/PrePi.inf
+  INF SiliciumPkg/PrePi/PrePi.inf
 
   FILE FREEFORM = dde58710-41cd-4306-dbfb-3fa90bb1d2dd {
     SECTION UI = "uefiplat.cfg"
@@ -381,7 +367,7 @@ READ_LOCK_STATUS   = TRUE
     }
   }
 
-  !include QcomPkg/Common.fdf.inc
+  !include SiliciumPkg/Common.fdf.inc
 ```
 
 ## Creating .fdf.inc Files (Step 3.2)
@@ -394,7 +380,7 @@ For Now, Leave it Empty, When your UEFI is working stable then you can Follow th
 
 ## Creating APRIORI.inc (Step 3.2.2)
 
-We continue with `APRIORI.inc`, Create `APRIORI.inc` in `Mu-Qcom/Platforms/<Device Vendor>/<Device Codename>Pkg/Include/`. <br />
+We continue with `APRIORI.inc`, Create `APRIORI.inc` in `Mu-Silicium/Platforms/<Device Vendor>/<Device Codename>Pkg/Include/`. <br />
 Now we need the order of the Binaries in `APRIORI.inc`, Use UEFITool to get the Order:
 
 ![Preview](Pictures/APRIORI1.png)
@@ -425,7 +411,7 @@ Check other Devices APRIORI.inc File to get an Idea, What to replace with the Mu
 
 ## Creating DXE.inc File (Step 3.2.3)
 
-After that we can now move on to `DXE.inc`, Create `DXE.inc` in `Mu-Qcom/Platforms/<Device Vendor>/<Device Codename>Pkg/Include/`. <br />
+After that we can now move on to `DXE.inc`, Create `DXE.inc` in `Mu-Silicium/Platforms/<Device Vendor>/<Device Codename>Pkg/Include/`. <br />
 Now again we need the Order, To get the order of `DXE.inc` Open `xbl` or `uefi` in UEFITool and Expand the FV(s), Then you see the Order. <br />
 
 <!-- TODO: Add Pictures for DXE.inc! -->
@@ -467,15 +453,14 @@ FILE FREEFORM = <GUID> {
 }
 ```
 Just UEFIReader dosen't format the Lines correct, You need to Correct that. <br />
-Also Remove any RAW Section that has an Picture.
+Also Remove any RAW Section that has a Picture.
 
 ## Creating DeviceConfigurationMap Library (Step 3.3)
 
 Now, We move on to creating a Configuration Map for your Device. <br />
 We need uefiplat.cfg from XBL to create This Map. <br />
-Here is an Template for the .c File:
+Here is a Template for the .c File:
 ```c
-#include <Library/BaseLib.h>
 #include <Library/DeviceConfigurationMapLib.h>
 
 STATIC
@@ -513,9 +498,12 @@ And don't add `ConfigParameterCount` to the .c File either.
 
 Lets move on making Memory Map. <br />
 We will use uefiplat.cfg to create the Memory Map. <br />
-Create a Folder Named `DeviceMemoryMapLib` in `Mu-Qcom/Platforms/<Device Vendor>/<Device Codename>Pkg/Library/`. <br />
+Create a Folder Named `DeviceMemoryMapLib` in `Mu-Silicium/Platforms/<Device Vendor>/<Device Codename>Pkg/Library/`. <br />
 After that create two Files called `DeviceMemoryMapLib.c` and `DeviceMemoryMapLib.inf`. <br />
-Here is an template for the .c File:
+
+You can either make the Memory Map by yourself or use an automated [Script](https://gist.github.com/N1kroks/0b3942a951a2d4504efe82ab82bc7a50) if your SoC is older than Snapdragon 8 Gen 3 (SM8650).
+
+If you want to make the Memory Map by yourself, here is a template for the .c File:
 ```c
 STATIC
 ARM_MEMORY_REGION_DESCRIPTOR_EX
@@ -547,9 +535,11 @@ would become in the Memory Map:
 ```c
 {"Display Reserved",  0xEA600000, 0x02400000, AddMem, MEM_RES, SYS_MEM_CAP, Reserv, WRITE_THROUGH_XN},
 ```
-Do that with every Memory Region but if an `#` is infront of an Memory Region do not add it. <br />
+Do that with every Memory Region but if there's an `#` is infront of an Memory Region do not add it. <br />
 
-After that it should look something like [this](https://github.com/Robotix22/Mu-Qcom/blob/main/Platforms/Xiaomi/limePkg/Library/DeviceMemoryMapLib/DeviceMemoryMapLib.c).
+After that it should look something like [this](https://github.com/Robotix22/Mu-Silicium/blob/main/Platforms/Xiaomi/limePkg/Library/DeviceMemoryMapLib/DeviceMemoryMapLib.c).
+
+The INF can be copied from any other Device.
 
 ## Creating Android Boot Image Script (Step 3.5)
 

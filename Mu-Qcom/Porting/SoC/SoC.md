@@ -26,7 +26,7 @@ This Guide will show you how to make an UEFI Port for an Snapdragon SoC.
 
 Struckture of Files for SoCs:
 ```
-Mu-Qcom/Silicon/Qualcomm/<SoC Codename>Pkg/
+Mu-Silicium/Silicon/Qualcomm/<SoC Codename>Pkg/
 ├── AcpiTables
 │   └── <ACPI Tables>
 ├── Drivers
@@ -101,13 +101,13 @@ These Values should be in the Internet SoC Specs.
 After that we need to change SmBios Values: <br />
 from this:
 ```
-gQcomPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 888 @ 2.84 GHz"
-gQcomPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8350"
+gSiliciumPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 888 @ 2.84 GHz"
+gSiliciumPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8350"
 ```
 to this:
 ```
-gQcomPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) <SoC Name> @ <SoC Speed> GHz"
-gQcomPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"<SoC Codename>"
+gSiliciumPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) <SoC Name> @ <SoC Speed> GHz"
+gSiliciumPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"<SoC Codename>"
 ```
 
 The SmBios Values should be correct now. <br />
@@ -116,8 +116,8 @@ If you are not sure then set it to `FALSE`.
 
 Now the last thing you need to do is Update the `USE_PHYSICAL_TIMER` Define at the Top. <br />
 Change it to 0 If your SoC Uses a Virtual Timer, Otherwise Set it to 1. <br />
-Like every Older SoC like SM8150 and below have an Physical Timer. <br />
-The Newer ones like SM8250 should have an Virtual Timer.
+Like every Older SoC like SM8150 and below have a Physical Timer. <br />
+The Newer ones like SM8250 should have a Virtual Timer.
 
 ## Modify SmBios (Step 1.3)
 
