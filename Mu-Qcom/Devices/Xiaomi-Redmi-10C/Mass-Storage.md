@@ -38,5 +38,5 @@ setenforce 0
 chmod 744 /sdcard/msc.sh
 ./sdcard/msc.sh
 ```
-There will be some errors in output but that dosen't break anything. <br />
+There will be some errors in output but that doesn't break anything. <br />
 On your PC or Laptop should now show up all the partitions of your Phone from LUN 0.
