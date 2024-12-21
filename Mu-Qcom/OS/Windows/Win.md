@@ -36,8 +36,10 @@ This Guide will show you how to install full Windows on your Device.
 
 ## Windows Image (Step 1.1)
 
-I recommend [UUP Dump](https://uupdump.net/) to get a Windows 10/11 ARM64 ISO Image. <br />
-Chosse an Build and select all Options you prever. <br />
+[UUP Dump](https://uupdump.net/) is recommended to get a Windows 10/11 ARM64 ISO Image. <br /> 
+<b> It's not recommended to choose Windows 24H2 Builds or Higher as they Might Brick your Device!
+Unless its Noted that the Device Requires 24H2 Builds or higher </b> <br />
+Choose a Build and select all Options you prefer. <br />
 After that download the zip File and extract it on your PC / Laptop. (The Path should not contain any spaces) <br />
 Then Open the extracted Folder and run the Build script, wait once it is finisched. (Some AntiVirus Programms stop the Build) <br />
 A ISO will apear in the Folder, open the ISO File and extract the install.wim from `sources` and place it somewhere, where you can reach it.

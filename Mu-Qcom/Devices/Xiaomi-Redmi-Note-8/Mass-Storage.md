@@ -31,11 +31,11 @@ adb push <Path to msc.sh> /cache/
 
 ## Enable (Step 2)
 
-After you pushed msc.sh to `/cache/` make it executeable and run it **only once**:
+After you pushed msc.sh to `/cache/` make it executable and run it **only once**:
 ```
 adb shell
 chmod 755 /cache/msc.sh
 ./cache/msc.sh
 ```
-There will be some errors in output but that dosen't break anything. <br />
+There will be some errors in output, but that doesn't break anything. <br />
 On your PC or Laptop should now show up all the partitions of your Phone from LUN 0.

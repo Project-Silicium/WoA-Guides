@@ -1,4 +1,4 @@
 # UEFI Guides
 
-## [Mu-Qcom](Mu-Qcom/README.md)
-## [Mu-Tegra](Mu-Tegra/README.md)
+- [Qualcomm guides](Mu-Qcom/README.md)
+- [Tegra guides](Mu-Tegra/README.md)

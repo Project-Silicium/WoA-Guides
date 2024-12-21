@@ -3,7 +3,7 @@
 ## Description
 
 Windows recovery and disk checking on startup can destroy your UFS partition table on Samsung devices. <br />
-Unfortunately even if you disable these options with BCD policies, in some cases Windows will ignore your BCD setting and still boot to recovery or start disk checking. <br />
+Unfortunately, even if you disable these options with BCD policies, in some cases Windows will ignore your BCD setting and still boot to recovery or start disk checking. <br />
 
 <table>
 <tr><th>Table of Contents</th></th>
