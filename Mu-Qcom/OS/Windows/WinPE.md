@@ -15,7 +15,7 @@ This Guide will show you how to Install Windows PE on your Device.
     - [Installing](#installation)
         - [Method 1](#method-1-cust)
             - [Preparing](#preparing-step-1)
-            - [Formating](#formating-cust-partition-step-2)
+            - [Formatting](#formating-cust-partition-step-2)
             - [Copy Files](#copying-windows-pe-files-step-3)
         - [Method 2](#method-2-partitions)
             - [Preparing](#preparing-step-1-1)
@@ -39,11 +39,11 @@ This Guide will show you how to Install Windows PE on your Device.
 ## Preparing (Step 1)
 
 First of we need to prepare some things before we install Windows PE on our Device. <br />
-Make sure you have an Custom Recovery installed on your Device and have ADB on your PC / Laptop. <br />
+Make sure you have a Custom Recovery installed on your Device and have ADB on your PC / Laptop. <br />
 Compile a UEFI Image and place it somewhere on your PC / Laptop where you can find it again. <br />
 Download Windows PE and extract the zip File somewhere, where you can reach it.
 
-## Formating Cust Partition (Step 2)
+## Formatting Cust Partition (Step 2)
 
 We will now format the cust Partition to FAT32:
 ```
@@ -72,15 +72,15 @@ You have now successfully installed Windows PE.
 
 ## Preparing (Step 1)
 
-First we need to prepare some things like Programms, etc. before we install Windows PE. <br />
-Check if your Device has an Custom Recovery installed and if your PC / Laptop has ADB installed. <br />
+First we need to prepare some things like Programs, etc. before we install Windows PE. <br />
+Check if your Device has a Custom Recovery installed and if your PC / Laptop has ADB installed. <br />
 Download [parted](https://renegade-project.tech/tools/parted.7z) and [gdisk](https://renegade-project.tech/tools/gdisk.7z), save them somewhere you can reach them again. <br />
 Find a version of Windows PE that you want to download and save it somewhere, where it can be reached <br />
 
 ## Partitions (Step 2)
 
 Boot into your Custom Recovery and plug your Device into the PC / Laptop. <br />
-Create an Workspace where you put `parted` and `gdisk`:
+Create a Workspace where you put `parted` and `gdisk`:
 ```
 adb shell mkdir /workspace
 ```
@@ -89,7 +89,7 @@ then push `parted` and `gdisk` into the workspace:
 adb push parted gdisk /workspace/
 adb shell chmod 744 /workspace/parted /workspace/gdisk
 ```
-before we use parted unmount `userdata` or else some weird stuff is gona happen! <br />
+before we use parted unmount `userdata` or else some weird stuff is going to happen! <br />
 After that enter ADB Shell and open sda with parted:
 ```
 adb shell
@@ -97,9 +97,9 @@ cd /workspace
 ./parted /dev/block/by-name/sda
 ```
 
-⚠️ ***This Section can break your Device if you are not carefull!*** ⚠️ <br />
+⚠️ ***This Section can break your Device if you are not careful!*** ⚠️ <br />
 
-After you opend sda with parted list all partitions and note all infos about userdata (Start, End and Number):
+After you open sda with parted list all partitions and note all infos about userdata (Start, End and Number):
 ```
 (parted) print
 ```

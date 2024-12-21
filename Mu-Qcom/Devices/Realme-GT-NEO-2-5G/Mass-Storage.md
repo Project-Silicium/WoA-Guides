@@ -31,7 +31,7 @@ adb push <Path to msc.sh> /sdcard/
 
 ## Enable (Step 2)
 
-After you pushed msc.sh to `/sdcard/` copy it to `/cache/` make it executeable and run it **only once** , write these commands in a adb shell:
+After you pushed msc.sh to `/sdcard/` copy it to `/cache/` make it executable and run it **only once** , write these commands in a adb shell:
 ```
 su
 cp /sdcard/msc.sh  /cache/
@@ -39,4 +39,4 @@ chmod 755 /cache/msc.sh
 ./cache/msc.sh
 ```
 
-After that the adb shell should disconnect and a `Linux File-Stor Gadget` device should be connected.
+After that, the adb shell should disconnect and a `Linux File-Stor Gadget` device should be connected.

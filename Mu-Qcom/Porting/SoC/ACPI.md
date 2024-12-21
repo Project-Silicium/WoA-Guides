@@ -589,7 +589,7 @@ The Value of `GIC_SPI` is `0x20`, So The Calc is: `1st/2nd Interrupt + 0x20`.
 
 ## Compiling ACPI Tables (Step 2)
 
-Now as you Finisched all ACPI Tables, Its now Time to Compile them. <br />
+Now as you finished all ACPI Tables, Its now Time to Compile them. <br />
 Open a Linux Terminal in the `AcpiTables` Folder of your SoC Folder and run this command:
 ```bash
 iasl *

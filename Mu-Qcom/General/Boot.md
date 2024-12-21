@@ -27,7 +27,7 @@ This Guide will show your how to boot UEFI on your Device.
 ## Getting UEFI
 
 Let's begin with getting the UEFI Boot Image. <br />
-Download the UEFI Image or compile a UEFI Image, Follow [this](https://github.com/Robotix22/Mu-Qcom/blob/main/Building.md) Guide to compile a UEFI Image.
+Download the UEFI Image or compile a UEFI Image using [this](https://github.com/Robotix22/Mu-Qcom/blob/main/Building.md) Guide.
 
 ## Booting UEFI (Method 1) [Recommended]
 

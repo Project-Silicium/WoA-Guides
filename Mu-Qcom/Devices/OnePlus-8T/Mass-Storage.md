@@ -32,7 +32,7 @@ adb push <Path to msc.sh> /cache/
 
 ## Enable (Step 2)
 
-After you pushed msc.sh to `/cache/` make it executeable and run it **only once** , write these commands in a custom recovery terminal:
+After you pushed msc.sh to `/cache/` make it executable and run it **only once** , write these commands in a custom recovery terminal:
 ```
 chmod 755 /cache/msc.sh
 ./cache/msc.sh
@@ -43,5 +43,5 @@ chmod 755 /cache/msc.sh
 If your phone appears in Device Manager as MTP with an exclamation point, then install the driver as shown in the screenshot:
 <img align="right" src="Pictures/Install-Driver.png" width="500" alt="Preview">
 
-There will be some errors in output but that dosen't break anything. <br />
+There will be some errors in output, but that doesn't break anything. <br />
 On your PC or Laptop should now show up all the partitions of your Phone from LUN 0.

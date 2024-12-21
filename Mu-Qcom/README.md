@@ -25,37 +25,16 @@ If you are uncomfortable modding your device, please don't follow any of the gui
 
 ## Device guides:
 
-### Samsung Galaxy Tab S8 5G
-
-   - [Enabling mass storage](Devices/Galaxy-Tab-S8-5G/Mass-Storage.md)
-
-### Samsung Galaxy A52s 5G
-
-   - [Enabling mass storage](Devices/Galaxy-A52s-5G/Mass-Storage.md)
-
-### Samsung Galaxy S21 FE 5G
-
-   - [Enabling mass storage](Devices/Galaxy-S21-FE-5G/Mass-Storage.md)
-
-### OnePlus 8T
-
-   - [Enabling mass storage](Devices/OnePlus-8T/Mass-Storage.md)
-
-### Xiaomi Redmi 10C
-
-   - [Enabling mass storage](Devices/Xiaomi-Redmi-10C/Mass-Storage.md)
-
-### Xiaomi Redmi Note 8/8T
-
-   - [Enabling mass storage](Devices/Xiaomi-Redmi-Note-8/Mass-Storage.md)
-
-### Xiaomi Mi Max 3
-
-   - [Enabling mass storage](Devices/Xiaomi-Mi-Max-3/Mass-Storage.md)
-
-### Xiaomi Redmi Note 11
-
-   - Just use the Redmi note 10C Mass storage guide [here](Devices/Xiaomi-Redmi-10C/Mass-Storage.md)
+| Device                   | Guide                                                                |
+|--------------------------|----------------------------------------------------------------------|
+| Samsung Galaxy Tab S8 5G | [Enabling mass storage](Devices/Galaxy-Tab-S8-5G/Mass-Storage.md)    |
+| Samsung Galaxy A52s 5G   | [Enabling mass storage](Devices/Galaxy-A52s-5G/Mass-Storage.md)      |
+| Samsung Galaxy S21 FE 5G | [Enabling mass storage](Devices/Galaxy-S21-FE-5G/Mass-Storage.md)    |
+| OnePlus 8T               | [Enabling mass storage](Devices/OnePlus-8T/Mass-Storage.md)          |
+| Xiaomi Redmi 10C         | [Enabling mass storage](Devices/Xiaomi-Redmi-10C/Mass-Storage.md)    |
+| Xiaomi Redmi Note 8/8T   | [Enabling mass storage](Devices/Xiaomi-Redmi-Note-8/Mass-Storage.md) |
+| Xiaomi Mi Max 3          | [Enabling mass storage](Devices/Xiaomi-Mi-Max-3/Mass-Storage.md)     |
+| Xiaomi Redmi Note 11     | [Enabling mass storage](Devices/Xiaomi-Redmi-10C/Mass-Storage.md)    |
 
 ## Vendor guides:
 

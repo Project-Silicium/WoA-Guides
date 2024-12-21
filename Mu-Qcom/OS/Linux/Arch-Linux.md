@@ -5,7 +5,7 @@ Make sure to check the Status of your Device [here](https://github.com/Robotix22
 ## Description
 
 This Guide will show you how to Arch Linux Arm on your Device.
-You can either use build-in UFS storage, SD Card or external USB device.
+You can either use built-in UFS storage, SD Card or external USB device.
 
 <table>
 <tr><th>Table of Contents</th></th>
@@ -33,7 +33,7 @@ You can either use build-in UFS storage, SD Card or external USB device.
 
 ## Partition UFS (Method 1)
 
-***⚠️ In this Section of the Guide you can easly brick your Device! ⚠️***
+***⚠️ In this Section of the Guide you can easily brick your Device! ⚠️***
 
 Boot into your Custom Recovery and unmount `userdata`, then open Command Promt on your PC / Laptop and enter ADB Shell. <br />
 Once in ADB Shell create a directory called `worksapce` in `/`:
@@ -44,7 +44,7 @@ Then extract the .7z Files and push the content with `adb push` into the workspa
 ```
 adb push parted gdisk /workspace/
 ```
-After you copied parted and gdisk to workspace make it executeable and run parted:
+After you copied parted and gdisk to workspace make it executable and run parted:
 ```
 # NOTE: If your device has memory type eMMC, instead of sda use mmcblk0!
 chmod 744 parted gdisk
@@ -89,14 +89,14 @@ mke2fs -t ext4 /dev/block/by-name/userdata        # Userdata
 mkfs.fat -F32 -s1 /dev/block/by-name/esp          # ESP
 mke2fs -t ext4 /dev/block/by-name/arch            # Arch
 ```
-If formating userdata gives a error reboot to recovery and format userdata in the Custom Recovery GUI. <br />
+If formatting userdata gives an error reboot to recovery and format userdata in the Custom Recovery GUI. <br />
 
 ***⚠️ End of the Dangerous Section! ⚠️***
 
 ### Mounting UFS
 
-If your Device has an Mass Storage Guide use that. <br />
-If Not Use [Mass-Storage.zip](https://github.com/Robotix22/Mu-Qcom-Guides/files/11005130/Mass-Storage.zip) and copy it contents to a FAT32 Partition on your Device. <br />
+If your Device has a Mass Storage Guide use that. <br />
+If Not, Use [Mass-Storage.zip](https://github.com/Robotix22/Mu-Qcom-Guides/files/11005130/Mass-Storage.zip) and copy it contents to a FAT32 Partition on your Device. <br />
 After that boot the UEFI Image then it enters Windows Boot Manager select `Developer Menu` -> `USB Mass Storage Mode`. <br />
 
 Then connect your Device to the PC / Laptop and find the Arch and esp partition. <br />
@@ -112,16 +112,16 @@ Mount your device like this:
 
 ## Partition USB / SD Card (Method 2)
 
-Use your favorite way to partition the usb drive according to this sheme:
+Use your favourite way to partition the USB drive according to this scheme:
 
 | Mount point   | Partition     | Partition Type| Suggested size    |
 | ------------- | ------------- | ------------- | -------------     |
 | mnt/boot      | Esp Part      | fat32         | 1 GiB             |
 | mnt           | Arch Root     | ext4          | Rest of the device|
 
-Then Create a temp folder somwhere on your pc and open a terminal.
+Then Create a temp folder somewhere on your pc and open a terminal.
 
-You can also copy the `ArchLinuxARM-aarch64-latest.tar.gz` you got ealier as you are gonna need it later
+You can also copy the `ArchLinuxARM-aarch64-latest.tar.gz` you got earlier as you are gonna need it later
 
 Mount the External Storage Device according to the mount points above:
 
@@ -146,7 +146,7 @@ Unpack the rootfs onto the mounted device
 
 ## Installing and configuring Refind (Step 3)
 
-Okay so now you have a system, now you need a bootloader I'm gonna use refind but you could use something like GRUB2 if you wish.
+Okay so now you have a system, now you need a bootloader I'm going to use refind but you could use something like GRUB2 if you wish.
 
 Unpack `refind-bin-x.xx.x.x.zip` into `refind/` directory.
 
@@ -198,8 +198,8 @@ Password: `alarm`
 
 ### Connect to the internet
 
-1. Connect usb internet source (USB tethering or USB to ethernet card)
-2. Run `dhcpcd &` after logging in to get ip address
+1. Connect USB internet source (USB tethering or USB to Ethernet card)
+2. Run `dhcpcd &` after logging in to get IP address
 3. Check internet access by `ping 1.1.1.1`
 
 ### Initialize the pacman keyring and populate the Arch Linux ARM package signing keys
@@ -210,6 +210,6 @@ pacman-key --populate archlinuxarm
 ```
 After doing this you can now use pacman to install packages
 
-### Install Desktop Enviroment
+### Install Desktop Environment
 
 > TODO: figure out how to force Xorg to use framebuffer provided by UEFI
