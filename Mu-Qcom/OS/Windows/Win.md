@@ -41,8 +41,8 @@ This Guide will show you how to install full Windows on your Device.
 Unless its Noted that the Device Requires 24H2 Builds or higher </b> <br />
 Choose a Build and select all Options you prefer. <br />
 After that download the zip File and extract it on your PC / Laptop. (The Path should not contain any spaces) <br />
-Then Open the extracted Folder and run the Build script, wait once it is finisched. (Some AntiVirus Programms stop the Build) <br />
-A ISO will apear in the Folder, open the ISO File and extract the install.wim from `sources` and place it somewhere, where you can reach it.
+Then Open the extracted Folder and run the Build script, wait once it is finished. (Some AntiVirus Programs stop the Build) <br />
+A ISO will appear in the Folder, open the ISO File and extract the install.wim from `sources` and place it somewhere, where you can reach it.
 
 ## Windows Drivers (Step 1.2)
 

@@ -72,7 +72,7 @@ Once it took you to the function find the patches you saw in Terminal, Now also 
 Okay, Now its time to patch your EFI File if you found the bytes, Set the bytes you just found the the patched bytes, To do that Press `SHIFT + STRG + G`. <br />
 Wait until it finishes loading then change theses Values to the Values that are in the patched File present. <br />
 
-Once you did that you can save the File: `File -> Save [File Name] as`, A dialog Box will apear, Change the Name to: `[File Name].patched.efi` and press Save. <br />
+Once you did that you can save the File: `File -> Save [File Name] as`, A dialog Box will appear, Change the Name to: `[File Name].patched.efi` and press Save. <br />
 
 After that you only need to Export the File and implement it in the UEFI, To Export it you go to: `File -> Export Program`, again a dialog box will open, Format should be Original File and if `Selection Only` is checked uncheck it and press OK. <br />
 
